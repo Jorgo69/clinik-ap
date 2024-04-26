@@ -1,5 +1,4 @@
-
-<x-guest-layout>
+<x-user>
     {{-- <body> --}}
         {{-- Connexion --}}
         {{-- @include('components.connexion') --}}
@@ -67,5 +66,4 @@
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
         
-</x-guest-layout>
-    
+</x-user>

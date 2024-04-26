@@ -7,16 +7,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a href="/" class="nav-item nav-link active">Acceuil</a>
-            <a href="{{ route('aboutUs')}}" class="nav-item nav-link">Nous connaiître</a>
+            <a href="/" class="nav-item nav-link">Acceuil</a>
+            <a href="" class="nav-item nav-link">Prendre Poste</a>
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Nos Services</a>
+                <a href="{{ route('user.espace')}}" class="nav-item nav-link">Mon Espace</a>
                 <div class="dropdown-menu rounded-0 rounded-bottom m-0">
-                    <a href="feature.html" class="dropdown-item">Feature</a>
-                    <a href="team.html" class="dropdown-item">Our Doctor</a>
-                    <a href="appointment.html" class="dropdown-item">Appointment</a>
-                    <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                    <a href="404.html" class="dropdown-item">404 Page</a>
+                    <a href="{{ route('user.espace')}}" class="dropdown-item">Mes Consultations</a>
+                    <a href="{{ route('user.espace')}}" class="dropdown-item">Mon Carnet</a>
+                    <a href="{{ route('user.espace')}}" class="dropdown-item">Messages</a>
+                    <a href="{{ route('user.espace')}}" class="dropdown-item">Profil</a>
+                    {{-- <a href="404.html" class="dropdown-item">404 Page</a> --}}
                 </div>
             </div>
             <a href="{{route('contact')}}" class="nav-item nav-link">Nous Contacter</a>

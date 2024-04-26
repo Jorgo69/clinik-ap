@@ -18,28 +18,50 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home.index');
 
-Route::get('/about', function(){
-    return view('about');
-} )->name('aboutUs');
+Route::get('/services', function(){
+    return view('services');
+} )->name('services');
 
 Route::get('/contact', function() {
     return view('contact');
 } )->name('contact');
 
+// Auth User
+Route::get('user/espace', function(){
+    return view('user.espace');
+})->name('user.espace');
+
+
 //  Auth Partials
 
 // Specialistes
 Route::get('specialists/dashboard', function() {
-    return view('specialiste.dashboardOther');
+    return view('specialiste.dashboard');
 })->name('specialiste.index');
 
-Route::get('specialists/consultations', function() {
-    return view('specialiste.consultations.all');
-})->name('specialiste.consultations.index');
+Route::get('specialists/rendez-vous', function() {
+    return view('specialiste.rendez-vous.all');
+})->name('specialiste.rendez-vous.index');
 
 Route::get('specialists/done', function() {
-    return view('specialiste.consultations.done');
-})->name('specialiste.consultations.done');
+    return view('specialiste.rendez-vous.done');
+})->name('specialiste.rendez-vous.done');
+
+Route::get('/specialiste/consultation/liste/patients', function() {
+    return view('specialiste.consultation.listePatients');
+})->name('specialiste.consultation.index');
+
+Route::get('/specialiste/patients/liste', function() {
+    return view('specialiste.patient.allPatient');
+})->name('specialiste.liste.patients');
+
+Route::get('/specialiste/patients/detail', function() {
+    return view('specialiste.patient.details');
+})->name('specialiste.details.patients');
+
+Route::get('specialiste/add/patient', function() {
+    return view('specialiste.patient.addPatient');
+})->name('specialiste.add.patient');
 
 
 // Error Logiques

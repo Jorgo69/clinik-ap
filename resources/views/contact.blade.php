@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-user>
     {{-- Top Bar Start --}}
     @include('components.topBar')
     {{-- Top Bar End --}}
@@ -19,4 +19,4 @@
     {{-- Footer --}}
     @include('components.footer')
     {{-- Footer End --}}
-</x-guest-layout>
+</x-user>
