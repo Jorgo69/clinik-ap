@@ -15,7 +15,7 @@
                     <a href="{{ route('user.espace')}}" class="dropdown-item">Mes Consultations</a>
                     <a href="{{ route('user.espace')}}" class="dropdown-item">Mon Carnet</a>
                     <a href="{{ route('user.espace')}}" class="dropdown-item">Messages</a>
-                    <a href="{{ route('user.espace')}}" class="dropdown-item">Profil</a>
+                    <a href="/profile" class="dropdown-item">Profil</a>
                     {{-- <a href="404.html" class="dropdown-item">404 Page</a> --}}
                 </div>
             </div>

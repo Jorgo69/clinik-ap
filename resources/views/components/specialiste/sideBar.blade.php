@@ -18,8 +18,8 @@
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Consultation</a>
                 <div class="dropdown-menu bg-transparent border-0">
-                    <a href="{{ route('specialiste.consultation.index')}}" class="dropdown-item">Liste des patients</a>
-                    <a href="" class="dropdown-item">Nouveau patients</a>
+                    <a href="{{ route('specialiste.consultation.index')}}" class="dropdown-item">Liste des consultations</a>
+                    <a href="{{ route('specialiste.add.consultation')}}" class="dropdown-item">Les Consulter</a>
                 </div>
             </div>
 
@@ -27,14 +27,27 @@
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-table me-2"></i>Rendez vous</a>
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="{{route('specialiste.rendez-vous.index')}}" class="dropdown-item active">Tout les RDV</a>
-                    <a href="{{ route('specialiste.rendez-vous.done')}}" class="dropdown-item">Accepter</a>
-                    <a href="element.html" class="dropdown-item">En cours</a>
+                    {{-- <a href="{{ route('specialiste.rendez-vous.done')}}" class="dropdown-item">Accepter</a> --}}
                 </div>
             </div>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fab fa-accessible-icon me-2 "></i>Patients</a>
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="{{ route('specialiste.liste.patients')}}" class="dropdown-item active">Tout les Patients</a>
+                    <a href="{{ route('specialiste.add.patient')}}" class="dropdown-item">Nouveau Patients</a>
+                </div>
+            </div>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-credit-card" aria-hidden="true"></i>Factures</a>
+                <div class="dropdown-menu bg-transparent border-0">
+                    <a href="{{ route('specialiste.facure')}}" class="dropdown-item active">Toutes les factures</a>
+                    <a href="{{ route('specialiste.add.patient')}}" class="dropdown-item">Nouveau Patients</a>
+                </div>
+            </div>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-users" aria-hidden="true"></i></i>Personnels</a>
+                <div class="dropdown-menu bg-transparent border-0">
+                    <a href="{{ route('specialiste.facure')}}" class="dropdown-item active">Tous le personnel</a>
                     <a href="{{ route('specialiste.add.patient')}}" class="dropdown-item">Nouveau Patients</a>
                 </div>
             </div>

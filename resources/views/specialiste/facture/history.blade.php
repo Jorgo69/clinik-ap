@@ -1,6 +1,5 @@
 <x-specialiste>
     
-    
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -20,15 +19,15 @@
         <div class="content">
             <!-- Navbar Start -->
             @include('components.specialiste.navBarContent')
-            <!-- Navbar End -->
-
+            <!-- Navbar End -->    
+    
             <div class="container-fluid pt-4 px-4">
-                <div class="bg-light text-center rounded p-4 col-12 col-md-12 col-sm-12 col-xl-12 col-xxl-12">
+                <div class="bg-light rounded p-4 col-12 col-md-12 col-sm-12 col-xl-12 col-xxl-12">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0">
-                            Liste de Consultés
+                            Liste de toutes les factures
                         </h6>
-                        <a class="btn btn-sm btn-info m-1 p-3.5" type="button" data-bs-toggle="modal" data-bs-target="#modalPatient">Nouveau Patient</a>
+                        {{-- <a class="btn btn-sm btn-info m-1 p-3.5" type="button" data-bs-toggle="modal" data-bs-target="#modalPatient">Nouveau Patient</a> --}}
                     </div>
                     <div class="table-responsive">
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
@@ -39,12 +38,10 @@
                                             <input class="form-check-input"  type="checkbox">
                                         </a>
                                     </th>
-                                    <th scope="col">Date</th>
                                     <th scope="col">Patient</th>
-                                    <th scope="col">Montant</th>
-                                    <th scope="col">Payer</th>
-                                    <th scope="col">Reste</th>
                                     <th scope="col">Motif</th>
+                                    <th scope="col">Montant</th>
+                                    <th scope="col">Date</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -55,16 +52,12 @@
                                             <input class="form-check-input"  type="checkbox">
                                         </a>
                                     </td>
-                                    <td>22/01/2002</td>
                                     <td>Son nom complet</td>
+                                    <td>Consultation</td>
                                     <td>50 000</td>
-                                    <td>30 000</td>
-                                    <td>20 000</td>
-                                    <td>Corps Chaud</td>
-                                    <td class="text-center">
-                                        <a href="{{route('specialiste.detail.consultation')}}">
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </a>
+                                    <td>24/11/2003</td>
+                                    <td class="float-center">
+                                        <a href="{{ route('specialiste.details.patients')}}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -73,16 +66,12 @@
                                             <input class="form-check-input"  type="checkbox">
                                         </a>
                                     </td>
-                                    <td>22/01/2002</td>
                                     <td>Son nom complet</td>
+                                    <td>Consultation</td>
                                     <td>50 000</td>
-                                    <td>30 000</td>
-                                    <td>20 000</td>
-                                    <td>Corps Chaud</td>
-                                    <td class="text-center">
-                                        <a href="{{route('specialiste.detail.consultation')}}">
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </a>
+                                    <td>24/11/2003</td>
+                                    <td class="float-center">
+                                        <a href="{{ route('specialiste.details.patients')}}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -91,16 +80,12 @@
                                             <input class="form-check-input"  type="checkbox">
                                         </a>
                                     </td>
-                                    <td>22/01/2002</td>
                                     <td>Son nom complet</td>
+                                    <td>Consultation</td>
                                     <td>50 000</td>
-                                    <td>30 000</td>
-                                    <td>20 000</td>
-                                    <td>Corps Chaud</td>
-                                    <td class="text-center">
-                                        <a href="{{route('specialiste.detail.consultation')}}">
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </a>
+                                    <td>24/11/2003</td>
+                                    <td class="float-center">
+                                        <a href="{{ route('specialiste.details.patients')}}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -108,7 +93,6 @@
                     </div>
                 </div>
             </div>
-
     
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">
@@ -121,6 +105,6 @@
     </div>
     
     @push('title_header')
-        <title>Les Consultés | {{config('app.name')}}</title>
+        <title>Liste des factures | {{config('app.name')}}</title>
     @endpush
     </x-specialiste>

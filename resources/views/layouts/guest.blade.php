@@ -1,4 +1,4 @@
-{{-- 
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -55,4 +55,4 @@
         <!-- Template Javascript -->
         <script src="{{asset("assets/users/js/main.js")}}"></script>
     </body>
-</html> --}}
+</html>

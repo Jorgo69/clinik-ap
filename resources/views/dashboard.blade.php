@@ -1,17 +1,27 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+<x-user>
+        
+        <!-- Navbar Start -->    
+        @include('components.navBar')    
+        <!-- Navbar End -->
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ __("Vous etes connecte!") }}
-                </div>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col">
+            <div class="alert alert-primary text-center alert-dismissible fade show" role="alert">
+                <i class="fa fa-exclamation-circle me-2"></i>Vous etes connecter
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         </div>
     </div>
-</x-app-layout>
+</div>
+    
+        <!-- Footer Start -->
+            @include('components.footer')
+        <!-- Footer End -->
+    
+    
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+            
+    
+</x-user>

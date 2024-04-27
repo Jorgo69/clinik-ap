@@ -24,119 +24,61 @@
             <!-- Les Rendez vous Start -->
             <div class="container-fluid pt-4 px-4">
                 
-                <div class="bg-light text-center rounded p-4">
+                <div class="bg-light text-center rounded mb-3 p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0"> Toutes les rendez vous</h6>
+                        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#RDVModal">Ajouter un rendez vous</button>
                     </div>
+                    <div class="modal fade" id="RDVModal" tabindex="-1" aria-labelledby="RDVModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="RDVModalLabel"> Reservez un RDV </h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <select name="" class="form-select mb-2" id="">
+                                <option value="">Patient</option>
+                              </select>
+                              <input type="date" name="" class="form-control mb-2" id="">
+                              <input type="time" name="" class="form-control mb-2" id="">
+                              <input type="text" class="form-control" placeholder="Motif de la Consultation">
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                              <button type="button" class="btn btn-primary">Sauvegarder</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    
                     <div class="table-responsive">
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
                             <thead>
-                                <tr class="text-dark">
-                                    <th scope="col">
-                                        <a href="?=1">
-                                            <input class="form-check-input"  type="checkbox">
-                                        </a>
-                                    </th>
-                                    <th scope="col">Date</th>
+                                <tr>
+                                    <th scope="col">Date soumise</th>
                                     <th scope="col">Patient</th>
-                                    <th scope="col">Maux</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col">Motif</th>
+                                    <th scope="col">Sexe</th>
+                                    <th scope="col">Age</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="modalDetailPatient" aria-hidden="true">
-                                    <div class="modal-dialog modal-xl">
-                                    {{-- <div class="modal-dialog modal-fullscreen"> --}}
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="modalDetailPatient">Nom du Patient</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body d-flex justify-space-evently">
-                                            <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xl-12 col-xxl-12">
-                                                <div class="col-sm-auto col-xl-auto">
-                                                    <div class="bg-light rounded h-100 p-4">
-                                                        <h6 class="mb-4"> Soumise  {!! 'Aujourd\'hui' !!}</h6>
-                                                        <div class="d-flex align-items-start">
-                                                            <div class="nav flex-column nav-pills me-3 d-none" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                                                <button class="nav-link" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="false">Recent</button>
-                                                            </div>
-                                                            <div class="tab-content" id="v-pills-tabContent">
-                                                                <div class="tab-pane active fade show" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                                                                    Consetetur at sit est sit ut ipsum clita at. Sit elitr sit sea dolor tempor eos sit, erat diam ea rebum clita no ea. Et amet sed nonumy sadipscing dolor et ut sed et. Stet eirmod est nonumy clita invidunt rebum. Nonumy dolor ut diam invidunt eirmod nonumy sed gubergren,.
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
-                                        </div>
-                                    </div>
-                                    {{-- </div> --}}
-                                    </div>
-                                </div>
                                 <tr>
-                                    <td>
-                                        <a href="?=1">
-                                            <input class="form-check-input"  type="checkbox">
-                                        </a>
-                                    </td>
-                                    <td>01 Jan 2045</td>
-                                    <td>Son nom</td>
-                                    <td>Maux de tete</td>
-                                    <td class="float-center">
-                                        <a class="btn btn-sm btn-info m-1 p-3.5" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Detail</a>
-                                        <a class="btn btn-sm btn-warning m-1 p-3.5" href="">Accepter</a>
-                                        <a class="btn btn-sm btn-danger m-1 p-3.5" href="">Refuser</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="?=1">
-                                            <input class="form-check-input"  type="checkbox">
-                                        </a>
-                                    </td>
-                                    <td>01 Jan 2045</td>
-                                    <td>Son nom</td>
-                                    <td>Maux de tete</td>
-                                    <td class="float-center">
-                                        <a class="btn btn-sm btn-info m-1 p-3.5" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Detail</a>
-                                        <a class="btn btn-sm btn-warning m-1 p-3.5" href="">Accepter</a>
-                                        <a class="btn btn-sm btn-danger m-1 p-3.5" href="">Refuser</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="?=1">
-                                            <input class="form-check-input"  type="checkbox">
-                                        </a>
-                                    </td>
-                                    <td>01 Jan 2045</td>
-                                    <td>Son nom</td>
-                                    <td>Maux de tete</td>
-                                    <td class="float-center">
-                                        <a class="btn btn-sm btn-info m-1 p-3.5" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Detail</a>
-                                        <a class="btn btn-sm btn-warning m-1 p-3.5" href="">Accepter</a>
-                                        <a class="btn btn-sm btn-danger m-1 p-3.5" href="">Refuser</a>
-                                    </td>
+                                    <th scope="row">24/12/2002 08:30</th>
+                                    <td>Son Nom au complet</td>
+                                    <td>Diarhee</td>
+                                    <td>Homme</td>
+                                    <td>24 ans</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <div class="card">
-                    {{-- <img src="image.jpg" class="card-img-top" alt="Image"> --}}
-                    <div class="card-body">
-                      <h5 class="card-title">Titre de la carte</h5>
-                      <p class="card-text">Description de la carte.</p>
-                      <a href="#" class="btn btn-primary">Bouton</a>
-                    </div>
+                  <div class="row">
+                    
                   </div>
                   
                 

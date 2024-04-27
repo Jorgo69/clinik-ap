@@ -51,6 +51,14 @@ Route::get('/specialiste/consultation/liste/patients', function() {
     return view('specialiste.consultation.listePatients');
 })->name('specialiste.consultation.index');
 
+Route::get('specialiste/consultation/add/patients', function(){
+    return view('specialiste.consultation.newPatients');
+})->name('specialiste.add.consultation');
+
+Route::get('specialiste/consultation/detail/consultation', function() {
+    return view('specialiste.consultation.detailsConsulte');
+})->name('specialiste.detail.consultation');
+
 Route::get('/specialiste/patients/liste', function() {
     return view('specialiste.patient.allPatient');
 })->name('specialiste.liste.patients');
@@ -62,6 +70,10 @@ Route::get('/specialiste/patients/detail', function() {
 Route::get('specialiste/add/patient', function() {
     return view('specialiste.patient.addPatient');
 })->name('specialiste.add.patient');
+
+Route::get('/specialiste/facture/', function() {
+    return view('specialiste.facture.history');
+})->name('specialiste.facure');
 
 
 // Error Logiques
