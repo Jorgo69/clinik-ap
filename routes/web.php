@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Specialiste\AppointmentController;
+use App\Http\Controllers\Specialiste\ConsultationController;
+use App\Http\Controllers\Specialiste\PatientController;
+use App\Http\Controllers\User\EspaceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,8 +19,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return view('auth.login');
 })->name('home.index');
+
+Route::get('home', function() {
+    return view('welcome');
+});
 
 Route::get('/services', function(){
     return view('services');
@@ -27,9 +36,7 @@ Route::get('/contact', function() {
 } )->name('contact');
 
 // Auth User
-Route::get('user/espace', function(){
-    return view('user.espace');
-})->name('user.espace');
+Route::get('user/espace', [EspaceController::class, 'index'])->name('user.espace');
 
 
 //  Auth Partials
@@ -37,39 +44,43 @@ Route::get('user/espace', function(){
 // Specialistes
 Route::get('specialists/dashboard', function() {
     return view('specialiste.dashboard');
-})->name('specialiste.index');
+})->name('specialiste.index')->middleware('right.medical');
 
-Route::get('specialists/rendez-vous', function() {
-    return view('specialiste.rendez-vous.all');
-})->name('specialiste.rendez-vous.index');
+
+// Rendez Ressource
+Route::get('specialists/rendez-vous', [AppointmentController::class, 'index'])->name('specialiste.rendez-vous.index')->middleware('right.medical');
+Route::post('specialiste/rendez-vous/making', [AppointmentController::class, 'store'])->name('specialiste.rendez-vous.making')->middleware('right.medical');
 
 Route::get('specialists/done', function() {
     return view('specialiste.rendez-vous.done');
 })->name('specialiste.rendez-vous.done');
 
-Route::get('/specialiste/consultation/liste/patients', function() {
-    return view('specialiste.consultation.listePatients');
-})->name('specialiste.consultation.index');
+
+// Consultation Ressource
+Route::get('/specialiste/consultation/liste/patients', [ConsultationController::class, 'index'])->name('specialiste.consultation.index')->middleware('right.medical');
 
 Route::get('specialiste/consultation/add/patients', function(){
     return view('specialiste.consultation.newPatients');
 })->name('specialiste.add.consultation');
 
-Route::get('specialiste/consultation/detail/consultation', function() {
-    return view('specialiste.consultation.detailsConsulte');
-})->name('specialiste.detail.consultation');
+Route::get('specialiste/consultation/detail/consultation/{id}', [ConsultationController::class, 'show'])->name('specialiste.detail.consultation')->middleware('right.medical');
+Route::post('specialiste/consulte/patient', [ConsultationController::class, 'store'])->name('specialiste.consulte.patient')->middleware('right.medical');
 
-Route::get('/specialiste/patients/liste', function() {
-    return view('specialiste.patient.allPatient');
-})->name('specialiste.liste.patients');
 
-Route::get('/specialiste/patients/detail', function() {
-    return view('specialiste.patient.details');
-})->name('specialiste.details.patients');
+
+// Patient Ressources
+Route::get('/specialiste/patients/liste', [PatientController::class, 'index'])->name('specialiste.liste.patients')->middleware('right.medical');
+
+
+Route::get('/specialiste/patients/detail/{id}',[PatientController::class, 'show'])->name('specialiste.details.patients')->middleware('right.medical');
 
 Route::get('specialiste/add/patient', function() {
     return view('specialiste.patient.addPatient');
-})->name('specialiste.add.patient');
+})->name('specialiste.add.patient')->middleware('right.medical');
+
+// Add Patient
+Route::post('ajouter/patient', [PatientController::class, 'store'])->name('Add.Patient');
+// End Patient Ressources
 
 Route::get('/specialiste/facture/', function() {
     return view('specialiste.facture.history');

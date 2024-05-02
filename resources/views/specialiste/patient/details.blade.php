@@ -31,14 +31,14 @@
                                     <img src="{{asset('assets/users/img/patient.png')}}" width="90" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
                                     
                                     <div class="text-left mt-3">
-                                        <p class="text-muted mb-2 font-13"><strong>Nom Complet :</strong> <span class="ml-2">Cynthia Connolly</span></p>
+                                        <p class="text-muted mb-2 font-13"><strong>Nom Complet :</strong> <span class="ml-2">{{$patient->name}} {{$patient->firstname}} </span></p>
                                         <p class="text-muted mb-2 font-13"><strong>Mobile :</strong><span class="ml-2"> 692 382 65</span></p>
                                         <p class="text-muted mb-2 font-13"><strong>Addresse :</strong> <span class="ml-2">9 Hill Haven Drive</span></p>
-                                        <p class="text-muted mb-2 font-13"><strong>Date De Naissance :</strong> <span class="ml-2">10/11/2000</span></p>
-                                        <p class="text-muted mb-2 font-13"><strong>Age :</strong> <span class="ml-2">22 Years</span></p>
+                                        <p class="text-muted mb-2 font-13"><strong>Date De Naissance :</strong> <span class="ml-2">{{$patient->birthdate}}</span></p>
+                                        <p class="text-muted mb-2 font-13"><strong>Age :</strong> <span class="ml-2"> {{ $years }} ans </span></p>
                                         <p class="text-muted mb-2 font-13"><strong>Allergie :</strong> <span class="ml-2"> Poisson </span></p>
                                         <hr>
-                                        <p class="text-muted mb-2 font-13"><strong>Date d'enreigistrement :</strong> <span class="ml-2">18/10/2022 - 05:10</span></p>
+                                        <p class="text-muted mb-2 font-13"><strong>Date d'enreigistrement :</strong> <span class="ml-2">{{$patient->created_at}}</span></p>
                                         <hr>
                                     </div>
                                 </div>

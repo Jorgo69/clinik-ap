@@ -12,12 +12,20 @@
         <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                 <i class="fa fa-user-md fa-2x" aria-hidden="true"></i>
-                {{-- <img class="rounded-circle me-lg-2" src="{{asset('assets/others/img/user.jpg') }}" alt="" style="width: 40px; height: 40px;"> --}}
                 <span class="d-none d-lg-inline-flex">Nom Specialiste name</span>
             </a>
             <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                <a href="#" class="dropdown-item">Profil</a>
-                <a href="#" class="dropdown-item">Deconnexion</a>
+                @auth
+                <a href="{{ route('profile.edit')}}" class="dropdown-item">Profil</a>
+                <form action="{{route('logout')}}" method="post">
+                    @csrf
+                    <button class="dropdown-item">Deconnexion</button>                
+                </form>
+                @endauth
+                @guest
+                    <a href="{{ route('login')}}" class="dropdown-item">Connexion</a>
+                    <a href="{{ route('register')}}" class="dropdown-item">Inscription</a>
+                @endguest
             </div>
         </div>
     </div>

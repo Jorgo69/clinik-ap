@@ -31,14 +31,14 @@
                                 <img src="{{asset('assets/users/img/patient.png')}}" width="90" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
                                 
                                 <div class="text-left mt-3">
-                                    <p class="text-muted mb-2 font-13"><strong>Nom Complet :</strong> <span class="ml-2">Cynthia Connolly</span></p>
+                                    <p class="text-muted mb-2 font-13"><strong>Nom Complet :</strong> <span class="ml-2">{{$patient->name}} {{$patient->firstname}} </span></p>
                                     <p class="text-muted mb-2 font-13"><strong>Mobile :</strong><span class="ml-2"> 692 382 65</span></p>
                                     <p class="text-muted mb-2 font-13"><strong>Addresse :</strong> <span class="ml-2">9 Hill Haven Drive</span></p>
-                                    <p class="text-muted mb-2 font-13"><strong>Date De Naissance :</strong> <span class="ml-2">10/11/2000</span></p>
-                                    <p class="text-muted mb-2 font-13"><strong>Age :</strong> <span class="ml-2">22 Years</span></p>
+                                    <p class="text-muted mb-2 font-13"><strong>Date De Naissance :</strong> <span class="ml-2">{{$patient->birthdate}}</span></p>
+                                    <p class="text-muted mb-2 font-13"><strong>Age :</strong> <span class="ml-2"> {{$years}} ans </span></p>
                                     <p class="text-muted mb-2 font-13"><strong>Allergie :</strong> <span class="ml-2"> Poisson </span></p>
                                     <hr>
-                                    <p class="text-muted mb-2 font-13"><strong>Date d'enreigistrement :</strong> <span class="ml-2">18/10/2022 - 05:10</span></p>
+                                    <p class="text-muted mb-2 font-13"><strong>Date d'enreigistrement :</strong> <span class="ml-2">{{$patient->created_at}}</span></p>
                                     <hr>
                                 </div>
                             </div>
@@ -71,73 +71,90 @@
                                         </button>
                                     </li>
                                 </ul>
-                                <div class="tab-content" id="pills-tabContent">
-                                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                                        Motif de la consultation
-                                        <div class="row">
-                                            <div class="card bg-light" >
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Constante Vitale</h5>
-                                                    <p class="card-text">
-                                                        <input type="text" class="form-control mb-2" placeholder="Le Poids en Kg">
-                                                        <input type="text" class="form-control mb-2" placeholder="La Taille en Cm">
-                                                        <input type="text" class="form-control mb-2" placeholder="La Temperature C">
-                                                        <input type="text" class="form-control mb-2" placeholder="Pression arterielle Ex: 8/12">
-                                                        <input type="text" class="form-control mb-2" placeholder="Frequence Cardiaque Ex: 70">
-                                                        <textarea name="" class="form-control" placeholder="Observation" id="" cols="30" rows="10"></textarea>
-                                                    </p>
-                                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <form action="{{route('specialiste.consulte.patient')}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="patient_id" value="{{$patient->id}}">
+                                    <div class="tab-content" id="pills-tabContent">
+                                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                            @if (Session::has('success'))
+                                            <div class="alert alert-info">{{ Session::get('success') }}</div>                                                
+                                            @endif
+                                            <div class="row">
+                                                <div class="card bg-light" >
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Constante Vitale</h5>
+                                                        <p class="card-text">
+                                                            <input type="text" name="weight" class="form-control mb-2" placeholder="Le Poids en Kg">
+                                                            <input type="text" name="size" class="form-control mb-2" placeholder="La Taille en Cm">
+                                                            <input type="text" name="temperature" class="form-control mb-2" placeholder="La Temperature C">
+                                                            <input type="text" name="pulse" class="form-control mb-2" placeholder="Pression arterielle Ex: 8/12">
+                                                            <input type="text" name="" class="form-control mb-2" placeholder="Frequence Cardiaque Ex: 70">
+                                                            <textarea name="" class="form-control" placeholder="Observation" id="" cols="30" rows="10"></textarea>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-2">
+                                                <div class="card bg-light" >
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Traitement A suivre</h5>
+                                                        <p class="card-text">
+                                                            <input type="text" name="drugs" class="form-control mb-2" placeholder="traitement">
+                                                            <input type="text" name="pace" class="form-control mb-2" placeholder="Frequence">
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                                        <div class="table-responsive">
-                                            <table class="table table-borderless mb-0">
-                                                <thead class="thead-light">
-                                                    <tr>
-                                                        <th>Temperature du Corps</th>
-                                                        <th>Fréquence cardiaque/pouls</th>
-                                                        <th>Fréquence respiratoire</th>
-                                                        <th>Pression artérielle</th>
-                                                        <th>Date d'enreigistrement</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>38°C</td>
-                                                        <td>77BPM</td>
-                                                        <td>12bpm</td>
-                                                        <td>90/60mmHg</td>
-                                                        <td>2022-10-18</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                            <div class="table-responsive">
+                                                <table class="table table-borderless mb-0">
+                                                    <thead class="thead-light">
+                                                        <tr>
+                                                            <th>Temperature du Corps</th>
+                                                            <th>Fréquence cardiaque/pouls</th>
+                                                            <th>Fréquence respiratoire</th>
+                                                            <th>Pression artérielle</th>
+                                                            <th>Date d'enreigistrement</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>38°C</td>
+                                                            <td>77BPM</td>
+                                                            <td>12bpm</td>
+                                                            <td>90/60mmHg</td>
+                                                            <td>2022-10-18</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                                            <ul class="list-unstyled timeline-sm">
+                                                <li class="timeline-sm-item">
+                                                    <span class="timeline-sm-date"> Consultation du 2022-10-20</span>
+                                                    <h3 class="mt-0 mb-1">Demo Test</h3>
+                                                    <hr>
+                                                    <h5>
+                                                        Laboratory  Tests
+                                                    </h5>
+                                                    
+                                                    <p class="text-muted mt-2"></p><p>demo demo demo demo</p><p></p>
+                                                    <hr>
+                                                    <h5>
+                                                        Laboratory Results
+                                                    </h5>
+                                                    
+                                                    <p class="text-muted mt-2"></p><p>54545</p><p></p>
+                                                    <hr>
+    
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                                        <ul class="list-unstyled timeline-sm">
-                                            <li class="timeline-sm-item">
-                                                <span class="timeline-sm-date"> Consultation du 2022-10-20</span>
-                                                <h3 class="mt-0 mb-1">Demo Test</h3>
-                                                <hr>
-                                                <h5>
-                                                    Laboratory  Tests
-                                                </h5>
-                                                
-                                                <p class="text-muted mt-2"></p><p>demo demo demo demo</p><p></p>
-                                                <hr>
-                                                <h5>
-                                                    Laboratory Results
-                                                </h5>
-                                                
-                                                <p class="text-muted mt-2"></p><p>54545</p><p></p>
-                                                <hr>
-
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                    <button class="btn btn-info">Relever</button>
+                                </form>
                             </div>
                             </div>
                         </div>

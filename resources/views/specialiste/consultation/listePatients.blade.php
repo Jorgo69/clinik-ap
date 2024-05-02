@@ -13,34 +13,11 @@
                 <div class="col-sm-auto col-xl-auto">
                     <div class="bg-light rounded h-100 mb-3 p-4">
                         <div class="mb-3">
-                            <label for="helpNomId" class="form-label">Nom de Famille</label>
-                            <input type="text" class="form-control" name="" id="" aria-describedby="helpNomId" placeholder="" />
+                            <label for="helpNomId" class="form-label">Le Patient</label>
+                            <select name="" id="" class="form-select" aria-describedby="helpNomId">
+                                <option value="">Choisissez le Patient</option>
+                            </select>
                             <small id="helpNomId" class="form-text text-muted">Tous les nom du patient</small>
-                        </div>
-                        <div class="mb-3">
-                            <label for="helpPrenomId" class="form-label">Prenom du Patient</label>
-                            <input type="text" class="form-control" name="" id="" aria-describedby="helpPrenomId" placeholder="" />
-                            <small id="helpPrenomId" class="form-text text-muted">Tous les prenom au complet</small>
-                        </div>
-                        <div class="mb-3">
-                            <label for="helpResidenceId" class="form-label">Residence du Patient</label>
-                            <input type="text" class="form-control" name="" id="" aria-describedby="helpResidenceId" placeholder="" />
-                            <small id="helpResidenceId" class="form-text text-muted">L'adresse residentielle du patient</small>
-                        </div>
-                        <div class="mb-3">
-                            <label for="helpAdresseId" class="form-label">Email du Patient</label>
-                            <input type="text" class="form-control" name="" id="" aria-describedby="helpAdresseId" placeholder="" />
-                            <small id="helpAdresseId" class="form-text text-muted">Adresse Email du patient</small>
-                        </div>
-                        <div class="mb-3">
-                            <label for="helpPrenomId" class="form-label">Prenom du Patient</label>
-                            <input type="text" class="form-control" name="" id="" aria-describedby="helpPrenomId" placeholder="" />
-                            <small id="helpPrenomId" class="form-text text-muted">Tous les prenom au complet</small>
-                        </div>
-                        <div class="mb-3">
-                            <label for="helpDateId" class="form-label">Date de naissance</label>
-                            <input type="text" class="form-control" name="" id="" aria-describedby="helpDateId" placeholder="" />
-                            <small id="helpDateId" class="form-text text-muted">La date de naissance du patient</small>
                         </div>
                     </div>
                     <div class="bg-info rounded h-100 p-4">
@@ -138,6 +115,24 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @forelse ($patients as $patient )
+                            <tr>
+                                <td>
+                                    <a href="{{$patient->id}}">
+                                        <input class="form-check-input"  type="checkbox">
+                                    </a>
+                                </td>
+                                <td>45</td>
+                                <td>{{$patient->name}} {{$patient->firstname}}</td>
+                                <td>O +</td>
+                                <td>Corps Chaud</td>
+                                <td class="text-center">
+                                    <a href="{{route('specialiste.detail.consultation', ['id' => $patient->id])}}">
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            @empty
                             <tr>
                                 <td>
                                     <a href="?=1">
@@ -154,38 +149,7 @@
                                     </a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>
-                                    <a href="?=1">
-                                        <input class="form-check-input"  type="checkbox">
-                                    </a>
-                                </td>
-                                <td>45</td>
-                                <td>Son nom complet</td>
-                                <td>O +</td>
-                                <td>Corps Chaud</td>
-                                <td class="text-center">
-                                    <a href="{{route('specialiste.detail.consultation')}}">
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <a href="?=1">
-                                        <input class="form-check-input"  type="checkbox">
-                                    </a>
-                                </td>
-                                <td>45</td>
-                                <td>Son nom complet</td>
-                                <td>O +</td>
-                                <td>Corps Chaud</td>
-                                <td class="text-center">
-                                    <a href="{{route('specialiste.detail.consultation')}}">
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

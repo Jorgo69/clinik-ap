@@ -36,17 +36,17 @@
         <h6 class="mb-4"> Ma Fiche Medical </h6>
         <div class="d-flex align-items-start">
             {{-- Les boutons --}}
-            <div class="nav flex-column nav-pills me-3 col-md-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <div class="nav flex-column nav-pills me-3 col-md-1" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <button class="nav-link" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="false"> Consultations</button>
                 <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Traitements</button>
                 <button class="nav-link " id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="true">Carnets</button>
                 <button class="nav-link active" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Profil</button>
             </div>
 
-            <div class="tab-content col-md-9" id="v-pills-tabContent">
+            <div class="tab-content col-md-10" id="v-pills-tabContent">
                 <div class="tab-pane fade" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                     <h6>Consultation</h6>
-                    <div class="table-responsive">
+                    <div class="table-responsive float-end">
                       <table
                         class="table table-primary">
                         <thead>
@@ -56,14 +56,33 @@
                             <th scope="col">Taille en Cm</th>
                             <th scope="col">Poid en kg</th>
                             <th scope="col">Poule </th>
+                            <th scope="col">Temperature </th>
                             <th scope="col">Observation</th>
                           </tr>
                         </thead>
                         <tbody>
+                          @forelse ($consultations as $consultations)
+                          <tr class="">
+                            <td scope="row">
+                              {{$consultations->created_at}}
+                            </td>
+                            <td>
+                              {{__('Motif')}}
+                            </td>
+                            <td>{{$consultations->size}}</td>
+                            <td>{{$consultations->weight}}</td>
+                            <td>{{$consultations->pulse}}</td>
+                            <td>{{$consultations->temperature}}</td>
+                            <td>
+                              Dysphagie douloureuse depuis 48 h.
+                              Fièvre 38°5
+                            </td>
+                          </tr>
+                          @empty
                           <tr class="">
                             <td scope="row">28/09/1995</td>
                             <td>
-                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Earum, quod!
+                              {{$consultations->size}}
                             </td>
                             <td>168</td>
                             <td>79</td>
@@ -73,14 +92,14 @@
                               Fièvre 38°5
                             </td>
                           </tr>
+                          @endforelse
                         </tbody>
                       </table>
                     </div>
-                    
                 </div>
                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                     <h6>Traitement</h6>
-                    <div class="table-responsive">
+                    <div class="table-responsive float-center">
                       <table
                         class="table table-primary">
                         <thead>
@@ -117,15 +136,15 @@
                         <tbody>
                           <tr>
                             <th scope="row">Nom</th>
-                            <td>Ducobu</td>
+                            <td>{{auth()->user()->name}}</td>
                           </tr>
                           <tr>
                             <th scope="row">Prenom</th>
-                            <td>Jean</td>
+                            <td>{{auth()->user()->firstname}}</td>
                           </tr>
                           <tr>
                             <th scope="row">Date de naissance</th>
-                            <td>01 Janvier 2000</td>
+                            <td>{{auth()->user()->birthdate}}</td>
                           </tr>
                           <tr>
                             <th scope="row">Lieu de naissance</th>
@@ -133,7 +152,7 @@
                           </tr>
                           <tr>
                             <th scope="row">Email</th>
-                            <td>example@gmail.com</td>
+                            <td>{{auth()->user()->email}}</td>
                           </tr>
                           <tr>
                             <th scope="row">Adresse</th>
@@ -145,15 +164,13 @@
                           </tr>
                           <tr>
                             <th scope="row">Sexe</th>
-                            <td>Homme</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">Antecedent Familial</th>
-                            <td>Ducobu</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">Prenom</th>
-                            <td>Jean</td>
+                            <td>
+                              @if(auth()->user()->sexe === 'male')
+                                {{__('Homme')}}
+                              @else
+                                {{{__('Femme')}}}
+                              @endif
+                            </td>
                           </tr>
                         </tbody>
                       </table>

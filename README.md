@@ -13,7 +13,7 @@
 * Le syteme conportera plusieurs role comme : Medecin-Secretaire-Comptable-Patient
 
 
-
+**| Laravel: Migration : text== 64 KB ; mediumText==16 MB; longtext==4G; |**
 
 Dans une clinique médicale où un logiciel de gestion est utilisé, il n'est pas nécessaire que tous les membres du personnel interagissent directement avec le logiciel. Voici comment les interactions avec le logiciel pourraient être réparties en fonction des rôles et des responsabilités :
 Interactions avec le Logiciel de Gestion :

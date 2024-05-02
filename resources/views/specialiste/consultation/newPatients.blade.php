@@ -62,43 +62,7 @@
                                     <td>20 000</td>
                                     <td>Corps Chaud</td>
                                     <td class="text-center">
-                                        <a href="{{route('specialiste.detail.consultation')}}">
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="?=1">
-                                            <input class="form-check-input"  type="checkbox">
-                                        </a>
-                                    </td>
-                                    <td>22/01/2002</td>
-                                    <td>Son nom complet</td>
-                                    <td>50 000</td>
-                                    <td>30 000</td>
-                                    <td>20 000</td>
-                                    <td>Corps Chaud</td>
-                                    <td class="text-center">
-                                        <a href="{{route('specialiste.detail.consultation')}}">
-                                            <i class="fa fa-eye" aria-hidden="true"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="?=1">
-                                            <input class="form-check-input"  type="checkbox">
-                                        </a>
-                                    </td>
-                                    <td>22/01/2002</td>
-                                    <td>Son nom complet</td>
-                                    <td>50 000</td>
-                                    <td>30 000</td>
-                                    <td>20 000</td>
-                                    <td>Corps Chaud</td>
-                                    <td class="text-center">
-                                        <a href="{{route('specialiste.detail.consultation')}}">
+                                        <a href="">
                                             <i class="fa fa-eye" aria-hidden="true"></i>
                                         </a>
                                     </td>

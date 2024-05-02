@@ -117,35 +117,60 @@
                 <div class="bg-light rounded p-4 col-12 col-md-12 col-sm-12 col-xl-12 col-xxl-12">
                     <div class="col-12 col-md-12 col-lg-12 col-sm-12 col-xl-12 col-xxl-12">
                         <div class="col-sm-auto col-xl-auto">
+                            @if (Session::has('success'))
+                            <div class="alert alert-info text-center">
+                                {{Session::get('success') }}
+                                <a href="" class="float-end"> X</a>
+                            </div>                                
+                            @endif
+                           <form action="{{ route('Add.Patient')}}" method="post">
+                            @csrf
                             <div class="bg-light rounded h-100 mb-3 p-4">
                                 <h5>Informations de base</h5>
                                 <div class="mb-3">
                                     <label for="helpNomId" class="form-label">Nom de Famille</label>
-                                    <input type="text" class="form-control" name="" id="" aria-describedby="helpNomId" placeholder="" />
-                                    <small id="helpNomId" class="form-text text-muted">Tous les nom du patient</small>
+                                    <input type="text" class="form-control" name="name" id="" aria-describedby="helpNomId" placeholder="" />
+                                    <small id="helpNomId" class="form-text text-muted">Tous les nom du patient</small> <br>
+                                    @error('name')
+                                    <small id="helpNomId" class="form-text text-danger">{{$message}}</small>
+                                    @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label for="helpPrenomId" class="form-label">Prenom du Patient</label>
-                                    <input type="text" class="form-control" name="" id="" aria-describedby="helpPrenomId" placeholder="" />
-                                    <small id="helpPrenomId" class="form-text text-muted">Tous les prenom au complet</small>
+                                    <input type="text" class="form-control" name="firstname" id="" aria-describedby="helpPrenomId" placeholder="" />
+                                    <small id="helpPrenomId" class="form-text text-muted">Tous les prenom au complet</small> <br>
+                                    @error('firstname')
+                                    <small id="helpNomId" class="form-text text-danger">{{$message}}</small>
+                                    @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label for="helpResidenceId" class="form-label">Residence du Patient</label>
-                                    <input type="text" class="form-control" name="" id="" aria-describedby="helpResidenceId" placeholder="" />
-                                    <small id="helpResidenceId" class="form-text text-muted">L'adresse residentielle du patient</small>
+                                    <input type="text" class="form-control" name="residence" id="helpResidenceId" aria-describedby="helpResidenceId" placeholder="" />
+                                    <small id="helpResidenceId" class="form-text text-muted">L'adresse residentielle du patient</small> <br>
+                                    @error('residence')
+                                    <small id="helpNomId" class="form-text text-danger">{{$message}}</small>
+                                    @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label for="helpAdresseId" class="form-label">Email du Patient</label>
-                                    <input type="text" class="form-control" name="" id="" aria-describedby="helpAdresseId" placeholder="" />
-                                    <small id="helpAdresseId" class="form-text text-muted">Adresse Email du patient</small>
+                                    <input type="text" class="form-control" name="email" id="" aria-describedby="helpAdresseId" placeholder="" />
+                                    <small id="helpAdresseId" class="form-text text-muted">Adresse Email du patient</small> <br>
+                                    @error('email')
+                                    <small id="helpNomId" class="form-text text-danger">{{$message}}</small>
+                                    @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label for="helpDateId" class="form-label">Date de naissance</label>
-                                    <input type="text" class="form-control" name="" id="" aria-describedby="helpDateId" placeholder="" />
-                                    <small id="helpDateId" class="form-text text-muted">La date de naissance du patient</small>
+                                    <input type="date" class="form-control" name="birthdate" id="" aria-describedby="helpDateId" placeholder="" />
+                                    <small id="helpDateId" class="form-text text-muted">La date de naissance du patient</small> <br>
+                                    @error('birthdate')
+                                    <small id="helpNomId" class="form-text text-danger">{{$message}}</small>
+                                    @enderror
                                 </div>
                             </div>
-                            <div class="bg-info rounded mb-3 h-100 p-4">
+                            <button class="btn btn-primary">Ajouter</button>
+                            </form>
+                            {{-- <div class="bg-info rounded mb-3 h-100 p-4">
                                 <h5>Informations medicales</h5>
                                 <div class="mb-3">
                                     <label for="helpGroupeId" class="form-label">Groupe Sanguin</label>
@@ -190,7 +215,7 @@
                                     <input type="text" class="form-control" name="" id="" aria-describedby="helpTemperatureId" placeholder="" />
                                     <small id="helpTemperatureId" class="form-text text-muted">La lsite des medicament connu du patient </small>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="modal-footer">

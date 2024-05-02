@@ -29,28 +29,42 @@
                         <h6 class="mb-0"> Toutes les rendez vous</h6>
                         <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#RDVModal">Ajouter un rendez vous</button>
                     </div>
+                    @if (Session::has('success'))
+                    <div class="alert alert-info">
+                        {{ Session::get('success') }}
+                        <a href=""><span class="float-end">X</span></a>
+                    </div>
+                    @endif
                     <div class="modal fade" id="RDVModal" tabindex="-1" aria-labelledby="RDVModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
+                        <div class="modal-dialog"> 
                           <div class="modal-content">
                             <div class="modal-header">
                               <h1 class="modal-title fs-5" id="RDVModalLabel"> Reservez un RDV </h1>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
+                            <form action="{{route('specialiste.rendez-vous.making')}}" method="POST">
+                                @csrf
+                                @method('POST')
                             <div class="modal-body">
-                              <select name="" class="form-select mb-2" id="">
+                              <select name="patient_id" class="form-select mb-2" id="">
                                 <option value="">Patient</option>
+                                @forelse ($patients as $patient)
+                                    <option value="{{$patient->id}}">{{$patient->name}} {{$patient->firstname}}</option>
+                                @empty
+                                    <option value="">Aucun Patient enreigistrer</option>
+                                @endforelse
                               </select>
-                              <input type="date" name="" class="form-control mb-2" id="">
-                              <input type="time" name="" class="form-control mb-2" id="">
-                              <input type="text" class="form-control" placeholder="Motif de la Consultation">
+                              <input type="date" name="date" class="form-control mb-2" id="">
+                              <input type="time" name="time" class="form-control mb-2" id="">
+                              <input type="text" name="pattern" class="form-control" placeholder="Motif de la Consultation">
                             </div>
                             <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                              <button type="button" class="btn btn-primary">Sauvegarder</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                <input type="submit" class="btn btn-primary" value="Sauvegarder">
                             </div>
                           </div>
                         </div>
-                      </div>
+                    </div>
 
                     
                     <div class="table-responsive">
@@ -75,12 +89,7 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
-
-                  <div class="row">
-                    
-                  </div>
-                  
+                </div>                  
                 
             </div>
             <!-- Recent Sales End -->

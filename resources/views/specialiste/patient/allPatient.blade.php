@@ -46,6 +46,23 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @forelse ($patients as $patient)
+                                <tr>
+                                    <td>
+                                        <a href="{{$patient->id}}">
+                                            <input class="form-check-input"  type="checkbox">
+                                        </a>
+                                    </td>
+                                    <td>{{$patient->birthdate}}</td>
+                                    <td>{{$patient->name}} {{$patient->firstname}} </td>
+                                    <td>O +</td>
+                                    <td>Poisson, viande chat</td>
+                                    <td class="float-center">
+                                        <a href="{{ route('specialiste.details.patients', ['id' => $patient->id])}}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                    </td>
+                                </tr>
+                                @empty
+                                    
                                 <tr>
                                     <td>
                                         <a href="?=1">
@@ -60,34 +77,7 @@
                                         <a href="{{ route('specialiste.details.patients')}}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <a href="?=1">
-                                            <input class="form-check-input"  type="checkbox">
-                                        </a>
-                                    </td>
-                                    <td>34 ans</td>
-                                    <td>Son nom complet</td>
-                                    <td>O +</td>
-                                    <td>Poisson, viande chat</td>
-                                    <td class="float-center">
-                                        <a href="{{ route('specialiste.details.patients')}}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="?=1">
-                                            <input class="form-check-input"  type="checkbox">
-                                        </a>
-                                    </td>
-                                    <td>34 ans</td>
-                                    <td>Son nom complet</td>
-                                    <td>O +</td>
-                                    <td>Poisson, viande chat</td>
-                                    <td class="float-center">
-                                        <a href="{{ route('specialiste.details.patients')}}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    </td>
-                                </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
