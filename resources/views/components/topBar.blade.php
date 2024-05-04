@@ -10,7 +10,12 @@
             </div>
             <div class="h-100 d-inline-flex align-items-center py-3">
                 <small class="fa fa-envelope-open text-primary me-2"></small>
-                <small>sante@gmail.com</small>
+                <small>
+                    <form action="{{route('logout')}}" method="post">
+                        @csrf
+                        <button class="dropdown-item">Deconnexion</button>                
+                    </form>
+                </small>
             </div>
         </div>
 
@@ -19,7 +24,7 @@
         <div class="col-lg-12 px-5 text-end">
             <div class="h-100 d-inline-flex align-items-center py-3 me-4">
                 {{-- <small class="fa fa-phone-alt text-primary me-2"></small> --}}
-                <small> <a href="{{ route('login') }}" class="">Connexion</a> </small> &nbsp;
+                <small> <a href="{{ route('login') }}" class="">Connexion </a> </small> <i class="bi bi-slash"></i>
             @if (Route::has('register'))
                 <small> <a href="{{ route('register') }}" class="">Inscription</a> </small>
             @endif

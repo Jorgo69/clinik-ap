@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('firstname');
-            $table->string('birthdate');
+            $table->string('birthdate');nb 
             $table->string('number')->nullable();
             $table->enum('sexe', ['male', 'female'])->default('male');
             $table->string('residence')->nullable();
