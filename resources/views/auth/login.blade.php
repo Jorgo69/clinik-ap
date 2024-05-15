@@ -20,10 +20,16 @@
                                     <input type="email" class="form-control" id="floatingInput" name="email" :value="old('email')" required autofocus autocomplete="name">
                                     <label for="floatingInput">Addresse Email</label>
                                 </div>
+                                @error('email')
+                                    <span class="text-danger">{{$message}}</span>
+                                @enderror
                                 <div class="form-floating mb-4">
                                     <input type="password" class="form-control" id="floatingPassword" name="password" required autocomplete="current-password">
                                     <label for="floatingPassword">Mot de Passe</label>
                                 </div>
+                                @error('password')
+                                    <span class="text-danger">{{$message}}</span>
+                                @enderror
                                 <div class="d-flex align-items-center justify-content-between mb-4">
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" id="exampleCheck1" name="remember">

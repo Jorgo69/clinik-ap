@@ -18,4 +18,14 @@ class Consultation extends Model
         'pace',
         'observation'
     ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 }

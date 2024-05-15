@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('firstname');
-            $table->string('birthdate');nb 
+            $table->string('birthdate');
             $table->string('number')->nullable();
-            $table->enum('sexe', ['male', 'female'])->default('male');
+            $table->enum('sexe', ['masculin', 'feminin'])->default('masculin');
             $table->string('residence')->nullable();
             $table->boolean('specialiste')->default(false);
-            $table->string('statut')->default('patient');
+            $table->string('role')->default('patient');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

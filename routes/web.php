@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Specialiste\AppointmentController;
 use App\Http\Controllers\Specialiste\ConsultationController;
+use App\Http\Controllers\Specialiste\DashboardController;
 use App\Http\Controllers\Specialiste\PatientController;
 use App\Http\Controllers\User\EspaceController;
 use Illuminate\Support\Facades\Route;
@@ -42,9 +43,11 @@ Route::get('user/espace', [EspaceController::class, 'index'])->name('user.espace
 //  Auth Partials
 
 // Specialistes
-Route::get('specialists/dashboard', function() {
-    return view('specialiste.dashboard');
-})->name('specialiste.index')->middleware('right.medical');
+// Route::get('specialists/dashboard', function() {
+//     return view('specialiste.dashboard');
+// })->name('specialiste.index')->middleware('right.medical');
+
+Route::get('specialists/dashboard', [DashboardController::class, 'index'])->name('specialiste.index')->middleware('right.medical');
 
 
 // Rendez Ressource

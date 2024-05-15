@@ -14,18 +14,18 @@ return new class extends Migration
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('patient_id');
-            $table->unsignedBigInteger('medecin_id')->nullable();
+            $table->unsignedBigInteger('taker_id')->nullable();
                 $table->foreign('patient_id')
                         ->references('id')
                         ->on('users')
                         ->onDelete('cascade');
-                $table->foreign('medecin_id')
+                $table->foreign('taker_id')
                         ->references('id')
                         ->on('users')
                         ->onDelete('set null');
             $table->string('date');
             $table->string('hours');
-            $table->string('description');
+            $table->string('motif');
             $table->timestamps();
         });
     }

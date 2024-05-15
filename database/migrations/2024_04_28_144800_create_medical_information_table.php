@@ -26,9 +26,7 @@ return new class extends Migration
             $table->string('blood_group');
             $table->string('facteur_rhesus');
             $table->string('allergies');
-            $table->string('diseases_history');
-            $table->string('currently_medication');
-            $table->string('recent_medication');
+            $table->mediumText('other_informations')->nullable()->comment('Le champs pour prise de note manuelle pour apporter des clarification');
             $table->timestamps();
         });
     }

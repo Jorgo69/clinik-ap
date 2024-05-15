@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Specialiste;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Specialiste\PatientRequest;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -17,6 +18,9 @@ class PatientController extends Controller
     public function index()
     {
         $patients = User::where('statut', 'patient')->get();
+        // dd($patients);
+
+        
 
         return view('specialiste.patient.allPatient', [
             'patients' => $patients,
@@ -34,24 +38,23 @@ class PatientController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PatientRequest $request)
     {
-        // dd($request);
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'firstname' => ['required', 'string', 'max:255'],
-            'birthdate' => ['required', 'string', 'max:100'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-        ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'firstname' => $request->firstname,
-            'birthdate' => $request->birthdate,
-            'email' => $request->email,
-            'password' => Hash::make('password'),
-        ]);
+        $mdp = Hash::make('password');
+        
+  
 
+        $user = new User() ;
+            $user->name = $request->name;
+            $user->firstname = $request->firstname;
+            $user->birthdate = $request->birthdate;
+            $user->number = $request->number;
+            $user->sexe = $request->sexe;
+            $user->email = $request->email;
+            $user->password = $mdp ;
+            $user->save();
+            // dd($user);
         return redirect()->back()->with('success', 'Patient enreigistrer avec success');
     }
 

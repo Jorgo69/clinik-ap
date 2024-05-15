@@ -27,7 +27,7 @@
                 <div class="bg-light text-center rounded mb-3 p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0"> Toutes les rendez vous</h6>
-                        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#RDVModal">Ajouter un rendez vous</button>
+                        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#RDVModal">Prendre Rendez vous</button>
                     </div>
                     @if (Session::has('success'))
                     <div class="alert alert-info">
@@ -46,14 +46,15 @@
                                 @csrf
                                 @method('POST')
                             <div class="modal-body">
-                              <select name="patient_id" class="form-select mb-2" id="">
-                                <option value="">Patient</option>
+                              <label for="exampleDataList" class="form-label">Datalist example</label>
+                              <input class="form-control mb-3" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
+                              <datalist id="datalistOptions">
                                 @forelse ($patients as $patient)
-                                    <option value="{{$patient->id}}">{{$patient->name}} {{$patient->firstname}}</option>
+                                <option value="{{$patient->name .' '. $patient->firstname}}">
                                 @empty
-                                    <option value="">Aucun Patient enreigistrer</option>
+                                <option value="Aucun Patient pour le moment">
                                 @endforelse
-                              </select>
+                              </datalist>
                               <input type="date" name="date" class="form-control mb-2" id="">
                               <input type="time" name="time" class="form-control mb-2" id="">
                               <input type="text" name="pattern" class="form-control" placeholder="Motif de la Consultation">

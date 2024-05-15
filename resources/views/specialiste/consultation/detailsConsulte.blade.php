@@ -31,14 +31,14 @@
                                 <img src="{{asset('assets/users/img/patient.png')}}" width="90" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
                                 
                                 <div class="text-left mt-3">
-                                    <p class="text-muted mb-2 font-13"><strong>Nom :</strong> <span class="ml-2">{{$patient->name}} {{$patient->firstname}} </span></p>
+                                    <p class="text-muted mb-2 font-13"><strong>Nom Complet :</strong> <span class="ml-2">{{$patient->name}} {{$patient->firstname}} </span></p>
                                     <p class="text-muted mb-2 font-13"><strong>Mobile :</strong><span class="ml-2"> 692 382 65</span></p>
-                                    <p class="text-muted mb-2 font-13"><strong>Addresse :</strong> <span class="ml-2">9 Hill Haven Drive</span></p>
+                                    <p class="text-muted mb-2 font-13"><strong>Residence :</strong> <span class="ml-2">{{$patient->residence ? $patient->residence : 'Residence non connue' }}</span></p>
                                     <p class="text-muted mb-2 font-13"><strong>Date De Naissance :</strong> <span class="ml-2">{{$patient->birthdate}}</span></p>
-                                    <p class="text-muted mb-2 font-13"><strong>Age :</strong> <span class="ml-2"> {{$years}} ans </span></p>
+                                    <p class="text-muted mb-2 font-13"><strong>Age :</strong> <span class="ml-2"> {{ $years }} ans </span></p>
                                     <p class="text-muted mb-2 font-13"><strong>Allergie :</strong> <span class="ml-2"> Poisson </span></p>
                                     <hr>
-                                    <p class="text-muted mb-2 font-13"><strong>Date d'enreigistrement :</strong> <span class="ml-2">{{$patient->created_at}}</span></p>
+                                    <p class="text-muted mb-2 font-13"><strong>Date d'enreigistrement :</strong> <span class="ml-2">{{Carbon\Carbon::parse($patient->created_at, 'Y-m-d')}}</span></p>
                                     <hr>
                                 </div>
                             </div>
@@ -80,28 +80,27 @@
                         @livewire('specialiste.consultation.constant-vital-component', ['patient' => $patient], key($patient->id))
                     </div>
                     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                        <div class="table-responsive">
-                            <table class="table table-borderless mb-0">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th>Temperature du Corps</th>
-                                        <th>Fréquence cardiaque/pouls</th>
-                                        <th>Fréquence respiratoire</th>
-                                        <th>Pression artérielle</th>
-                                        <th>Date d'enreigistrement</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>38°C</td>
-                                        <td>77BPM</td>
-                                        <td>12bpm</td>
-                                        <td>90/60mmHg</td>
-                                        <td>2022-10-18</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        
+                        <table class="table">
+                            <tbody>
+                              <tr>
+                                <th scope="row">Groupe Sanguin</th>
+                                <td>{{__('O +')}}</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Facteur Rhesus</th>
+                                <td>{{__('AB -')}}</td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Allergie</th>
+                                <td> {{__('Poisson')}} </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Observation</th>
+                                <td>{{__('')}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
                     </div>
                     <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
                         <ul class="list-unstyled timeline-sm">
@@ -150,10 +149,10 @@
     @push('title_header')
         <title>Liste des patients | {{config('app.name')}}</title>
     @endpush
-    @push('livewireStyle')
-        @livewireStyles()
+    @push('style')
+        @livewireStyles();
     @endpush
-    @push('livewireScript')
-        @livewireScripts()
+    @push('script')
+        @livewireScripts();
     @endpush
 </x-specialiste>

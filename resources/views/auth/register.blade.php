@@ -13,36 +13,66 @@
                             <h3>Inscription</h3>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingName" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                            <input type="text" class="form-control" id="floatingName" name="name" :value="old('name')" autofocus autocomplete="name" />
                             <label for="floatingName">Nom de famille</label>
-                            {{-- @if ('error')
-                                <span>{{message}}</span>
-                            @endif --}}
+                            @error('name')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingFirstName" name="firstname" required autofocus autocomplete="name" />
+                            <input type="text" class="form-control" id="floatingFirstName" name="firstname" autofocus autocomplete="firstname" />
                             <label for="floatingFirstName">Prenom</label>
+                            @error('firstname')
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="date" class="form-control" id="floatingDate" name="birthdate" required autofocus autocomplete="name" />
-                            <label for="floatingDate">Prenom</label>
+                            <div class="form-check">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="sexe" id="inlineRadioHomme" value="masculin">
+                                    <label class="form-check-label" for="inlineRadioHomme">Homme</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="sexe" id="inlineRadioFemme" value="feminin">
+                                    <label class="form-check-label" for="inlineRadioFemme">Femme</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <label class="form-check-label"> Sexe</label>
+                                </div>
+                            </div>
+                            @error('sexe')
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingEmail" name="email" :value="old('email')" required autocomplete="name">
+                            <input type="date" class="form-control" id="floatingDate" name="birthdate" autofocus autocomplete="date" />
+                            <label for="floatingDate">Date de naissance</label>
+                            @error('birthdate')
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="floatingEmail" name="email" :value="old('email')" autocomplete="email">
                             <label for="floatingEmail">Address Email</label>
+                            @error('email')
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
                         </div>
                         <div class="form-floating mb-4">
-                            <input type="password" class="form-control" id="floatingPassword" name="password" required autocomplete="new-password">
+                            <input type="password" class="form-control" id="floatingPassword" name="password" autocomplete="new-password">
                             <label for="floatingPassword">Mot de Passe</label>
+                            @error('password')
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
                         </div>
                         <div class="form-floating mb-4">
-                            <input type="password" class="form-control" id="floatingCPassword"  name="password_confirmation" required autocomplete="new-password" />
+                            <input type="password" class="form-control" id="floatingCPassword"  name="password_confirmation" autocomplete="new-password" />
                             <label for="floatingCPassword">Confirmer Mot de Passe</label>
                         </div>
                         <div class="d-flex align-items-center justify-content-between mb-4">
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                <label class="form-check-label" for="exampleCheck1">Se souvenir</label>
                             </div>
                             {{-- <a href="">Mot de Passe Oublie</a> --}}
                         </div>
@@ -60,14 +90,14 @@
         <!-- Name -->
         {{-- <div>
             <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div> --}}
 
         <!-- Email Address -->
         {{-- <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div> --}}
 
@@ -78,7 +108,7 @@
             <x-text-input id="password" class="block mt-1 w-full"
                             type="password"
                             name="password"
-                            required autocomplete="new-password" />
+                         autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div> --}}
@@ -89,7 +119,7 @@
 
             <x-text-input id="password_confirmation" class="block mt-1 w-full"
                             type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
+                            name="password_confirmation" autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div> --}}

@@ -130,98 +130,91 @@
                                 <div class="mb-3">
                                     <label for="helpNomId" class="form-label">Nom de Famille</label>
                                     <input type="text" class="form-control" name="name" id="" aria-describedby="helpNomId" placeholder="" />
-                                    <small id="helpNomId" class="form-text text-muted">Tous les nom du patient</small> <br>
+                                    
                                     @error('name')
                                     <small id="helpNomId" class="form-text text-danger">{{$message}}</small>
+                                    @else
+                                    <small id="helpNomId" class="form-text text-muted">Tous les nom du patient</small> <br>
                                     @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label for="helpPrenomId" class="form-label">Prenom du Patient</label>
                                     <input type="text" class="form-control" name="firstname" id="" aria-describedby="helpPrenomId" placeholder="" />
-                                    <small id="helpPrenomId" class="form-text text-muted">Tous les prenom au complet</small> <br>
+                                    
                                     @error('firstname')
-                                    <small id="helpNomId" class="form-text text-danger">{{$message}}</small>
+                                    <small id="helpPrenomId" class="form-text text-danger">{{$message}}</small>
+                                    @else
+                                    <small id="helpPrenomId" class="form-text text-muted">Tous les prenom au complet</small> <br>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <div class="form-check">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="sexe" id="inlineRadioHomme" value="male" @checked(true)>
+                                            <label class="form-check-label" for="inlineRadioHomme">Homme</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="sexe" id="inlineRadioFemme" value="female">
+                                            <label class="form-check-label" for="inlineRadioFemme">Femme</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <label class="form-check-label"> Sexe</label>
+                                        </div>
+                                    </div>
+                                    @error('sexe')
+                                    <small class="text-danger">{{$message}}</small>
+                                    @else
+                                    <small class="from-text text-muted">Choisissez le sexe</small>
                                     @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label for="helpResidenceId" class="form-label">Residence du Patient</label>
                                     <input type="text" class="form-control" name="residence" id="helpResidenceId" aria-describedby="helpResidenceId" placeholder="" />
-                                    <small id="helpResidenceId" class="form-text text-muted">L'adresse residentielle du patient</small> <br>
+                                    
                                     @error('residence')
-                                    <small id="helpNomId" class="form-text text-danger">{{$message}}</small>
+                                    <small id="helpResidenceId" class="form-text text-danger">{{$message}}</small>
+                                    @else
+                                    <small id="helpResidenceId" class="form-text text-muted">L'adresse residentielle du patient</small> <br>
+                                    @enderror
+                                </div>
+                                <div class="">
+                                    <label for="helpNumeroId" class="form-label">Numero du Patient</label>
+                                    <input type="text" class="form-control" name="number" id="helpNumeroId" aria-describedby="helpNumeroId" placeholder="" />
+                                    
+                                    @error('number')
+                                    <small id="helpNumeroId" class="form-text text-danger">{{$message}}</small>
+                                    @else
+                                    <small id="helpResidenceId" class="form-text text-muted">Le numero de Telephone (Whatsapp) patient</small> <br>
                                     @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label for="helpAdresseId" class="form-label">Email du Patient</label>
                                     <input type="text" class="form-control" name="email" id="" aria-describedby="helpAdresseId" placeholder="" />
-                                    <small id="helpAdresseId" class="form-text text-muted">Adresse Email du patient</small> <br>
+                                    
                                     @error('email')
                                     <small id="helpNomId" class="form-text text-danger">{{$message}}</small>
+                                    @else
+                                    <small id="helpAdresseId" class="form-text text-muted">Adresse Email du patient</small> <br>
                                     @enderror
                                 </div>
                                 <div class="mb-3">
                                     <label for="helpDateId" class="form-label">Date de naissance</label>
                                     <input type="date" class="form-control" name="birthdate" id="" aria-describedby="helpDateId" placeholder="" />
-                                    <small id="helpDateId" class="form-text text-muted">La date de naissance du patient</small> <br>
+                                    
                                     @error('birthdate')
                                     <small id="helpNomId" class="form-text text-danger">{{$message}}</small>
+                                    @else
+                                    <small id="helpDateId" class="form-text text-muted">La date de naissance du patient</small> <br>
                                     @enderror
                                 </div>
                             </div>
-                            <button class="btn btn-primary">Ajouter</button>
-                            </form>
-                            {{-- <div class="bg-info rounded mb-3 h-100 p-4">
-                                <h5>Informations medicales</h5>
-                                <div class="mb-3">
-                                    <label for="helpGroupeId" class="form-label">Groupe Sanguin</label>
-                                    <input type="text" class="form-control" name="" id="" aria-describedby="helpGroupeId" placeholder="" />
-                                    <small id="helpGroupeId" class="form-text text-muted">Tous les nom du patient</small>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="helpAllergieId" class="form-label">Allergie Connues</label>
-                                    <input type="text" class="form-control" name="" id="" aria-describedby="helpAllergieId" placeholder="" />
-                                    <small id="helpAllergieId" class="form-text text-muted">Lister les allergie connue du patient</small>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="helpMedicamentId" class="form-label">Medicament en cours</label>
-                                    <input type="text" class="form-control" name="" id="" aria-describedby="helpMedicamentId" placeholder="" />
-                                    <small id="helpMedicamentId" class="form-text text-muted">Lister les medicaments que le patient a pris recemment</small>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="helpObservationId" class="form-label">Historie des maladies</label>
-                                    <input type="text" class="form-control" name="" id="" aria-describedby="helpObservationId" placeholder="" />
-                                    <small id="helpObservationId" class="form-text text-muted">La lsite des medicament connu du patient </small>
-                                </div>
-                            </div>
-                            <div class="bg-primary rounded h-100 p-4">
-                                <h5>Informations biometrique</h5>
-                                <div class="mb-3">
-                                    <label for="helpTailleId" class="form-label">La Taille du Patient</label>
-                                    <input type="text" class="form-control" name="" id="" aria-describedby="helpTailleId" placeholder="" />
-                                    <small id="helpTailleId" class="form-text text-muted">La Taille est mesure en Cm</small>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="helpPoidseId" class="form-label">Poids du Patient</label>
-                                    <input type="text" class="form-control" name="" id="" aria-describedby="helpPoidseId" placeholder="" />
-                                    <small id="helpPoidseId" class="form-text text-muted">Le Poid est en Kg</small>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="helpPouleId" class="form-label">Poule du Patient</label>
-                                    <input type="text" class="form-control" name="" id="" aria-describedby="helpPouleId" placeholder="" />
-                                    <small id="helpPouleId" class="form-text text-muted">L'unite de mesure du Poule est Battement (BPM)</small>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="helpTemperatureId" class="form-label">Temperature relever</label>
-                                    <input type="text" class="form-control" name="" id="" aria-describedby="helpTemperatureId" placeholder="" />
-                                    <small id="helpTemperatureId" class="form-text text-muted">La lsite des medicament connu du patient </small>
-                                </div>
-                            </div> --}}
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                        <button type="button" class="btn btn-primary">Ajouter</button>
+                        <input type="submit" value="Ajouter" class="btn btn-primary">
                     </div>
+                            </form>
                 </div>
             </div>
     
@@ -236,6 +229,6 @@
     </div>
     
     @push('title_header')
-        <title>Liste des patients | {{config('app.name')}}</title>
+        <title>Nouveau Patients | {{config('app.name')}}</title>
     @endpush
     </x-specialiste>

@@ -33,12 +33,12 @@
                                     <div class="text-left mt-3">
                                         <p class="text-muted mb-2 font-13"><strong>Nom Complet :</strong> <span class="ml-2">{{$patient->name}} {{$patient->firstname}} </span></p>
                                         <p class="text-muted mb-2 font-13"><strong>Mobile :</strong><span class="ml-2"> 692 382 65</span></p>
-                                        <p class="text-muted mb-2 font-13"><strong>Addresse :</strong> <span class="ml-2">9 Hill Haven Drive</span></p>
+                                        <p class="text-muted mb-2 font-13"><strong>Residence :</strong> <span class="ml-2">{{$patient->residence ? $patient->residence : 'Residence non connue' }}</span></p>
                                         <p class="text-muted mb-2 font-13"><strong>Date De Naissance :</strong> <span class="ml-2">{{$patient->birthdate}}</span></p>
                                         <p class="text-muted mb-2 font-13"><strong>Age :</strong> <span class="ml-2"> {{ $years }} ans </span></p>
                                         <p class="text-muted mb-2 font-13"><strong>Allergie :</strong> <span class="ml-2"> Poisson </span></p>
                                         <hr>
-                                        <p class="text-muted mb-2 font-13"><strong>Date d'enreigistrement :</strong> <span class="ml-2">{{$patient->created_at}}</span></p>
+                                        <p class="text-muted mb-2 font-13"><strong>Date d'enreigistrement :</strong> <span class="ml-2">{{Carbon\Carbon::parse($patient->created_at, 'Y-m-d')}}</span></p>
                                         <hr>
                                     </div>
                                 </div>
@@ -49,13 +49,13 @@
                                 <div class="card-box">
                                 <div class="bg-light rounded h-100 p-4">
                                     <ul class="nav nav-pills navtab-bg nav-justified mb-3 " id="pills-tab" role="tablist">
-                                        <li class="nav-item" role="presentation">
+                                        {{-- <li class="nav-item" role="presentation">
                                             <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
                                                 data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
                                                 aria-selected="true">
                                                 <i class="fa fa-file" aria-hidden="true"></i>
                                             </button>
-                                        </li>
+                                        </li> --}}
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
                                                 data-bs-target="#pills-profile" type="button" role="tab"
@@ -64,7 +64,7 @@
                                             </button>
                                         </li>
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
+                                            <button class="nav-link active" id="pills-contact-tab" data-bs-toggle="pill"
                                                 data-bs-target="#pills-contact" type="button" role="tab"
                                                 aria-controls="pills-contact" aria-selected="false">
                                                 <i class="fa fa-folder" aria-hidden="true"></i>
@@ -72,9 +72,9 @@
                                         </li>
                                     </ul>
                                     <div class="tab-content" id="pills-tabContent">
-                                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                        {{-- <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                                             Sit sanctus et stet dolor kasd kasd takimata. Dolor stet dolores nonumy et dolor et eos lorem et, diam ipsum nonumy elitr sanctus dolores voluptua sit dolor, at et et amet nonumy elitr ea et ipsum. Elitr lorem et dolore invidunt eirmod voluptua lorem sed. Sed eirmod sadipscing eos tempor.
-                                        </div>
+                                        </div> --}}
                                         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                                             <div class="table-responsive">
                                                 <table class="table table-borderless mb-0">
@@ -99,20 +99,20 @@
                                                 </table>
                                             </div>
                                         </div>
-                                        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                                        <div class="tab-pane fade show active" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
                                             <ul class="list-unstyled timeline-sm">
                                                 <li class="timeline-sm-item">
                                                     <span class="timeline-sm-date">2022-10-20</span>
                                                     <h3 class="mt-0 mb-1">Demo Test</h3>
                                                     <hr>
                                                     <h5>
-                                                        Laboratory  Tests
+                                                        Test de Laboratoire
                                                     </h5>
                                                     
                                                     <p class="text-muted mt-2"></p><p>demo demo demo demo</p><p></p>
                                                     <hr>
                                                     <h5>
-                                                        Laboratory Results
+                                                        Resultats des tests
                                                     </h5>
                                                     
                                                     <p class="text-muted mt-2"></p><p>54545</p><p></p>

@@ -3,12 +3,14 @@
 namespace App\Livewire\Specialiste\Consultation;
 
 use App\Models\Consultation;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+
 
 class ConstantVitalComponent extends Component
 {
     // All Input:
-    public $size, $weight, $temperature, $pulse, $frequence, $observation;
+    public $size, $weight, $temperature, $pulse, $frequence, $observation, $pattern;
     public $drugs, $pace;
 
     public $patient;
@@ -46,8 +48,23 @@ class ConstantVitalComponent extends Component
     }
     public function AddConstant()
     {
+        $patient_id = $this->patient->id;
+        $medecin_id = Auth::id();
+
+        $consultation = new Consultation();
+        $consultation->size = $this->size;
+        $consultation->weight = $this->weight;
+        $consultation->pulse= $this->pulse;
+        $consultation->temperature = $this->temperature;
+        $consultation->frequence = $this->frequence;
+        $consultation->observation = $this->observation;
+        $consultation->pattern = $this->pattern;
+
+        $consultation->patient_id = $patient_id;
+        $consultation->medecin_id = $medecin_id;
+        dd($consultation);
         // $this->validate();
-        dd($this->patient);
+        // dd($this->patient);
     }
     public function render()
     {

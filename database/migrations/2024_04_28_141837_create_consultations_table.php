@@ -24,11 +24,7 @@ return new class extends Migration
                         ->on('users')
                         ->onDelete('set null');
             $table->string('pattern');
-            $table->string('size');
-            $table->string('weight');
-            $table->string('pulse');
-            $table->string('temperature');
-            $table->text('observation')->nullable();
+            $table->mediumText('observation')->nullable();
             $table->timestamps();
         });
     }

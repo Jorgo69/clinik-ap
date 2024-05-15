@@ -33,30 +33,29 @@
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
                             <thead>
                                 <tr class="text-dark">
-                                    <th scope="col">
-                                        <a href="?=1">
-                                            <input class="form-check-input"  type="checkbox">
-                                        </a>
-                                    </th>
                                     <th scope="col">Age</th>
                                     <th scope="col">Patient</th>
-                                    <th scope="col">Groupe Sanguin</th>
-                                    <th scope="col">Allergie</th>
+                                    <th scope="col">Adresse Mail</th>
+                                    <th scope="col">Residence</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ($patients as $patient)
+                                @php
+                                    $birthday = date($patient->birthdate);
+                                    $birthday = intval($birthday);
+                                    $years = date('Y-m-d');
+                                    $years = intval($years) ;
+                                    $years = $years - $birthday;
+                                @endphp
                                 <tr>
-                                    <td>
-                                        <a href="{{$patient->id}}">
-                                            <input class="form-check-input"  type="checkbox">
-                                        </a>
-                                    </td>
-                                    <td>{{$patient->birthdate}}</td>
+                                    <td>{!!$years .' ans' !!}</td>
                                     <td>{{$patient->name}} {{$patient->firstname}} </td>
-                                    <td>O +</td>
-                                    <td>Poisson, viande chat</td>
+                                    <td>{{$patient->email}}</td>
+                                    <td>
+                                        {{$patient->residence ? $patient->residence : 'Residence inconnue'}}
+                                    </td>
                                     <td class="float-center">
                                         <a href="{{ route('specialiste.details.patients', ['id' => $patient->id])}}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                     </td>
@@ -71,8 +70,10 @@
                                     </td>
                                     <td>34 ans</td>
                                     <td>Son nom complet</td>
-                                    <td>O +</td>
-                                    <td>Poisson, viande chat</td>
+                                    <td>{{$patient->email}}</td>
+                                    <td>
+                                        {{$patient->residence ? $patient->residence : 'Residence inconnue'}}
+                                    </td>
                                     <td class="float-center">
                                         <a href="{{ route('specialiste.details.patients')}}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                     </td>

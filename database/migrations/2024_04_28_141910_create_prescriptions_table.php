@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('patient_id');
             $table->unsignedBigInteger('medecin_id')->nullable();
+            $table->unsignedBigInteger('consultation_id');
                     $table->foreign('patient_id')
                             ->references('id')
                             ->on('users')
@@ -23,13 +24,12 @@ return new class extends Migration
                             ->references('id')
                             ->on('users')
                             ->onDelete('set null');
+                    $table->foreign('consultation_id')
+                            ->references('id')
+                            ->on('consultations')
+                            ->onDelete('cascade');
             $table->string('drugs');
             $table->string('pace');
-            $table->unsignedBigInteger('consultation_id');
-            $table->foreign('consultation_id')
-                    ->references('id')
-                    ->on('consultations')
-                    ->onDelete('cascade');
             $table->timestamps();
         });
     }
