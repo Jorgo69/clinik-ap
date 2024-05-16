@@ -25,6 +25,7 @@ class MedecinMiddleware
         // en continuant sa va 
         
         // Redirigez vers une autre page ou renvoyez une réponse d'erreur pour les utilisateurs non autorisés
-        return redirect('/home')->with('error', 'Accès refusé. Vous devez être un administrateur pour accéder à cette page.');
+        return redirect('/login')->with('error', 'Accès refusé. Vous devez être un administrateur pour accéder à cette page.');
+        // return redirect('/home')->with('error', 'Accès refusé. Vous devez être un administrateur pour accéder à cette page.');
     }
 }

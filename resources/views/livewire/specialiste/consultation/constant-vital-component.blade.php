@@ -51,21 +51,27 @@
                 <div class="card-footer">
                     <div class="">
                         <span class="card-title text-strong">Traitement A suivre</span>
-                        <span class="btn btn-info float-end mb-2">Ajouter</span>
+                        <span wire:click='Increment()' class="btn btn-info float-end mb-2">Ajouter</span>
                     </div>
-                    {{-- @foreach ($cardInputs as $key => $cardInput)
+                    {{ $addCard }}
+                    @for ($i = 1; $i < $addCard; $i++)
                     <p class="card-text">
-                        <input type="text" name="drugs" wire:model="cardsInputs.{{ $key }}.drugs" class="form-control mb-2" placeholder="traitement">
+                        <input type="text" name="drugs" wire:model="Increment.{{ $i }}.drugs" class="form-control mb-2" placeholder="traitement">
                         @error('drugs')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
-                        <input type="text" name="pace" wire:model="cardsInputs.{{ $key }}.pace" class="form-control mb-2" placeholder="Frequence">
+                        <input type="text" name="pace" wire:model="pace" class="form-control mb-2" placeholder="Frequence">
                         @error('pace')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
-                        <button class="btn btn-danger float-end">Diminuer</button>
+                        <span>{{ $i }}</span>
+                        <span wire:click='Decrement()' class="btn btn-danger float-end">Diminuer</span>
                     </p>
-                    @endforeach --}}
+                    {{-- $cardInputs as $key => $cardInput --}}
+{{-- wire:model="cardsInputs.{{ $key }}.drugs" --}}
+                    @endfor
+                    
+                    
                 </div>
             </div>
         </div>

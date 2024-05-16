@@ -15,8 +15,17 @@ class ConstantVitalComponent extends Component
 
     public $patient;
 
-    public $cardInput;
+    public $addCard;
 
+    public function Increment()
+    {
+        $this->addCard++;
+    }
+
+    public function Decrement()
+    {
+            $this->addCard--;
+    }
     protected $rules = [
         'size' => 'required|integer',
         'weight' => 'required|interger',
@@ -40,12 +49,6 @@ class ConstantVitalComponent extends Component
         'drugs.required' => 'Un traitement est recommande',
         'pace.required' => 'La frequence de cet traitement',
     ];
-    
-    public function mount($patient)
-    {
-        $this -> patient = $patient;
-        $this->cardInput = Consultation::all();
-    }
     public function AddConstant()
     {
         $patient_id = $this->patient->id;
@@ -59,6 +62,9 @@ class ConstantVitalComponent extends Component
         $consultation->frequence = $this->frequence;
         $consultation->observation = $this->observation;
         $consultation->pattern = $this->pattern;
+        
+        $consultation->drug = $this->drugs .$this->addCard;
+
 
         $consultation->patient_id = $patient_id;
         $consultation->medecin_id = $medecin_id;
