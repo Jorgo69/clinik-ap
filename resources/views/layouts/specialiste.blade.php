@@ -31,7 +31,7 @@
 
     <!-- Template Stylesheet -->
     <link href="{{asset('assets/others/css/style.css')}}" rel="stylesheet">
-    @stack('style')
+    @livewireStyles
 </head>
 
 <body>
@@ -53,7 +53,7 @@
 
     <!-- Template Javascript -->
     <script src="{{asset('assets/others/js/main.js') }}"></script>
-    @stack('script')
+    @livewireScripts
 </body>
 
 </html>

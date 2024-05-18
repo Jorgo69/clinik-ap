@@ -149,10 +149,4 @@
     @push('title_header')
         <title>Liste des patients | {{config('app.name')}}</title>
     @endpush
-    @push('style')
-        @livewireStyles();
-    @endpush
-    @push('script')
-        @livewireScripts();
-    @endpush
 </x-specialiste>

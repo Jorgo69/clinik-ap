@@ -14,15 +14,16 @@ return new class extends Migration
         Schema::create('medical_information', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('patient_id');
+            $table->foreign('patient_id')
+                    ->references('id')
+                    ->on('users')
+                    ->onDelete('cascade');
             $table->unsignedBigInteger('medecin_id')->nullable();
-                $table->foreign('patient_id')
-                        ->references('id')
-                        ->on('users')
-                        ->onDelete('cascade');
-                $table->foreign('medecin_id')
-                        ->references('id')
-                        ->on('users')
-                        ->onDelete('set null');
+            $table->foreign('medecin_id')
+                    ->references('id')
+                    ->on('users')
+                    ->onDelete('set null');
+                    
             $table->string('blood_group');
             $table->string('facteur_rhesus');
             $table->string('allergies');

@@ -31,6 +31,19 @@ class LoginRequest extends FormRequest
             'password' => ['required', 'string'],
         ];
     }
+    /**
+     * Message  d'erreur pour les champs du formulaire.
+    */
+    public function messages(){
+        return[
+            'email.required' => 'Adresse email est necessaire',
+            'email.unique' => 'Adresse Email deja utilise',
+            'email.email' => 'Email non valide',
+
+            'password.required' => 'Mot de passe associe a cet compte est requis',
+            'password.min' => 'Votre mot de passe doit avoir au moins 7 caractere',
+        ];
+    }
 
     /**
      * Attempt to authenticate the request's credentials.

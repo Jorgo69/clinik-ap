@@ -23,8 +23,18 @@ return new class extends Migration
                         ->references('id')
                         ->on('users')
                         ->onDelete('set null');
-            $table->string('pattern');
-            $table->mediumText('observation')->nullable();
+
+            $table->string('pattern')->comment('motif');
+
+            $table->string('weight')->comment('Le poid');
+            $table->string('pulse')->comment('Le poul');
+            $table->string('size')->nullable()->comment('Le poul');
+            $table->string('stetoscopy')->comment('prendre la tension artérielle et détecter les bruits internes');
+            $table->string('temperature')->comment('');
+
+
+            $table->mediumText('diagnostic');
+            $table->mediumText('observation');
             $table->timestamps();
         });
     }

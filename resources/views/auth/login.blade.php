@@ -17,14 +17,14 @@
                                     <h3>Connexion</h3>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" id="floatingInput" name="email" :value="old('email')" required autofocus autocomplete="name">
+                                    <input type="email" class="form-control" id="floatingInput" name="email" :value="old('email')" autofocus autocomplete="name">
                                     <label for="floatingInput">Addresse Email</label>
                                 </div>
                                 @error('email')
                                     <span class="text-danger">{{$message}}</span>
                                 @enderror
                                 <div class="form-floating mb-4">
-                                    <input type="password" class="form-control" id="floatingPassword" name="password" required autocomplete="current-password">
+                                    <input type="password" class="form-control" id="floatingPassword" name="password" autocomplete="current-password">
                                     <label for="floatingPassword">Mot de Passe</label>
                                 </div>
                                 @error('password')
@@ -50,7 +50,7 @@
         <!-- Email Address -->
         {{-- <div>
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div> --}}
 
@@ -61,7 +61,7 @@
             <x-text-input id="password" class="block mt-1 w-full"
                             type="password"
                             name="password"
-                            required autocomplete="current-password" />
+                         autocomplete="current-password" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div> --}}

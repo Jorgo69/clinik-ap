@@ -29,10 +29,3 @@
     </div>
 </nav> --}}
 @livewire('specialiste.search-component')
-
-@push('livewireStyle')
-        @livewireStyles()
-@endpush
-@push('livewireScript')
-    @livewireScripts()
-@endpush

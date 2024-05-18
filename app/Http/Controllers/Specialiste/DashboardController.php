@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Specialiste;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Patient;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -13,7 +13,18 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $patients = User::where('statut', 'patient')->get();
+        $patients = Patient::all();
+
+        return view('specialiste.dashboard', [
+            'patients' => $patients,
+        ]);
+    }
+
+    public function Welcome()
+    {
+        $patients = Patient::all();
+
+        // dd($patients);
 
         return view('specialiste.dashboard', [
             'patients' => $patients,
