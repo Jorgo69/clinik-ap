@@ -51,8 +51,8 @@ class PatientController extends Controller
             $user->number = $request->number;
             $user->sexe = $request->sexe;
             $user->email = $request->email;
-            // $user->save();
-            dd($user);
+            $user->save();
+            // dd($user);
         return redirect()->back()->with('success', 'Patient enreigistrer avec success');
     }
 

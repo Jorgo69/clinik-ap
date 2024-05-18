@@ -48,6 +48,7 @@
                             <div class="modal-body">
                               <select name="" class="form-select mb-3"    id="">
                                 @forelse ($patients as $patient)
+                                <option value="">Selectionner le patient</option>
                                   <option value="{{$patient->id}}">{{$patient->name. ' '.$patient->firstname }}</option>
                                 @empty
                                 <option value="">Aucun Patient</option>  

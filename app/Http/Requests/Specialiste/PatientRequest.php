@@ -25,7 +25,7 @@ class PatientRequest extends FormRequest
             'name' => 'required|string|min:2|max:50',
             'firstname' => 'required|string|min:2|max:50',
             'birthdate' => 'required|string|min:8',
-            'sexe' => 'required|string|in:male,female',
+            'sexe' => 'required|string|in:masculin,feminin',
             'email' => 'required|string|email|unique:users,email|min:2 |max:255',
         ];
     }
