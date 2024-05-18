@@ -43,6 +43,7 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'firstname' => $request->firstname,
             'birthdate' => $request->birthdate,
+            'specialite' => $request->specialite,
             'email' => $request->email,
             'sexe' => $request->sexe,
             'password' => Hash::make($request->password),
@@ -52,7 +53,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('specialiste.index');
+        return redirect('/');
         // return redirect(RouteServiceProvider::HOME);
     }
 }

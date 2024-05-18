@@ -44,6 +44,17 @@
                             <span class="text-danger">{{$message}}</span>
                             @enderror
                         </div>
+                        <div class="form-flotting mb-3">
+                            <select class="form-select" name="specialiste" aria-label="Default select example">
+                                <option selected>Choisissez  votre specialite</option>
+                                <option value="generaliste">Generaliste</option>
+                                <option value="dentiste">Dentiste</option>
+                                <option value="cardiologue">Cardiologue</option>
+                            </select>
+                            @error('specialiste')
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
                         <div class="form-floating mb-3">
                             <input type="date" class="form-control" id="floatingDate" name="birthdate" autofocus autocomplete="date" />
                             <label for="floatingDate">Date de naissance</label>
