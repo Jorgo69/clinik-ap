@@ -45,7 +45,7 @@
                             @enderror
                         </div>
                         <div class="form-flotting mb-3">
-                            <select class="form-select" name="specialiste" aria-label="Default select example">
+                            <select class="form-select" name="specialite" aria-label="Default select example">
                                 <option selected>Choisissez  votre specialite</option>
                                 <option value="generaliste">Generaliste</option>
                                 <option value="dentiste">Dentiste</option>

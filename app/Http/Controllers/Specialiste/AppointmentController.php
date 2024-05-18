@@ -24,6 +24,35 @@ class AppointmentController extends Controller
         ]);
     }
 
+    public function assignationIndex()
+    {
+        $appointments = Appointment::with('patient')->get();
+
+        $dispos = Appointment::with('patient')->get();
+
+        foreach ($dispos as $dispo) {
+            $date = $dispo->date;
+            $heure_rdv = $dispo->hours;
+            $type_specialite_patient = $dispo->type_specialite;
+            // dd($type_specialite_patient);
+        }
+        $medecins_disponibles = User::where('role', 'medecin')
+                           ->whereDoesntHave('appointments', function($query) use ($heure_rdv) {
+                               $query->where('hours', $heure_rdv);
+                           })
+                           ->where('specialite', $type_specialite_patient)
+                           ->get();
+        
+                // }
+
+
+
+        return view('specialiste.assignation.index', [
+            'appointments' => $appointments,
+            // 'medecins_disponibles' => $medecins_disponibles,
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -39,23 +68,24 @@ class AppointmentController extends Controller
     {
         
         $appointment = new Appointment();
-        $appointment->patient_id = $request->patient_id;
-        $appointment->medical_id = Auth::id();
+        $appointment->type_specialite = $request->concerner;
+        $appointment->patient_id = $request->patient;
+        // $appointment->medical_id = Auth::id();
         $appointment->date = $request->date;
         $appointment->hours = $request->time;
-        $appointment->description = $request->pattern;
+        $appointment->motif = $request->pattern;
 
         $date = date('Y-m-d');
         $time = date('H-i');
         $time = intval($time) + 1;
         $time = $time.':'.date('i');
 
-        if($date <= $request->date  ){
+        if($date >= $request->date  ){
             return redirect()->back()->with('success', 'Vous ne pouvez selectionner un temps deja passe');
         }
         // dd($date, $request->date, $time, $request->time);
-        dd($appointment);
-        // $appointment->save();
+        // dd($appointment);
+        $appointment->save();
         
         return redirect()->back()->with('success', 'Rendez vous ajouter avec success');
     }

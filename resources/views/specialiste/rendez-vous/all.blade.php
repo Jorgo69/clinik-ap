@@ -46,26 +46,19 @@
                                 @csrf
                                 @method('POST')
                             <div class="modal-body">
-                              <select name="" class="form-select mb-3"    id="">
-                                @forelse ($patients as $patient)
+                              <select name="patient" class="form-select mb-3"    id="">
                                 <option value="">Selectionner le patient</option>
+                                @forelse ($patients as $patient)
                                   <option value="{{$patient->id}}">{{$patient->name. ' '.$patient->firstname }}</option>
                                 @empty
                                 <option value="">Aucun Patient</option>  
                                 @endforelse
                               </select>
 
-                              <select class="form-select mb-3" name="" id="">
-                                <option value="">Le type de specialiste</option>
-                              </select>
-
-                              <select class="form-select mb-3" name="" id="">
-                                <option value="Les specialite">Docteur generaliste</option>
-                                <option value="Les specialite">Docteur generaliste</option>
-                                <option value="Les specialite">Docteur cardio</option>
-                                <option value="Les specialite">Docteur cardio</option>
-                                <option value="Les specialite">Docteur dentiste</option>
-                                <option value="Les specialite">Docteur dentiste</option>
+                              <select class="form-select mb-3" name="concerner" id="">
+                                <option value="generaliste">Docteur generaliste</option>
+                                <option value="cardiologue">Docteur cardio</option>
+                                <option value="dentiste">Docteur dentiste</option>
                               </select>
                               
                               <input type="date" name="date" class="form-control mb-2" id="">

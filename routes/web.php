@@ -55,6 +55,7 @@ Route::get('specialists/dashboard', [DashboardController::class, 'index'])->name
 Route::middleware(['auth','right.secretaire'])->group(function () {
     Route::get('specialists/rendez-vous', [AppointmentController::class, 'index'])->name('specialiste.rendez-vous.index');
     Route::post('specialiste/rendez-vous/making', [AppointmentController::class, 'store'])->name('specialiste.rendez-vous.making');
+    Route::get('specialiste/assignation', [AppointmentController::class, 'assignationIndex'])->name('specialiste.assignation');
 });
 
 Route::get('specialists/done', function() {

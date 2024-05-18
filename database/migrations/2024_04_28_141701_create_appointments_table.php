@@ -14,15 +14,17 @@ return new class extends Migration
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('patient_id');
-            $table->unsignedBigInteger('taker_id')->nullable();
-                $table->foreign('patient_id')
+            $table->foreign('patient_id')
                         ->references('id')
                         ->on('users')
                         ->onDelete('cascade');
-                $table->foreign('taker_id')
+            $table->unsignedBigInteger('medecin_id')->nullable();
+            $table->foreign('medecin_id')
                         ->references('id')
                         ->on('users')
                         ->onDelete('set null');
+                
+            $table->string('type_specialite')->default('generaliste');
             $table->string('date');
             $table->string('hours');
             $table->string('motif');

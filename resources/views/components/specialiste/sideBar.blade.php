@@ -34,6 +34,15 @@
                     {{-- <a href="{{ route('specialiste.rendez-vous.done')}}" class="dropdown-item">Accepter</a> --}}
                 </div>
             </div>
+            @if (auth()->user()->role != 'medecin')
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="bi bi-arrow-left-right"></i></i>Assignation</a>
+                <div class="dropdown-menu bg-transparent border-0">
+                    <a href="{{route('specialiste.assignation')}}" class="dropdown-item active">Assigner les RDV</a>
+                    {{-- <a href="{{ route('specialiste.rendez-vous.done')}}" class="dropdown-item">Accepter</a> --}}
+                </div>
+            </div>
+            @endif
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fab fa-accessible-icon me-2 "></i>Patients</a>
                 <div class="dropdown-menu bg-transparent border-0">
