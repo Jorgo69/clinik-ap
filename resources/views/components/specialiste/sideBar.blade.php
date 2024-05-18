@@ -9,12 +9,15 @@
                 <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
             </div>
             <div class="ms-3">
-                <h6 class="mb-0">His Name</h6>
-                <span>Specialiste Name</span>
+                <h6 class="mb-0">{{Auth::user()->name. ' '. Auth::user()->firstname}}</h6>
+                @if(auth()->user()->role === 'medecin' )
+                <span>{{Auth::user()->role}}</span>
+                @endif
             </div>
         </div>
         <div class="navbar-nav w-100">
             <a href="{{ route('specialiste.index')}}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+            @if(auth()->user()->role === 'medecin' )
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Consultation</a>
                 <div class="dropdown-menu bg-transparent border-0">
@@ -22,6 +25,7 @@
                     <a href="{{ route('specialiste.add.consultation')}}" class="dropdown-item">Les Consulter</a>
                 </div>
             </div>
+            @endif
 
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-table me-2"></i>Rendez vous</a>
@@ -37,13 +41,13 @@
                     <a href="{{ route('specialiste.add.patient')}}" class="dropdown-item">Nouveau Patients</a>
                 </div>
             </div>
-            <div class="nav-item dropdown">
+            {{-- <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-credit-card" aria-hidden="true"></i>Factures</a>
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="{{ route('specialiste.facure')}}" class="dropdown-item active">Toutes les factures</a>
                     <a href="{{ route('specialiste.add.patient')}}" class="dropdown-item">Nouveau Patients</a>
                 </div>
-            </div>
+            </div> --}}
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-users" aria-hidden="true"></i></i>Personnels</a>
                 <div class="dropdown-menu bg-transparent border-0">

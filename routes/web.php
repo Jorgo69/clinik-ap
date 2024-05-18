@@ -22,7 +22,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     // return view('welcome');
     return view('auth.login');
-})->name('home.index');
+})->name('home.index')
+->middleware('right.medical');
 
 Route::get('home', function() {
     return view('welcome');
@@ -51,8 +52,10 @@ Route::get('specialists/dashboard', [DashboardController::class, 'index'])->name
 
 
 // Rendez Ressource
-Route::get('specialists/rendez-vous', [AppointmentController::class, 'index'])->name('specialiste.rendez-vous.index')->middleware('right.medical');
-Route::post('specialiste/rendez-vous/making', [AppointmentController::class, 'store'])->name('specialiste.rendez-vous.making')->middleware('right.medical');
+Route::middleware(['auth','right.secretaire'])->group(function () {
+    Route::get('specialists/rendez-vous', [AppointmentController::class, 'index'])->name('specialiste.rendez-vous.index');
+    Route::post('specialiste/rendez-vous/making', [AppointmentController::class, 'store'])->name('specialiste.rendez-vous.making');
+});
 
 Route::get('specialists/done', function() {
     return view('specialiste.rendez-vous.done');
@@ -72,14 +75,12 @@ Route::post('specialiste/consulte/patient', [ConsultationController::class, 'sto
 
 
 // Patient Ressources
-Route::get('/specialiste/patients/liste', [PatientController::class, 'index'])->name('specialiste.liste.patients')->middleware('right.medical');
-
-
-Route::get('/specialiste/patients/detail/{id}',[PatientController::class, 'show'])->name('specialiste.details.patients')->middleware('right.medical');
+Route::get('/specialiste/patients/liste', [PatientController::class, 'index'])->name('specialiste.liste.patients');
+Route::get('/specialiste/patients/detail/{id}',[PatientController::class, 'show'])->name('specialiste.details.patients');
 
 Route::get('specialiste/add/patient', function() {
     return view('specialiste.patient.addPatient');
-})->name('specialiste.add.patient')->middleware('right.medical');
+})->name('specialiste.add.patient');
 
 // Add Patient
 Route::post('ajouter/patient', [PatientController::class, 'store'])->name('Add.Patient');

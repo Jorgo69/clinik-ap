@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Specialiste;
 
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
+use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,8 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        $patients = User::where('statut', 'patient')->get();
+        
+        $patients = Patient::get();
 
         return view('specialiste.rendez-vous.all', [
             'patients' => $patients,
@@ -51,7 +53,8 @@ class AppointmentController extends Controller
         if($date <= $request->date  ){
             return redirect()->back()->with('success', 'Vous ne pouvez selectionner un temps deja passe');
         }
-        dd($date, $request->date, $time, $request->time);
+        // dd($date, $request->date, $time, $request->time);
+        dd($appointment);
         // $appointment->save();
         
         return redirect()->back()->with('success', 'Rendez vous ajouter avec success');

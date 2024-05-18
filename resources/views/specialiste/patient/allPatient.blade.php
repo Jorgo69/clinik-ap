@@ -63,19 +63,15 @@
                                 @empty
                                     
                                 <tr>
-                                    <td>
-                                        <a href="?=1">
-                                            <input class="form-check-input"  type="checkbox">
-                                        </a>
-                                    </td>
+                                    
                                     <td>34 ans</td>
                                     <td>Son nom complet</td>
-                                    <td>{{$patient->email}}</td>
+                                    <td>{{__('Aucun Email')}}</td>
                                     <td>
-                                        {{$patient->residence ? $patient->residence : 'Residence inconnue'}}
+                                        {{__('Aucune residence')}}
                                     </td>
                                     <td class="float-center">
-                                        <a href="{{ route('specialiste.details.patients')}}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                        <a href="" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                     </td>
                                 </tr>
                                 @endforelse

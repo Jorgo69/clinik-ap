@@ -46,15 +46,14 @@
                                 @csrf
                                 @method('POST')
                             <div class="modal-body">
-                              <label for="exampleDataList" class="form-label">Datalist example</label>
-                              <input class="form-control mb-3" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
-                              <datalist id="datalistOptions">
+                              <select name="" class="form-select mb-3"    id="">
                                 @forelse ($patients as $patient)
-                                <option value="{{$patient->name .' '. $patient->firstname}}">
+                                  <option value="{{$patient->id}}">{{$patient->name. ' '.$patient->firstname }}</option>
                                 @empty
-                                <option value="Aucun Patient pour le moment">
+                                <option value="">Aucun Patient</option>  
                                 @endforelse
-                              </datalist>
+                              </select>
+                              
                               <input type="date" name="date" class="form-control mb-2" id="">
                               <input type="time" name="time" class="form-control mb-2" id="">
                               <input type="text" name="pattern" class="form-control" placeholder="Motif de la Consultation">

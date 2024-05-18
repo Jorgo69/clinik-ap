@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Specialiste;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Specialiste\PatientRequest;
+use App\Models\Patient;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $patients = User::where('statut', 'patient')->get();
+        $patients = Patient::get();
         // dd($patients);
 
         
@@ -40,21 +41,18 @@ class PatientController extends Controller
      */
     public function store(PatientRequest $request)
     {
-
-        $mdp = Hash::make('password');
         
   
 
-        $user = new User() ;
+        $user = new Patient() ;
             $user->name = $request->name;
             $user->firstname = $request->firstname;
             $user->birthdate = $request->birthdate;
             $user->number = $request->number;
             $user->sexe = $request->sexe;
             $user->email = $request->email;
-            $user->password = $mdp ;
-            $user->save();
-            // dd($user);
+            // $user->save();
+            dd($user);
         return redirect()->back()->with('success', 'Patient enreigistrer avec success');
     }
 

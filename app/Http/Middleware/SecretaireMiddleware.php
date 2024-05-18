@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class MedecinMiddleware
+class SecretaireMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,9 +15,8 @@ class MedecinMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-
         // Si  authentifier == true && statut != de patient Continue ...
-        if(auth()->check() && auth()->user()->role === 'medecin' )
+        if(auth()->check() && auth()->user()->role === 'secretaire' )
         {
             return $next($request);
         }
@@ -25,7 +24,9 @@ class MedecinMiddleware
         // en continuant sa va 
         
         // Redirigez vers une autre page ou renvoyez une réponse d'erreur pour les utilisateurs non autorisés
-        return redirect('/login')->with('error', 'Accès refusé. Vous devez être un administrateur pour accéder à cette page.');
+        return redirect()->back()->with('error', 'Accès refusé. Vous devez être un administrateur pour accéder à cette page.');
         // return redirect('/home')->with('error', 'Accès refusé. Vous devez être un administrateur pour accéder à cette page.');
     }
+
+    
 }

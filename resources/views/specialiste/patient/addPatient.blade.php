@@ -150,11 +150,11 @@
                                 <div class="mb-3">
                                     <div class="form-check">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="sexe" id="inlineRadioHomme" value="male" @checked(true)>
+                                            <input class="form-check-input" type="radio" name="sexe" id="inlineRadioHomme" value="masculin" @checked(true)>
                                             <label class="form-check-label" for="inlineRadioHomme">Homme</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="sexe" id="inlineRadioFemme" value="female">
+                                            <input class="form-check-input" type="radio" name="sexe" id="inlineRadioFemme" value="feminin">
                                             <label class="form-check-label" for="inlineRadioFemme">Femme</label>
                                         </div>
                                         <div class="form-check form-check-inline">
