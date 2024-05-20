@@ -7,29 +7,29 @@
             </div>
         </div>
         <!-- Spinner End -->
-    
-    
+
+
         <!-- Sidebar Start -->
         @include('components.specialiste.sideBar')
         <!-- Sidebar End -->
-    
-    
+
+
         <!-- Content Start -->
         <div class="content">
             <!-- Navbar Start -->
             @include('components.specialiste.navBarContent')
-            <!-- Navbar End -->    
-    
+            <!-- Navbar End -->
+
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-light rounded p-4 col-12 col-md-12 col-sm-12 col-xl-12 col-xxl-12">
 
                     <div class="row">
                         <!-- Start col-->
                         <div class="col-lg-4 col-xl-4">
-                            <!-- Start Card Box--> 
+                            <!-- Start Card Box-->
                             <div class="card-box text-center">
                                 <img src="{{asset('assets/users/img/patient.png')}}" width="90" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
-                                
+
                                 <div class="text-left mt-3">
                                     <p class="text-muted mb-2 font-13"><strong>Nom Complet :</strong> <span class="ml-2">{{$patient->name}} {{$patient->firstname}} </span></p>
                                     <p class="text-muted mb-2 font-13"><strong>Mobile :</strong><span class="ml-2"> 692 382 65</span></p>
@@ -43,110 +43,163 @@
                                 </div>
                             </div>
                             <!-- End card-box -->
-                        </div> 
+                        </div>
                         <!-- End col-->
-                        
-    <div class="col-lg-8 col-xl-8">
-        <div class="card-box">
-        <div class="bg-light rounded h-100 p-4">
-            <ul class="nav nav-pills navtab-bg nav-justified mb-3 " id="pills-tab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
-                        data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                        aria-selected="true">
-                        <i class="fa fa-file" aria-hidden="true"></i>
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
-                        data-bs-target="#pills-profile" type="button" role="tab"
-                        aria-controls="pills-profile" aria-selected="false">
-                        <i class="fa fa-signal" aria-hidden="true"></i>
-                    </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
-                        data-bs-target="#pills-contact" type="button" role="tab"
-                        aria-controls="pills-contact" aria-selected="false">
-                        <i class="fa fa-folder" aria-hidden="true"></i>
-                    </button>
-                </li>
-            </ul>
-            {{-- <form action="{{route('specialiste.consulte.patient')}}" method="post">
-                @csrf --}}
-                {{-- <input type="hidden" name="patient_id" value="{{$patient->id}}"> --}}
-                <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                        @livewire('specialiste.consultation.constant-vital-component', ['patient' => $patient], key($patient->id))
-                    </div>
-                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                        
-                        <table class="table">
-                            <tbody>
-                              <tr>
-                                <th scope="row">Groupe Sanguin</th>
-                                <td>{{__('O +')}}</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">Facteur Rhesus</th>
-                                <td>{{__('AB -')}}</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">Allergie</th>
-                                <td> {{__('Poisson')}} </td>
-                              </tr>
-                              <tr>
-                                <th scope="row">Observation</th>
-                                <td>{{__('')}}</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                    </div>
-                    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                        <ul class="list-unstyled timeline-sm">
-                            <li class="timeline-sm-item">
-                                <span class="timeline-sm-date"> Consultation du 2022-10-20</span>
-                                <h3 class="mt-0 mb-1">Demo Test</h3>
-                                <hr>
-                                <h5>
-                                    Laboratory  Tests
-                                </h5>
-                                
-                                <p class="text-muted mt-2"></p><p>demo demo demo demo</p><p></p>
-                                <hr>
-                                <h5>
-                                    Laboratory Results
-                                </h5>
-                                
-                                <p class="text-muted mt-2"></p><p>54545</p><p></p>
-                                <hr>
 
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                {{-- <button class="btn btn-info">Relever</button> --}}
-            {{-- </form> --}}
-        </div>
-        </div>
-    </div>
+                        <div class="col-lg-8 col-xl-8">
+                            <div class="card-box">
+                                <div class="bg-light rounded h-100 p-4">
+                                    <ul class="nav nav-pills navtab-bg nav-justified mb-3 " id="pills-tab" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">
+                                                <i class="fa fa-file" aria-hidden="true"></i>
+                                            </button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">
+                                                <i class="fa fa-signal" aria-hidden="true"></i>
+                                            </button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">
+                                                <i class="fa fa-folder" aria-hidden="true"></i>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                    {{-- <form action="{{route('specialiste.consulte.patient')}}" method="post">
+                                    @csrf --}}
+                                    {{-- <input type="hidden" name="patient_id" value="{{$patient->id}}"> --}}
+                                    <div class="tab-content" id="pills-tabContent">
+                                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+
+
+                                            <form action="" method="post" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">A quoi pensez-vous ?</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="card card-outline card-info">
+                                                                <div class="card-header">
+                                                                    <h3 class="card-title">
+
+                                                                    </h3>
+                                                                </div>
+                                                                <!-- /.card-header -->
+                                                                <div class="card-body">
+                                                                    <textarea id="summernote" name="contenuposts">
+                        Ajoutez <em>uniquement</em> <u>du texte</u> <strong>ici</strong>
+                    </textarea>
+
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputFile">Ajouter une image à ma publication</label>
+                                                                        <div class="input-group">
+                                                                            <div class="custom-file">
+                                                                                <input type="file" class="custom-file-input" id="exampleInputFie" name="urlphoto">
+                                                                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                                                            </div>
+                                                                            <div class="input-group-append">
+                                                                                <span class="input-group-text">Upload</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.col-->
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer justify-content-between">
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Abandonner</button>
+                                                    <button type="submit" class="btn btn-success toastrDefaultSuccess">Publier</button>
+                                                </div>
+                                            </form>
+
+
+                                        </div>
+                                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">Groupe Sanguin</th>
+                                                        <td>{{__('O +')}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Facteur Rhesus</th>
+                                                        <td>{{__('AB -')}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Allergie</th>
+                                                        <td> {{__('Poisson')}} </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Observation</th>
+                                                        <td>{{__('')}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                                         
+
+
+                                        <table class="table">
+                                                <tbody>
+                                                Consultation du 2022-10-20
+                                                    <tr>
+                                                        <th scope="row">Demo Test</th>
+                                                        <td> <i class="fa fa-file" aria-hidden="true" style="color:blue"></i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Laboratory Test</th>
+                                                        <td> <i class="fa fa-file" blue aria-hidden="true"></i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Laboratory Rhesus</th>
+                                                        <td> <i class="fa fa-file" aria-hidden="true"></i></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Laboratory Facteur</th>
+                                                        <td> <i class="fa fa-file" aria-hidden="true"></i></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+
+
+
+                                        </div>
+                                    </div>
+                                    {{-- <button class="btn btn-info">Relever</button> --}}
+                                    {{-- </form> --}}
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
 
                 </div>
             </div>
-    
+
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">
                 @include('components.specialiste.footer')
             </div>
             <!-- Footer End -->
-    
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-    </div>
-    
-    @push('title_header')
+
+            <!-- Back to Top -->
+            <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+        </div>
+
+        @push('title_header')
         <title>Liste des patients | {{config('app.name')}}</title>
-    @endpush
+        @endpush
 </x-specialiste>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Specialiste;
 
 use App\Http\Controllers\Controller;
 use App\Models\Consultation;
+use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,7 @@ class ConsultationController extends Controller
      */
     public function index()
     {
-        $patients = User::where('statut', 'patient')->get();
+        $patients = Patient::all();
 
         return view('specialiste.consultation.listePatients', [
             'patients' => $patients

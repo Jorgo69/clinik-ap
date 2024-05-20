@@ -54,6 +54,19 @@
                                 <option value="">Aucun Patient</option>  
                                 @endforelse
                               </select>
+
+                              <select class="form-select mb-3" name="" id="">
+                                <option value="">Le type de specialiste</option>
+                              </select>
+
+                              <select class="form-select mb-3" name="" id="">
+                                <option value="Les specialite">Docteur generaliste</option>
+                                <option value="Les specialite">Docteur generaliste</option>
+                                <option value="Les specialite">Docteur cardio</option>
+                                <option value="Les specialite">Docteur cardio</option>
+                                <option value="Les specialite">Docteur dentiste</option>
+                                <option value="Les specialite">Docteur dentiste</option>
+                              </select>
                               
                               <input type="date" name="date" class="form-control mb-2" id="">
                               <input type="time" name="time" class="form-control mb-2" id="">
