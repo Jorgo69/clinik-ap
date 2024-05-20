@@ -58,7 +58,7 @@ class ConsultationController extends Controller
      */
     public function show(int $id)
     {
-        $patient = User::find($id);
+        $patient = Patient::find($id);
         $birthday = date($patient->birthdate);
         $birthday = intval($birthday);
         $years = date('Y-m-d');

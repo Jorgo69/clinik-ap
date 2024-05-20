@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Specialiste;
 
+use App\Models\Patient;
 use App\Models\User;
 use Livewire\Component;
 
@@ -16,9 +17,8 @@ class SearchComponent extends Component
 
         if(strlen($this->query) > 2)
         {
-            $this->patients = User::where('firstname', 'like', $keyWord)
+            $this->patients = Patient::where('firstname', 'like', $keyWord)
             ->orWhere('name', 'like', $keyWord)
-            // ->orWhere('status', 'patient')
             ->get()
         ;
 

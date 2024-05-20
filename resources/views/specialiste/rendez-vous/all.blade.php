@@ -86,6 +86,15 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @forelse ($appointments as $appointment)
+                                <tr>
+                                    <th scope="row">{{$appointment->date}}</th>
+                                    <td>{{$appointment->patient->name. ' ' .$appointment->patient->firstname}}</td>
+                                    <td>{{$appointment->motif}}</td>
+                                    <td>{{$appointment->patient->sexe === 'masculin' ? 'Homme' : 'Femme' }}</td>
+                                    <td>24 ans</td>
+                                </tr>
+                                @empty
                                 <tr>
                                     <th scope="row">24/12/2002 08:30</th>
                                     <td>Son Nom au complet</td>
@@ -93,6 +102,8 @@
                                     <td>Homme</td>
                                     <td>24 ans</td>
                                 </tr>
+                                @endforelse
+                                
                             </tbody>
                         </table>
                     </div>

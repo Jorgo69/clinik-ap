@@ -107,7 +107,7 @@
                                 ['para', ['ul', 'ol', 'paragraph']],
                                 ['table', ['table']],
                                 ['insert', ['link', 'picture']],
-                                ['fontname', ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Helvetica Neue', 'Helvetica', 'Impact', 'Lucida Grande', 'Tahoma', 'Times New Roman', 'Verdana']]
+                                ['fontname', ['fontname']]
                                 // ['insert', ['link', 'picture', 'video']],
                                 // ['view', ['fullscreen', 'codeview', 'help']]
                             ]

@@ -41,7 +41,8 @@
                                         <p class="text-muted mb-2 font-13"><strong>Date d'enreigistrement :</strong> <span class="ml-2">
                                             {{-- {{ date('Y-m-d', strtotime($patient->created_at)). ' a '. date('i', strtotime($patient->created_at))  }}  --}}
                                             {{-- {{date('l, F j, Y', strtotime($patient->created_at))}} --}}
-                                            {{date('l, F j, Y H:i:s', strtotime($patient->created_at))}}
+                                            {{-- {{date('l, F j, Y H:i:s', strtotime($patient->created_at))}} --}}
+                                            {{formatDate($patient->created_at)}}
                                         </span></p>
                                         <hr>
                                     </div>

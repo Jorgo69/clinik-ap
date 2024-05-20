@@ -18,15 +18,21 @@ class AppointmentController extends Controller
     {
         
         $patients = Patient::get();
+        // recuperation de tous les rdv
+        $appointments = Appointment::with('patient', 'user')->get();
 
         return view('specialiste.rendez-vous.all', [
             'patients' => $patients,
+            'appointments' => $appointments,
         ]);
     }
 
     public function assignationIndex()
     {
+        // recuperation de tous les rdv
         $appointments = Appointment::with('patient')->get();
+
+        // dd($appointments);
 
         $dispos = Appointment::with('patient')->get();
 
@@ -37,6 +43,7 @@ class AppointmentController extends Controller
             // dd($type_specialite_patient);
         }
         $medecins_disponibles = User::where('role', 'medecin')
+                            ->where('type_specialite', )
                            ->whereDoesntHave('appointments', function($query) use ($heure_rdv) {
                                $query->where('hours', $heure_rdv);
                            })
@@ -50,6 +57,11 @@ class AppointmentController extends Controller
             'appointments' => $appointments,
             'medecins_disponibles' => $medecins_disponibles,
         ]);
+    }
+
+    public function  assignationAttribute()
+    {
+
     }
 
     /**
