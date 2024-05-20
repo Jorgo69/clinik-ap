@@ -41,14 +41,15 @@ class ConsultationController extends Controller
             $consultation->weight = $request->weight;
             $consultation->pulse = $request->pulse;
             $consultation->temperature = $request->temperature;
-            $consultation->temperature = $request->temperature;
+            // $consultation->temperature = $request->temperature;
             $consultation->drugs = 'Null';
             $consultation->pace = 'Null';
             $consultation->observation = 'Null';
             $consultation->patient_id = $request->patient_id;
             $consultation->medecin_id = Auth::id();
 
-            $consultation->save();
+            dd($consultation);
+            // $consultation->save();
             return redirect()->back()->with('success', 'Note Prise avec Success');
     }
 

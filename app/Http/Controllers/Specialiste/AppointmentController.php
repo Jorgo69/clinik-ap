@@ -46,10 +46,9 @@ class AppointmentController extends Controller
                 // }
 
 
-
         return view('specialiste.assignation.index', [
             'appointments' => $appointments,
-            // 'medecins_disponibles' => $medecins_disponibles,
+            'medecins_disponibles' => $medecins_disponibles,
         ]);
     }
 

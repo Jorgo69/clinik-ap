@@ -49,6 +49,7 @@ class PatientController extends Controller
             $user->firstname = $request->firstname;
             $user->birthdate = $request->birthdate;
             $user->number = $request->number;
+            $user->residence = $request->residence;
             $user->sexe = $request->sexe;
             $user->email = $request->email;
             $user->save();
@@ -62,7 +63,7 @@ class PatientController extends Controller
     public function show(int $id)
     {
 
-        $patient = User::find($id);
+        $patient = Patient::find($id);
         $birthday = date($patient->birthdate);
         $birthday = intval($birthday);
         $years = date('Y-m-d');

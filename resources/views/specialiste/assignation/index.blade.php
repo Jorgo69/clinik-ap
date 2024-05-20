@@ -25,20 +25,20 @@
             @forelse ($appointments as $appointment)
             <div class="container-fluid pt-4 px-4">
                 <div class="card" >
-                    <div class="card-header">
+                    <div class="card-header" style="text-transform: capitalize">
                       {{$appointment->type_specialite}}
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">{{$appointment->patient->name. ' '. $appointment->patient->firstname}}</li>
                       <li class="list-group-item">Categorie Concerner</li>
-                      <li class="list-group-item">{{ $appointment->date. ' a '. $appointment->hours }}</li>
+                      {{-- <li class="list-group-item">{{ date('m'. ' '. 'd', strtotime($appointment->date)). ' a '. $appointment->hours }}</li> --}}
+                      <li class="list-group-item">{{ strftime('%B %d, %Y', strtotime($appointment->date)). ' a '. $appointment->hours }}</li>
                       <li class="list-group-item">{{$appointment->motif}}</li>
                       <li class="list-group-item">
-                        @if ($appointment->medecin_disponible)
-                            {{ $appointment->medecin_disponible->name }}
-                        @else
-                        {{__("Aucun Medecin Dispo")}}
-                        @endif
+                        @foreach ($medecins_disponibles as $disponibles )
+                            {{$disponibles->name}}
+                        @endforeach
+                        
                       </li>
                     </ul>
                   </div>

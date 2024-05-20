@@ -72,12 +72,56 @@
                     </button>
                 </li>
             </ul>
-            {{-- <form action="{{route('specialiste.consulte.patient')}}" method="post">
-                @csrf --}}
+            <form action="{{route('specialiste.consulte.patient')}}" method="post">
+                @csrf
                 {{-- <input type="hidden" name="patient_id" value="{{$patient->id}}"> --}}
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                        @livewire('specialiste.consultation.constant-vital-component', ['patient' => $patient], key($patient->id))
+                        {{-- @livewire('specialiste.consultation.constant-vital-component', ['patient' => $patient], key($patient->id)) --}}
+                        <div class="col-md-12">
+                            <div class="card card-outline card-info">
+                                <div class="card-header">
+                                <h3 class="card-title">
+                                    constante vital
+                                </h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    {{-- <div id="summernote" name='observation'></div> --}}
+                                    <textarea name="temperature" id="summernote" cols="30" rows="10"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                            {{-- Start Summernote   without Boostrap Only cdn - css and js files--}}
+                        <script>
+                            $('#summernote').summernote({
+                            placeholder: 'Entrer les informations concernant le patient ici',
+                            tabsize: 2,
+                            height: 300,
+                            // height: 120,
+                            toolbar: [
+                                ['style', ['style']],
+                                ['font', ['bold', 'underline', 'clear']],
+                                ['color', ['color']],
+                                ['para', ['ul', 'ol', 'paragraph']],
+                                ['table', ['table']],
+                                ['insert', ['link', 'picture']],
+                                ['fontname', ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Helvetica Neue', 'Helvetica', 'Impact', 'Lucida Grande', 'Tahoma', 'Times New Roman', 'Verdana']]
+                                // ['insert', ['link', 'picture', 'video']],
+                                // ['view', ['fullscreen', 'codeview', 'help']]
+                            ]
+                            });
+                            
+                        </script>
+                        <script>
+                            $(document).ready(function() {
+                                $('#summernote').summernote({
+                                    lang: 'ko-KR'
+                            });
+                            });
+                        </script>
+                        {{-- End Summernote without Boostrap Only cdn - css and js files --}}
                     </div>
                     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                         
@@ -125,8 +169,8 @@
                         </ul>
                     </div>
                 </div>
-                {{-- <button class="btn btn-info">Relever</button> --}}
-            {{-- </form> --}}
+                <button class="btn btn-info">Relever</button>
+            </form>
         </div>
         </div>
     </div>

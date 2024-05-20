@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="utf-8">
@@ -29,8 +29,19 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{asset('assets/others/css/bootstrap.min.css')}}" rel="stylesheet">
 
+ 
+
     <!-- Template Stylesheet -->
     <link href="{{asset('assets/others/css/style.css')}}" rel="stylesheet">
+    
+       {{-- Traitement de Text --}}
+       {{-- Summeronote sans boostrap uniquement les dependannce cdn /npm et cdn / js --}}
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <!-- include summernote-ko-KR -->
+    <script src="{{asset('assets/plugins/summernote/summernote-ko-KR.js')}}"></script>
+
     @livewireStyles
 </head>
 
@@ -40,13 +51,10 @@
     {{-- @yield('specialisteContent') --}}
     {{ $slot }}
 
+
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{asset('assets/others/lib/chart/chart.min.js') }}"></script>
-    <script src="{{asset('assets/others/lib/easing/easing.min.js') }}"></script>
-    <script src="{{asset('assets/others/lib/waypoints/waypoints.min.js') }}"></script>
-    <script src="{{asset('assets/others/lib/owlcarousel/owl.carousel.min.js') }}"></script>
     <script src="{{asset('assets/others/lib/tempusdominus/js/moment.min.js') }}"></script>
     <script src="{{asset('assets/others/lib/tempusdominus/js/moment-timezone.min.js') }}"></script>
     <script src="{{asset('assets/others/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>

@@ -119,3 +119,8 @@ Admin
 vu de l'ensemble du personnel de l'entreprise
 Nouveau Patient
 Enreigistrement de nouveau membre dans la clinique
+
+###### Plugins
+- Summernote : documentation disponible sur le depot 
+-- GitHub: [depot git de Summernote](https://github.com/summernote/summernote/)
+-- [summernote.org](https://summernote.org/)

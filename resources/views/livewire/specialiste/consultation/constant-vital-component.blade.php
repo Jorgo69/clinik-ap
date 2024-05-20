@@ -11,12 +11,12 @@
                 </div>
             </div>
         </div>
-        <div class="row mt-2">
+        {{-- <div class="row mt-2">
             <div class="card bg-light" >
                 <div class="card-body">
                     <h5 class="card-title">Constante Vitale</h5>
                     <p class="card-text">
-                        {{-- <input type="text" wire:model='weight' name="weight" class="form-control mb-2" placeholder="Le Poids en Kg">
+                        <input type="text" wire:model='weight' name="weight" class="form-control mb-2" placeholder="Le Poids en Kg">
                         @error('weight')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
@@ -35,7 +35,7 @@
                         <input type="text" wire:model='frequence' name="frequence" class="form-control mb-2" placeholder="Frequence Cardiaque Ex: 70">
                         @error('frequence')
                             <span class="text-danger">{{$message}}</span>
-                        @enderror --}}
+                        @enderror
                         <textarea wire:model='observation' name="observation" class="form-control" placeholder="Observation" id="" cols="30" rows="10">
                             Taille
                         </textarea>
@@ -45,7 +45,29 @@
                     </p>
                 </div>
             </div>
-        </div>
+        </div> --}}
+
+        {{-- Traitement --}}
+        
+            {{-- <div class="col-md-12">
+            <div class="card card-outline card-info">
+                <div class="card-header">
+                <h3 class="card-title">
+                    constante vital
+                </h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                <textarea id="summernote">
+                    Place <em>some</em> <u>text</u> <strong>here</strong>
+                </textarea>
+                </div>
+                
+            </div>
+            </div> --}}
+            <!-- /.col-->                      
+
+        {{-- End Traitement --}}
         <div class="row mt-2">
             <div class="card bg-light" >
                 <div class="card-footer">
