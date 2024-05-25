@@ -55,9 +55,13 @@ class User extends Authenticatable
         return $this->belongsTo(Consultation::class);
     }
 
-    public function appointments()
+  
+
+// Définir la relation avec les rendez-vous
+public function appointments(): HasMany
 {
-    return $this->hasMany(Appointment::class, 'medecin_id', 'id');
+    return $this->hasMany(Appointment::class, 'patient_id');
 }
+
 
 }

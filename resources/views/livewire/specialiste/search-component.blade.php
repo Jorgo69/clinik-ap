@@ -10,27 +10,6 @@
             <input wire:model.live="query" class="form-control border-0" type="search" data-mdb-select-init data-mdb-filter="true" placeholder="Recherche">
             {{-- <input type="submit" class="btn btn-info" value="Lancer"> --}}
         </form>
-        <div class="navbar-nav align-items-center ms-auto">
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                    <i class="fa fa-user-md fa-2x" aria-hidden="true"></i>
-                    <span class="d-none d-lg-inline-flex">{{Auth::user()->name. ' '. Auth::user()->firstname}}</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                    @auth
-                    <a href="{{ route('profile.edit')}}" class="dropdown-item">Profil</a>
-                    <form action="{{route('logout')}}" method="post">
-                        @csrf
-                        <button class="dropdown-item">Deconnexion</button>                
-                    </form>
-                    @endauth
-                    @guest
-                        <a href="{{ route('login')}}" class="dropdown-item">Connexion</a>
-                        <a href="{{ route('register')}}" class="dropdown-item">Inscription</a>
-                    @endguest
-                </div>
-            </div>
-        </div>    
     </nav>
     @php
         $total = count($patients);
@@ -39,11 +18,11 @@
     
     @if( Str::length($query) > 2 )
     @if($total > 0)
-    <div class="row">
-        <div class="card col-3 mx-5 mt-2 text-center">
+    <div class="row mx-5 p-1">
+        <div class="card col-auto mx-5 p-1 mt-1 text-center">
         @foreach ($patients as $patient )
                 <a class="text-warning" href="{{route('specialiste.detail.consultation', ['id' => $patient->id])}}">
-                    {{$patient->firstname}}
+                    {{$patient->firstname. ' '. $patient->name}}
                 </a>
         @endforeach
         <span>

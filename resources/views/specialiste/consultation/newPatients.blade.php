@@ -34,32 +34,28 @@
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
                             <thead>
                                 <tr class="text-dark">
-                                    <th scope="col">
-                                        <a href="?=1">
-                                            <input class="form-check-input"  type="checkbox">
-                                        </a>
-                                    </th>
                                     <th scope="col">Date</th>
                                     <th scope="col">Patient</th>
-                                    <th scope="col">Montant</th>
-                                    <th scope="col">Payer</th>
-                                    <th scope="col">Reste</th>
                                     <th scope="col">Motif</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @forelse ($consulters as $consulter)
                                 <tr>
-                                    <td>
-                                        <a href="?=1">
-                                            <input class="form-check-input"  type="checkbox">
+                                    <td>{{formatDate($consulter->created_at)}}</td>
+                                    <td>{{$consulter->patients->name. ' ' .$consulter->patients->firstname}}</td>
+                                    <td>{{$consulter->pattern}}</td>
+                                    <td class="text-center">
+                                        <a href="{{route('specialiste.a.detail.consultation', ['id' => $consulter->id])}}">
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
                                         </a>
                                     </td>
+                                </tr>
+                                @empty
+                                <tr>
                                     <td>22/01/2002</td>
                                     <td>Son nom complet</td>
-                                    <td>50 000</td>
-                                    <td>30 000</td>
-                                    <td>20 000</td>
                                     <td>Corps Chaud</td>
                                     <td class="text-center">
                                         <a href="">
@@ -67,6 +63,7 @@
                                         </a>
                                     </td>
                                 </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>

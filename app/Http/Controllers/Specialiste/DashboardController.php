@@ -13,7 +13,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $patients = Patient::all();
+        $patients = Patient::paginate(2);
 
         return view('specialiste.dashboard', [
             'patients' => $patients,

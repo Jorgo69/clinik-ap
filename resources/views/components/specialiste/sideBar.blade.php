@@ -10,9 +10,9 @@
             </div>
             <div class="ms-3">
                 <h6 class="mb-0">{{Auth::user()->name. ' '. Auth::user()->firstname}}</h6>
-                @if(auth()->user()->role === 'medecin' )
-                <span>{{Auth::user()->role}}</span>
-                @endif
+                {{-- @if(auth()->user()->role === 'medecin' ) --}}
+                <span class="text-uppercase">{{Auth::user()->role}}</span>
+                {{-- @endif --}}
             </div>
         </div>
         <div class="navbar-nav w-100">

@@ -72,30 +72,125 @@
                     </button>
                 </li>
             </ul>
+            <!-- Success Message -->
+            @if (Session::has('success'))
+            <div class="alert alert-info text-center">
+                {{Session::get('success') }}
+                <a href="" class="float-end"> X</a>
+            </div>                                
+            @endif
             <form action="{{route('specialiste.consulte.patient')}}" method="post">
                 @csrf
-                {{-- <input type="hidden" name="patient_id" value="{{$patient->id}}"> --}}
+                <input type="hidden" name="patient_id" value="{{$patient->id}}">
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                         {{-- @livewire('specialiste.consultation.constant-vital-component', ['patient' => $patient], key($patient->id)) --}}
-                        <div class="col-md-12">
+                        <div class="col-md-12 mb-3">
                             <div class="card card-outline card-info">
                                 <div class="card-header">
-                                <h3 class="card-title">
+                                <h3 class="card-title text-capitalize">
+                                    Motif de la consultation
+                                </h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <input type="text" name="pattern" class="form-control" placeholder="Le motif de la consultation">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 mb-3">
+                            <div class="card card-outline card-info">
+                                <div class="card-header">
+                                <h3 class="card-title text-capitalize">
                                     constante vital
                                 </h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    {{-- <div id="summernote" name='observation'></div> --}}
-                                    <textarea name="temperature" id="summernote" cols="30" rows="10"></textarea>
+                                    <input type="text" name="temperature" class="form-control mb-2" placeholder="La temperature">
+                                    <input type="text" name="poul" class="form-control mb-2" placeholder="Le poul">
+                                    <input type="text" name="poid" class="form-control mb-2" placeholder="Le poid">
+                                    <input type="text" name="stetoscopie" class="form-control mb-2" placeholder="stetoscopy">
+                                    <input type="text" name="taille" class="form-control mb-2" placeholder="la taille">
                                 </div>
                             </div>
                         </div>
 
-                            {{-- Start Summernote   without Boostrap Only cdn - css and js files--}}
+
+
+                        <div class="col-md-12 mb-3">
+                            <div class="card card-outline card-info">
+                                <div class="card-header">
+                                <h3 class="card-title text-capitalize">
+                                    Diagnostic
+                                </h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <textarea name="diagnostic" id="diagnostic" cols="30" rows="10"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Bloc des observations --}}
+                        <div class="col-md-12 mb-3">
+                            <div class="card card-outline card-info">
+                                <div class="card-header">
+                                <h3 class="card-title text-capitalize">
+                                    Observation
+                                </h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <textarea name="observation" id="observation" cols="30" rows="10">
+                                        
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Bloc prescription --}}
+                        <div class="col-md-12 mb-3">
+                            <div class="card card-outline card-info">
+                                <div class="card-header">
+                                <h3 class="card-title text-capitalize">
+                                    Prescription
+                                </h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <textarea name="prescription" id="prescription" cols="30" rows="10">
+                                        <h4 style="text-align: center; "><u>Prescription</u></h4><table class="table table-bordered"><tbody><tr><td>Medocs</td><td>Rythme</td></tr><tr><td>Para</td><td>3 par jours</td></tr><tr><td><br></td><td><br></td></tr></tbody></table><p><br></p>
+                                    </textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Start Summernote   without Boostrap Only cdn - css and js files--}}
                         <script>
-                            $('#summernote').summernote({
+                            $('#diagnostic').summernote({
+                            placeholder: 'Entrer le diagnostic retenu à travers les informations relevé sur le patient',
+                            tabsize: 2,
+                            height: 50,
+                            // height: 120,
+                            toolbar: [
+                                ['style', ['style']],
+                                ['font', ['bold', 'underline', 'clear']],
+                                ['color', ['color']],
+                                ['para', ['ul', 'ol', 'paragraph']],
+                                ['table', ['table']],
+                                ['insert', ['link', 'picture']],
+                                ['fontname', ['fontname']]
+                                // ['insert', ['link', 'picture', 'video']],
+                                // ['view', ['fullscreen', 'codeview', 'help']]
+                            ]
+                            });
+                            
+                        </script>
+                        <!-- Observation -->
+                        <script>
+                            $('#observation').summernote({
                             placeholder: 'Entrer les informations concernant le patient ici',
                             tabsize: 2,
                             height: 300,
@@ -107,19 +202,26 @@
                                 ['para', ['ul', 'ol', 'paragraph']],
                                 ['table', ['table']],
                                 ['insert', ['link', 'picture']],
-                                ['fontname', ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', 'Helvetica Neue', 'Helvetica', 'Impact', 'Lucida Grande', 'Tahoma', 'Times New Roman', 'Verdana']]
-                                // ['insert', ['link', 'picture', 'video']],
-                                // ['view', ['fullscreen', 'codeview', 'help']]
+                                ['fontname', ['fontname']]
+                            ]
+                            });
+
+                            $('#prescription').summernote({
+                            placeholder: 'Entrer les informations concernant le patient ici',
+                            tabsize: 2,
+                            height: 300,
+                            // height: 120,
+                            toolbar: [
+                                ['style', ['style']],
+                                ['font', ['bold', 'underline', 'clear']],
+                                ['color', ['color']],
+                                ['para', ['ul', 'ol', 'paragraph']],
+                                ['table', ['table']],
+                                ['insert', ['link', 'picture']],
+                                ['fontname', ['fontname']]
                             ]
                             });
                             
-                        </script>
-                        <script>
-                            $(document).ready(function() {
-                                $('#summernote').summernote({
-                                    lang: 'ko-KR'
-                            });
-                            });
                         </script>
                         {{-- End Summernote without Boostrap Only cdn - css and js files --}}
                     </div>
