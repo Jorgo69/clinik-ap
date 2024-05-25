@@ -26,29 +26,32 @@ class AppointmentController extends Controller
 
     public function assignationIndex()
     {
-        $appointments = Appointment::with('patient')->get();
-
-        $dispos = Appointment::with('patient')->get();
-
-        foreach ($dispos as $dispo) {
-            $date = $dispo->date;
-            $heure_rdv = $dispo->hours;
-            $type_specialite_patient = $dispo->type_specialite;
-            // dd($type_specialite_patient);
+        // Étape 1: Récupérer toutes les spécialités distinctes des rendez-vous avec les informations supplémentaires
+        $appointments = Appointment::select('id', 'date', 'hours', 'motif', 'type_specialite')->distinct()->get();
+    
+        // Étape 2: Récupérer les utilisateurs pour chaque spécialité
+        $usersBySpecialite = [];
+        foreach ($appointments as $appointment) {
+            $specialite = $appointment->type_specialite;
+            $users = User::where('specialite', $specialite)->get();
+            if (!$users->isEmpty()) {
+                if (!isset($usersBySpecialite[$specialite])) {
+                    $usersBySpecialite[$specialite] = [];
+                }
+                $usersBySpecialite[$specialite][] = [
+                    'id' => $appointment->id,
+                    'date' => $appointment->date,
+                    'hours' => $appointment->hours,
+                    'motif' => $appointment->motif,
+                    'users' => $users
+                ];
+            }
         }
-        $medecins_disponibles = User::where('role', 'medecin')
-                           ->whereDoesntHave('appointments', function($query) use ($heure_rdv) {
-                               $query->where('hours', $heure_rdv);
-                           })
-                           ->where('specialite', $type_specialite_patient)
-                           ->get();
-        
-                // }
-
-
+    
+        // Passer les utilisateurs par spécialité et les rendez-vous à la vue
         return view('specialiste.assignation.index', [
+            'usersBySpecialite' => $usersBySpecialite,
             'appointments' => $appointments,
-            'medecins_disponibles' => $medecins_disponibles,
         ]);
     }
 

@@ -1,5 +1,4 @@
 <x-specialiste>
-
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -8,63 +7,78 @@
             </div>
         </div>
         <!-- Spinner End -->
-    
-    
+
         <!-- Sidebar Start -->
         @include('components.specialiste.sideBar')
         <!-- Sidebar End -->
-    
-    
+
         <!-- Content Start -->
         <div class="content">
             <!-- Navbar Start -->
             @include('components.specialiste.navBarContent')
-            <!-- Navbar End -->    
-    
+            <!-- Navbar End -->
+
             <!-- Les Rendez vous Start -->
-            @forelse ($appointments as $appointment)
-            <div class="container-fluid pt-4 px-4">
-                <div class="card" >
-                    <div class="card-header" style="text-transform: capitalize">
-                      {{$appointment->type_specialite}}
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">{{$appointment->patient->name. ' '. $appointment->patient->firstname}}</li>
-                      <li class="list-group-item">Categorie Concerner</li>
-                      {{-- <li class="list-group-item">{{ date('m'. ' '. 'd', strtotime($appointment->date)). ' a '. $appointment->hours }}</li> --}}
-                      <li class="list-group-item">{{ strftime('%B %d, %Y', strtotime($appointment->date)). ' a '. $appointment->hours }}</li>
-                      <li class="list-group-item">{{$appointment->motif}}</li>
-                      <li class="list-group-item">
-                        @foreach ($medecins_disponibles as $disponibles )
-                            {{$disponibles->name}}
-                        @endforeach
-                        
-                      </li>
-                    </ul>
-                  </div>
-                
-            </div>
+            @forelse ($usersBySpecialite as $specialite => $appointments)
+                <div class="container-fluid pt-4 px-4">
+                    @foreach($appointments as $appointment)
+                        <div class="bg-light text-center rounded mb-3 p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0"> Domaine:{{ $specialite }} </h6>
+                                <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#RDVModal{{$specialite}}">Voir les médecins disponibles</button>
+                            </div>
+
+                            <div class="modal fade" id="RDVModal{{$specialite}}" tabindex="-1" aria-labelledby="RDVModalLabel" aria-hidden="{{$specialite == 0 ? 'true' : 'false'}}">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="RDVModalLabel">Sélectionnez le Médecin </h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <select class="form-select mb-3" name="concerner" id="">
+                                                @foreach($appointment['users'] as $user)
+                                                    <option value="generaliste">{{ $user->name }} - {{ $user->email }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                            <input type="submit" class="btn btn-primary" value="Sauvegarder">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table text-start align-middle table-bordered table-hover mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Rendez-Vous N°</th>
+                                            <th scope="col">Nom</th>
+                                            <th scope="col">Date De Consultation</th>
+                                            <th scope="col">Heure De Consultation</th>
+                                            <th scope="col">Motif De Consultation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{ $appointment['id'] }}</td>
+                                            <td>{{ $appointment['users']->first()->name }}</td>
+                                            <td>{{ $appointment['date'] }}</td>
+                                            <td>{{ $appointment['hours'] }}</td>
+                                            <td>{{ $appointment['motif'] }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             @empty
-            <div class="container-fluid pt-4 px-4">
-                <div class="card" >
-                    <div class="card-header">
-                      Cardiolgue
-                    </div>
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item">Patient</li>
-                      <li class="list-group-item">Categorie Concerner</li>
-                      <li class="list-group-item">Heure Date</li>
-                      <li class="list-group-item">Motif</li>
-                      <li class="list-group-item">Medecin Dispo</li>
-                    </ul>
-                  </div>
-                
-            </div>
             @endforelse
-            
-            <!-- Recent Sales End -->
-    
-    
+
             <!-- Footer Start -->
             <div class="container-fluid pt-4 px-4">
                 @include('components.specialiste.footer')
@@ -72,12 +86,12 @@
             <!-- Footer End -->
         </div>
         <!-- Content End -->
-    
-    
+
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
+
     @push('title_header')
-        <title>Mes RDV | {{ config('app.name') }}</title>
+    <title>Mes RDV | {{ config('app.name') }}</title>
     @endpush
 </x-specialiste>
