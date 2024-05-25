@@ -31,6 +31,7 @@ class AppointmentController extends Controller
     {
         // recuperation de tous les rdv
         $appointments = Appointment::with('patient')->get();
+        $medecins_par_specialite = [];
 
         // dd($appointments);
 
@@ -43,25 +44,64 @@ class AppointmentController extends Controller
             // dd($type_specialite_patient);
         }
         $medecins_disponibles = User::where('role', 'medecin')
-                            ->where('type_specialite', )
-                           ->whereDoesntHave('appointments', function($query) use ($heure_rdv) {
-                               $query->where('hours', $heure_rdv);
-                           })
+                        //    ->whereDoesntHave('appointments', function($query) use ($heure_rdv) {
+                        //        $query->where('hours', $heure_rdv);
+                        //    })
                            ->where('specialite', $type_specialite_patient)
                            ->get();
+        $medecins_par_specialite[$type_specialite_patient] = $medecins_disponibles;
+                           
+
         
-                // }
 
 
         return view('specialiste.assignation.index', [
             'appointments' => $appointments,
             'medecins_disponibles' => $medecins_disponibles,
         ]);
+
+
+
+
+
+
+
+        // $dispos = Appointment::with('patient')->get();
+        // $medecins_par_specialite = []; // Tableau pour stocker les médecins par spécialité
+
+        // foreach ($dispos as $dispo) {
+        //     $date = $dispo->date;
+        //     $heure_rdv = $dispo->hours;
+        //     $type_specialite_patient = $dispo->type_specialite;
+
+        //     // Récupérer les médecins disponibles pour la spécialité du patient actuel
+        //     $medecins = User::where('role', 'medecin')
+        //                     ->where('specialite', $type_specialite_patient)
+        //                     ->get();
+
+        //     // Ajouter les médecins trouvés pour cette spécialité au tableau
+        //     $medecins_par_specialite[$type_specialite_patient] = $medecins;
+        // }
+
+        // vue
+        //         @foreach($medecins_par_specialite as $specialite => $medecins)
+        //     <h3>Médecins pour la spécialité {{ $specialite }}</h3>
+        //     <ul>
+        //         @foreach($medecins as $medecin)
+        //             <li>{{ $medecin->nom }} {{ $medecin->prenom }}</li>
+        //         @endforeach
+        //     </ul>
+        // @endforeach
+
+
+        // // Maintenant, $medecins_par_specialite contient tous les médecins disponibles pour chaque spécialité de patient
+        // // Vous pouvez accéder à ces données en utilisant $medecins_par_specialite['nom_specialite']
+
     }
 
     public function  assignationAttribute()
     {
-
+        
     }
 
     /**

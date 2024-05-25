@@ -105,26 +105,86 @@
                                             </div>
                                         </div>
                                         <div class="tab-pane fade show active" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                                            <ul class="list-unstyled timeline-sm">
-                                                <li class="timeline-sm-item">
-                                                    <span class="timeline-sm-date">2022-10-20</span>
-                                                    <h3 class="mt-0 mb-1">Demo Test</h3>
-                                                    <hr>
-                                                    <h5>
-                                                        Test de Laboratoire
-                                                    </h5>
-                                                    
-                                                    <p class="text-muted mt-2"></p><p>demo demo demo demo</p><p></p>
-                                                    <hr>
-                                                    <h5>
-                                                        Resultats des tests
-                                                    </h5>
-                                                    
-                                                    <p class="text-muted mt-2"></p><p>54545</p><p></p>
-                                                    <hr>
-
-                                                </li>
-                                            </ul>
+                                            <div class="accordion" id="accordionExample">
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header" id="headingOne">
+                                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                            data-bs-target="#collapseOne" aria-expanded="true"
+                                                            aria-controls="collapseOne">
+                                                            Titre
+                                                        </button>
+                                                    </h2>
+                                                    <div id="collapseOne" class="accordion-collapse collapse show"
+                                                        aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                                        @forelse ($patients as $detailsConsutations)
+                                                        <div class="accordion-body">
+                                                            
+                                                            <ul class="list-unstyled timeline-sm">
+                                                                <li class="timeline-sm-item">
+                                                                    <span class="timeline-sm-date">{{formatDate($detailsConsutations->created_at). ' ' .$detailsConsutations->created_at->format('Y')}}</span>
+                                                                    {{-- <h3 class="mt-0 mb-1">{{$detailsConsutations->pattern}}</h3> --}}
+                                                                    <hr>
+                                                                    <!-- Diagnostic -->
+                                                                    <h5>
+                                                                        Diagnostic
+                                                                    </h5>
+                                                                    
+                                                                    <p class="text-muted mt-2"></p>
+                                                                    <p>
+                                                                        Diagnostic
+                                                                    </p>
+                                                                    <hr>
+                                                                    <!-- Observation -->
+                                                                    <h5>
+                                                                        Observation
+                                                                    </h5>
+                                                                    
+                                                                    <p class="text-muted mt-2"></p>
+                                                                    <p>
+                                                                        Observation
+                                                                    </p>
+                                                                    <hr>
+                    
+                                                                    <!-- Prescription -->
+                                                                    <h5>
+                                                                        Prescription
+                                                                    </h5>
+                                                                    
+                                                                    <p class="text-muted mt-2"></p>
+                                                                    <p>
+                                                                        {{__('Prescription')}}
+                                                                    </p>
+                                                                    <hr>
+                    
+                                                                    <!-- Signature -->
+                                                                    {{-- <p> --}}
+                                                                        <div class="text-end mb-5">
+                                                                            <h5>
+                                                                                Signature
+                                                                            </h5>
+                                                                            
+                                                                            <p class="text-muted mt-2"></p>
+                                                                            <p>
+                                                                                Nom Medecin
+                                                                            </p>
+                                                                            <p class="text-uppercase text-info font-weight-bold">
+                                                                                    Specialiate
+                                                                            </p>
+                                                                        </div>
+                                                                    {{-- </p> --}}
+                    
+                                                                </li>
+                                                            </ul>
+                                                            
+                                                        </div>    
+                                                        @empty
+                                                            
+                                                        @endforelse
+                                                        
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

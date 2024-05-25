@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('medecin_id')->nullable();
                 $table->foreign('patient_id')
                         ->references('id')
-                        ->on('users')
+                        ->on('patients')
                         ->onDelete('cascade');
                 $table->foreign('medecin_id')
                         ->references('id')
@@ -28,7 +28,7 @@ return new class extends Migration
 
             $table->string('weight')->comment('Le poid');
             $table->string('pulse')->comment('Le poul');
-            $table->string('size')->nullable()->comment('Le poul');
+            $table->string('size')->nullable()->comment('Le taille');
             $table->string('stetoscopy')->comment('prendre la tension artérielle et détecter les bruits internes');
             $table->string('temperature')->comment('');
 

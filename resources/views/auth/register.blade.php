@@ -50,6 +50,7 @@
                                 <option value="generaliste">Generaliste</option>
                                 <option value="dentiste">Dentiste</option>
                                 <option value="cardiologue">Cardiologue</option>
+                                <option value="ophtalmo">Ophtalmo</option>
                             </select>
                             @error('specialiste')
                             <span class="text-danger">{{$message}}</span>

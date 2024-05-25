@@ -70,11 +70,15 @@ class PatientController extends Controller
         $years = intval($years) ;
         $years = $years - $birthday;
 
+        $patients = Patient::where('id', $patient->id)->get();
+        // dd($patients);
+
 
 
         return view('specialiste.patient.details', [
             'patient' => $patient,
-            'years' => $years
+            'years' => $years,
+            'patients' =>  $patients,
         ]);
     }
 

@@ -40,7 +40,10 @@ Route::get('/contact', function() {
 // Auth User
 Route::get('user/espace', [EspaceController::class, 'index'])->name('user.espace');
 
-
+Route::get('pdf', function()
+{
+    return view('pdf.pdf');
+});
 //  Auth Partials
 
 // Specialistes
@@ -62,22 +65,34 @@ Route::get('specialists/done', function() {
     return view('specialiste.rendez-vous.done');
 })->name('specialiste.rendez-vous.done');
 
-
+// Middleware Consultation
+Route::middleware('auth')->group(function () {
 // Consultation Ressource
-Route::get('/specialiste/consultation/liste/patients', [ConsultationController::class, 'index'])->name('specialiste.consultation.index')->middleware('right.medical');
+    // liste patients
+    Route::get('/specialiste/consultation/liste/patients', [ConsultationController::class, 'index'])->name('specialiste.consultation.index')->middleware('right.medical');
+    // patient ayant effectue une consultation
+    Route::get('specialiste/consultation/add/patients', [ConsultationController::class, 'allPatient'])->name('specialiste.add.consultation');
+    // a propos d'une consultation
+    Route::get('specialiste/une/consultation/detail/{id}', [ConsultationController::class, 'aPatient'])->name('specialiste.a.detail.consultation');
+});
 
-Route::get('specialiste/consultation/add/patients', function(){
-    return view('specialiste.consultation.newPatients');
-})->name('specialiste.add.consultation');
+// Route::get('specialiste/consultation/add/patients', function(){
+//     return view('specialiste.consultation.newPatients');
+// })->name('specialiste.add.consultation');
 
 Route::get('specialiste/consultation/detail/consultation/{id}', [ConsultationController::class, 'show'])->name('specialiste.detail.consultation')->middleware('right.medical');
 Route::post('specialiste/consulte/patient', [ConsultationController::class, 'store'])->name('specialiste.consulte.patient')->middleware('right.medical');
 
 
-
-// Patient Ressources
+// Middleware patient
+Route::middleware('auth')->group(function () {
+    // Patient Ressources
 Route::get('/specialiste/patients/liste', [PatientController::class, 'index'])->name('specialiste.liste.patients');
 Route::get('/specialiste/patients/detail/{id}',[PatientController::class, 'show'])->name('specialiste.details.patients');
+
+});
+
+
 
 Route::get('specialiste/add/patient', function() {
     return view('specialiste.patient.addPatient');
