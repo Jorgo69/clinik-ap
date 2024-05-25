@@ -36,14 +36,19 @@ class Consultation extends Model
 
     public function patients(): BelongsTo
     {
-        return $this->BelongsTo(Patient::class, 'id');
+        return $this->BelongsTo(Patient::class, 'patient_id');
     }
+
+    // Lecture:
+    // Dans la table du model Actuel [Consultation]
+    // On verifier le champs avec la cle passe directement apres class, ici ['patient_id]
+    // donc dans la table consultations on verifie le champs 'patient_id' on se referer au model entre avec class, ici [Patient]
 
     /**
      * Relations entre consultations et Medecins de la table User
      */
     public function medecins(): BelongsTo
     {
-        return $this->BelongsTo(User::class, 'id');
+        return $this->BelongsTo(User::class, 'medecin_id');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Specialiste;
 use App\Http\Controllers\Controller;
 use App\Models\Consultation;
 use App\Models\Patient;
+use App\Models\Prescription;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -94,9 +95,14 @@ class ConsultationController extends Controller
         $years = intval($years) ;
         $years = $years - $birthday;
 
+        $consulations = Consultation::where('patient_id', $patient->id)->get();
+
+        
+
         return view('specialiste.consultation.detailsConsulte', [
             'patient' => $patient,
-            'years' => $years
+            'years' => $years,
+            'consultations' => $consulations,
         ]);
     }
 

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Specialiste;
 
 use App\Http\Controllers\Controller;
+use App\Models\Consultation;
 use App\Models\Patient;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -13,21 +15,42 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        // Patients Vu & Total
         $patients = Patient::paginate(2);
+
+        // Consultations Total
+        $consultationsTotals = Consultation::count();
+
+        // Medecins Total
+        $medecinsTotals = User::where('role', 'medecin')->count();
 
         return view('specialiste.dashboard', [
             'patients' => $patients,
+            'consultations' => $consultationsTotals,
+            'medecins' => $medecinsTotals,
+            
         ]);
     }
 
     public function Welcome()
     {
         $patients = Patient::all();
+        $consultationsTotals = Consultation::count();
 
         // dd($patients);
 
         return view('specialiste.dashboard', [
             'patients' => $patients,
+            'consultations' => $consultationsTotals
+        ]);
+    }
+
+    public function recentPatient()
+    {
+        // $consultationsTotals = Consultation::count();
+
+        return view('components.specialiste.revenueBoard',[
+            // 'consultations' => $consultations,
         ]);
     }
 

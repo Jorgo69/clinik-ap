@@ -224,7 +224,11 @@
                             
                         </script>
                         {{-- End Summernote without Boostrap Only cdn - css and js files --}}
+                        <button class="btn btn-info">Relever</button>
+                    </form>
                     </div>
+                    {{-- <button class="btn btn-info">Relever</button>
+                    </form> --}}
                     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                         
                         <table class="table">
@@ -249,30 +253,65 @@
                           </table>
                     </div>
                     <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                        <ul class="list-unstyled timeline-sm">
-                            <li class="timeline-sm-item">
-                                <span class="timeline-sm-date"> Consultation du 2022-10-20</span>
-                                <h3 class="mt-0 mb-1">Demo Test</h3>
-                                <hr>
-                                <h5>
-                                    Laboratory  Tests
-                                </h5>
-                                
-                                <p class="text-muted mt-2"></p><p>demo demo demo demo</p><p></p>
-                                <hr>
-                                <h5>
-                                    Laboratory Results
-                                </h5>
-                                
-                                <p class="text-muted mt-2"></p><p>54545</p><p></p>
-                                <hr>
+                        @forelse ($consultations as $index => $consultation)
+                        <div class="accordion mb-1" id="accordionExample{{ $index }}">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="heading{{ $index }}">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse{{ $index }}" aria-expanded="{{ $index == 0 ? 'true' : 'false' }}"
+                                        aria-controls="collapse{{ $index }}">
+                                        {{ $consultation->pattern }}
+                                    </button>
+                                </h2>
+                                <div id="collapse{{ $index }}" class="accordion-collapse collapse {{ $index == 0 ? 'show' : '' }}"
+                                    aria-labelledby="heading{{ $index }}" data-bs-parent="#accordionExample{{ $index }}">
+                                    <div class="accordion-body">
+                                        <ul class="list-unstyled timeline-sm">
+                                            <li class="timeline-sm-item">
+                                                <h3 class="mt-0 mb-1">{{ $consultation->pattern }}</h3>
+                                                <hr>
+                                                <!-- Diagnostic -->
+                                                <h5>Diagnostic</h5>
+                                                <p class="text-muted mt-2"></p>
+                                                <p>{!! $consultation->diagnostic !!}</p>
+                                                <hr>
+                                                <!-- Observation -->
+                                                <h5>Observation</h5>
+                                                <p class="text-muted mt-2"></p>
+                                                <p>{!! $consultation->observation !!}</p>
+                                                <hr>
+                                                <!-- Prescription -->
+                                                <h5>Prescription</h5>
+                                                <p class="text-muted mt-2"></p>
+                                                <p>{{ __('Prescription') }}</p>
+                                                <hr>
+                                                <!-- Signature -->
+                                                <div class="text-end mb-5">
+                                                    <h5>Signature</h5>
+                                                    <p class="text-muted mt-2"></p>
+                                                    <p>{{ $consultation->medecins->name . ' ' . $consultation->medecins->firstname }}</p>
+                                                    <p class="text-uppercase text-info font-weight-bold">{{ $consultation->medecins->specialite }}</p>
+                                                    <p>
+                                                        <a href="{{ $consultation->id}}" class="btn btn-info">Modifier le Carnet</a>
+                                                    </p>
+                                                    <p>
+                                                        <a href="{{$consultation->id}}" class="btn btn-primary">Envoyer le Carnet</a>
+                                                    </p>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @empty
+                            <p>Aucune consultation trouvée.</p>
+                        @endforelse
 
-                            </li>
-                        </ul>
                     </div>
                 </div>
-                <button class="btn btn-info">Relever</button>
-            </form>
+                {{-- <button class="btn btn-info">Relever</button>
+            </form> --}}
         </div>
         </div>
     </div>
@@ -293,6 +332,6 @@
     </div>
     
     @push('title_header')
-        <title>Liste des patients | {{config('app.name')}}</title>
+        <title>Liste des Carnets du patients | {{config('app.name')}}</title>
     @endpush
 </x-specialiste>

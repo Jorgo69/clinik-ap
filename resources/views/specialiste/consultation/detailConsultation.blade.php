@@ -31,7 +31,7 @@
                                 <img src="{{asset('assets/users/img/patient.png')}}" width="90" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
                                 
                                 <div class="text-left mt-3">
-                                    <p class="text-muted mb-2  font-13"><strong class="text-decoration-underline">Nom Complet :</strong> <br>
+                                    <p class="text-muted mb-2  font-13"><strong>Nom Complet :</strong> <br>
                                          <span class="ml-2"> {{$detailsConsutations->patients->name. ' ' .$detailsConsutations->patients->firstname}} </span>
                                     </p>
                                     <p class="text-muted mb-2 font-13"><strong>Mobile :</strong> <br>
@@ -110,113 +110,59 @@
                                         </div>
                                     </div>
                                     <div class="tab-pane fade show active" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                                        {{-- <div class="bg-light rounded h-100 p-4"> --}}
-                                            {{-- <h6 class="mb-4">Basic Accordion</h6> --}}
-                                            <div class="accordion" id="accordionExample">
-                                                <div class="accordion-item">
-                                                    <h2 class="accordion-header" id="headingOne">
-                                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                            data-bs-target="#collapseOne" aria-expanded="true"
-                                                            aria-controls="collapseOne">
-                                                            {{$detailsConsutations->pattern}}
-                                                        </button>
-                                                    </h2>
-                                                    <div id="collapseOne" class="accordion-collapse collapse show"
-                                                        aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                                        <div class="accordion-body">
-                                                            
-                                                            <ul class="list-unstyled timeline-sm">
-                                                                <li class="timeline-sm-item">
-                                                                    <span class="timeline-sm-date">{{formatDate($detailsConsutations->created_at). ' ' .$detailsConsutations->created_at->format('Y')}}</span>
-                                                                    {{-- <h3 class="mt-0 mb-1">{{$detailsConsutations->pattern}}</h3> --}}
-                                                                    <hr>
-                                                                    <!-- Diagnostic -->
-                                                                    <h5>
-                                                                        Diagnostic
-                                                                    </h5>
-                                                                    
-                                                                    <p class="text-muted mt-2"></p>
-                                                                    <p>
-                                                                        {!! $detailsConsutations->diagnostic !!}
-                                                                    </p>
-                                                                    <hr>
-                                                                    <!-- Observation -->
-                                                                    <h5>
-                                                                        Observation
-                                                                    </h5>
-                                                                    
-                                                                    <p class="text-muted mt-2"></p>
-                                                                    <p>
-                                                                        {!! $detailsConsutations->observation !!}
-                                                                    </p>
-                                                                    <hr>
-                    
-                                                                    <!-- Prescription -->
-                                                                    <h5>
-                                                                        Prescription
-                                                                    </h5>
-                                                                    
-                                                                    <p class="text-muted mt-2"></p>
-                                                                    <p>
-                                                                        {{__('Prescription')}}
-                                                                    </p>
-                                                                    <hr>
-                    
-                                                                    <!-- Signature -->
-                                                                    {{-- <p> --}}
-                                                                        <div class="text-end mb-5">
-                                                                            <h5>
-                                                                                Signature
-                                                                            </h5>
-                                                                            
-                                                                            <p class="text-muted mt-2"></p>
-                                                                            <p>
-                                                                                {{$detailsConsutations->medecins->name. ' ' .$detailsConsutations->medecins->firstname}}
-                                                                            </p>
-                                                                            <p class="text-uppercase text-info font-weight-bold">
-                                                                                    {{$detailsConsutations->medecins->specialite}}
-                                                                            </p>
-                                                                        </div>
-                                                                    {{-- </p> --}}
-                    
-                                                                </li>
-                                                            </ul>
-                                                            
-                                                        </div>
-                                                    </div>
+                                        <ul class="list-unstyled timeline-sm">
+                                            <li class="timeline-sm-item">
+                                                <span class="timeline-sm-date">{{formatDate($detailsConsutations->created_at). ' ' .$detailsConsutations->created_at->format('Y')}}</span>
+                                                {{-- <h3 class="mt-0 mb-1">{{$detailsConsutations->pattern}}</h3> --}}
+                                                <hr>
+                                                <!-- Diagnostic -->
+                                                <h5>
+                                                    Diagnostic
+                                                </h5>
+                                                
+                                                <p class="text-muted mt-2"></p>
+                                                <p>
+                                                    {!! $detailsConsutations->diagnostic !!}
+                                                </p>
+                                                <hr>
+                                                <!-- Observation -->
+                                                <h5>
+                                                    Observation
+                                                </h5>
+                                                
+                                                <p class="text-muted mt-2"></p>
+                                                <p>
+                                                    {!! $detailsConsutations->observation !!}
+                                                </p>
+                                                <hr>
+
+                                                <!-- Prescription -->
+                                                <h5>
+                                                    Prescription
+                                                </h5>
+                                                
+                                                <p class="text-muted mt-2"></p>
+                                                <p>
+                                                    {{__('Prescription')}}
+                                                </p>
+                                                <hr>
+
+                                                <!-- Signature -->
+                                                <div class="text-end mb-5">
+                                                    <h5>Signature</h5>
+                                                    <p class="text-muted mt-2"></p>
+                                                    <p>{{ $detailsConsutations->medecins->name . ' ' . $detailsConsutations->medecins->firstname }}</p>
+                                                    <p class="text-uppercase text-info font-weight-bold">{{ $detailsConsutations->medecins->specialite }}</p>
+                                                    <p>
+                                                        <a href="{{ $detailsConsutations->id}}" class="btn btn-info">Modifier le Carnet</a>
+                                                    </p>
+                                                    <p>
+                                                        <a href="{{$detailsConsutations->id}}" class="btn btn-primary">Envoyer le Carnet</a>
+                                                    </p>
                                                 </div>
-                                                <div class="accordion-item">
-                                                    <h2 class="accordion-header" id="headingTwo">
-                                                        <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-                                                            aria-expanded="false" aria-controls="collapseTwo">
-                                                            Accordion Item #2
-                                                        </button>
-                                                    </h2>
-                                                    <div id="collapseTwo" class="accordion-collapse collapse"
-                                                        aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                                        <div class="accordion-body">
-                                                            Voluptua sit dolores consetetur ea et diam est et takimata. Et erat sadipscing dolores et stet diam ut ut diam, sit aliquyam no magna et dolore lorem dolor sit. Lorem lorem sed sed duo, eirmod sit diam ipsum sit erat, lorem sit dolor diam amet ea aliquyam tempor rebum invidunt,.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="accordion-item">
-                                                    <h2 class="accordion-header" id="headingThree">
-                                                        <button class="accordion-button collapsed" type="button"
-                                                            data-bs-toggle="collapse" data-bs-target="#collapseThree"
-                                                            aria-expanded="false" aria-controls="collapseThree">
-                                                            Accordion Item #3
-                                                        </button>
-                                                    </h2>
-                                                    <div id="collapseThree" class="accordion-collapse collapse"
-                                                        aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                                                        <div class="accordion-body">
-                                                            Dolore eos dolor tempor justo sea eos amet eos kasd dolor, et diam tempor lorem dolores vero. Stet dolore gubergren nonumy diam. Consetetur sit takimata magna invidunt, dolore sea amet consetetur ea et rebum, invidunt et amet sit sea. Dolor eirmod sed magna sadipscing sadipscing lorem lorem sed, sit lorem.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        {{-- </div> --}}
+
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
