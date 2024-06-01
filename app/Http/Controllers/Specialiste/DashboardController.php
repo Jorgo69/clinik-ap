@@ -34,14 +34,19 @@ class DashboardController extends Controller
 
     public function Welcome()
     {
-        $patients = Patient::all();
+        $patients = Patient::paginate(2);
+
+        // Consultations Total
         $consultationsTotals = Consultation::count();
 
-        // dd($patients);
+        // Medecins Total
+        $medecinsTotals = User::where('role', 'medecin')->count();
 
         return view('specialiste.dashboard', [
             'patients' => $patients,
-            'consultations' => $consultationsTotals
+            'consultations' => $consultationsTotals,
+            'medecins' => $medecinsTotals,
+            
         ]);
     }
 

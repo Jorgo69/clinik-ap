@@ -18,7 +18,7 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $patients = Patient::get();
+        $patients = Patient::orderBy('created_at', 'asc')->get();
         // dd($patients);
 
         

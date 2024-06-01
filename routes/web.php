@@ -1,11 +1,15 @@
 <?php
 
+use App\Http\Controllers\Mail\CarnetMedicalGoogleController;
+use App\Http\Controllers\Mail\MessageGoogleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Specialiste\AppointmentController;
+use App\Http\Controllers\Specialiste\CarnetController;
 use App\Http\Controllers\Specialiste\ConsultationController;
 use App\Http\Controllers\Specialiste\DashboardController;
 use App\Http\Controllers\Specialiste\PatientController;
 use App\Http\Controllers\User\EspaceController;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -111,6 +115,28 @@ Route::get('/specialiste/facture/', function() {
     return view('specialiste.facture.history');
 })->name('specialiste.facure');
 
+Route::get('specialiste/carnet/index/{id}', [CarnetController::class, 'show'])->name('carnet.index');
+
+// Message Google Ressource
+Route::get("message", [MessageGoogleController::class, 'formMessageGoogle']);
+Route::post("message", [MessageGoogleController::class,'sendMessageGoogle'])->name('send.message.google');
+
+// Test d'envoi de mail
+Route::get('/test-email', function () {
+    try{
+    $user = App\Models\User::first();
+    Mail::raw('Juste pour  le test tu valides?', function ($message) use ($user) {
+        $message->to('meufcool0@gmail.com')
+                ->subject('Quel coup?');
+    });
+} catch (\Exception $e) {
+    return back()->with('error', 'Error sending email: ' . $e->getMessage());
+}
+
+    return 'Email sent';
+});
+// send carnet Ressource
+Route::get('send.carnet.mail/{id}', [CarnetMedicalGoogleController::class, 'index'])->name('send.mail.carnet');
 
 // Error Logiques
 // Route::get('')

@@ -17,7 +17,10 @@ class ConsultationController extends Controller
      */
     public function index()
     {
-        $patients = Patient::get();
+        // Recuperer tout les elements de la tables Patient par ordre Decroissant [orderBrDesc]
+        // en precisant le champs [date de creation] ['created_at']
+        
+        $patients = Patient::orderByDesc('created_at')->get();
 
         return view('specialiste.consultation.listePatients', [
             'patients' => $patients

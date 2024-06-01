@@ -157,7 +157,10 @@
                                                         <a href="{{ $detailsConsutations->id}}" class="btn btn-info">Modifier le Carnet</a>
                                                     </p>
                                                     <p>
-                                                        <a href="{{$detailsConsutations->id}}" class="btn btn-primary">Envoyer le Carnet</a>
+                                                        <a href="{{route('send.mail.carnet', ['id' => $detailsConsutations->id])}}" class="btn btn-primary">Envoyer le Carnet</a>
+                                                    </p>
+                                                    <p>
+                                                        <a href="{{route('carnet.index', ['id'=> $detailsConsutations->id])}}" class="btn btn-success">Enreigistrer le PDF</a>
                                                     </p>
                                                 </div>
 
