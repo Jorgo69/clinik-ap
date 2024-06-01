@@ -13,6 +13,8 @@ class CarnetMedicalGoogle extends Mailable
 {
     use Queueable, SerializesModels;
 
+    // on defini la variable qui avait ete passe
+    // dans le controller
     public $carnetData;
 
     /**
@@ -25,6 +27,7 @@ class CarnetMedicalGoogle extends Mailable
 
     public function build()
     {
+        // on construit le mail en passant ...
         return $this->from("ibralejorgo@gmail.com", 'Ibra') // L'expéditeur
                     ->subject("Message via le SMTP Google") // Le sujet
                     ->view('emails.carnet.index') // La vue

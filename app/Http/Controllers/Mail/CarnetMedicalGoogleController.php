@@ -24,6 +24,7 @@ class CarnetMedicalGoogleController extends Controller
             // recup de l'email du patient concernant via le data du patient
             $mailPatient = $patient->email;
             Mail::to('estimegliti108@gmail.com')
+            // la class du mail qui gere les donnee
                 ->queue(new CarnetMedicalGoogle($carnetData));
 
         } catch (\Exception $e) {
