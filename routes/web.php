@@ -60,9 +60,16 @@ Route::get('specialists/dashboard', [DashboardController::class, 'index'])->name
 
 // Rendez Ressource
 Route::middleware(['auth','right.secretaire'])->group(function () {
-    Route::get('specialists/rendez-vous', [AppointmentController::class, 'index'])->name('specialiste.rendez-vous.index');
-    Route::post('specialiste/rendez-vous/making', [AppointmentController::class, 'store'])->name('specialiste.rendez-vous.making');
-    Route::get('specialiste/assignation', [AppointmentController::class, 'assignationIndex'])->name('specialiste.assignation');
+    Route::get('specialists/secretaire/rendez-vous', [AppointmentController::class, 'index'])->name('specialiste.rendez-vous.index');
+    Route::post('specialiste/secretaire/rendez-vous/making', [AppointmentController::class, 'store'])->name('specialiste.rendez-vous.making');
+    Route::get('specialiste/secretaire/assignation', [AppointmentController::class, 'assignationIndex'])->name('specialiste.assignation');
+    //Assigner medecin a un rdv || PUT
+    Route::put('specialiste/secretaire/assignation/medecin', [AppointmentController::class, 'assignationAttribute'])->name('specialiste.assignation.medecin');
+
+    // Voir les rdv avec medecin assigne
+    Route::get('specialite/secretaire/vu/rdv', [AppointmentController::class, 'indexInProgress'])->name('specialiste.secretaire.rdv.assigner');
+    //Modifier un RDV
+    Route::get('specialite/secretaire/modif/rdv/{id}', [AppointmentController::class, 'assignationModif'])->name('specialiste.secretaire.modif.rdv');
 });
 
 // Route::get('specialists/done', function() {

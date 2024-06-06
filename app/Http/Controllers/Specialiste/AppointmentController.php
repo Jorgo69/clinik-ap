@@ -19,7 +19,7 @@ class AppointmentController extends Controller
         
         $patients = Patient::get();
         // recuperation de tous les rdv
-        $appointments = Appointment::with('patient', 'user')->get();
+        $appointments = Appointment::with('patient', 'medecin')->get();
 
         return view('specialiste.rendez-vous.all', [
             'patients' => $patients,
@@ -27,45 +27,65 @@ class AppointmentController extends Controller
         ]);
     }
 
+
+    // CRUD Appointment
+    // LEcture
+    public function indexInProgress()
+    {
+        $patients = Patient::get();
+        // recuperation de tous les rdv
+        $appointments = Appointment::with('patient', 'medecin')
+                        ->where('medecin_id', '!=', NULL)    
+        ->get();
+
+        return view('specialiste.rendez-vous.inProgress', [
+            'patients' => $patients,
+            'appointments' => $appointments,
+        ]);
+    }
+
+    //Modification
     public function assignationIndex()
     {
-        // recuperation de tous les rdv
-        $appointments = Appointment::with('patient')->get();
-        $medecins_par_specialite = [];
+        // Récupérer les spécialités demandées dans les rendez-vous
+        $appointments = Appointment::whereNull('medecin_id')->get();
 
-        // dd($appointments);
+        // Initialiser une collection vide pour stocker les médecins disponibles
+        $availableMedecins = collect();
 
-        $dispos = Appointment::with('patient')->get();
+        // Pour chaque rendez-vous sans médecin assigné
+        foreach ($appointments as $appointment) {
+            // Récupérer les médecins correspondant à la spécialité du rendez-vous
+            $medecins = User::where('specialite', $appointment->type_specialite)
+                        ->where('role', 'medecin')
+                        ->get();
 
-        foreach ($dispos as $dispo) {
-            $date = $dispo->date;
-            $heure_rdv = $dispo->hours;
-            $type_specialite_patient = $dispo->type_specialite;
-            // dd($type_specialite_patient);
+            // Ajouter les médecins disponibles à la collection
+            foreach ($medecins as $medecin) {
+                $availableMedecins->push($medecin);
+            }
         }
-        $medecins_disponibles = User::where('role', 'medecin')
-                        //    ->whereDoesntHave('appointments', function($query) use ($heure_rdv) {
-                        //        $query->where('hours', $heure_rdv);
-                        //    })
-                           ->where('specialite', $type_specialite_patient)
-                           ->get();
-        $medecins_par_specialite[$type_specialite_patient] = $medecins_disponibles;
-                           
+        // dd($availableMedecins);
+
+        // Supprimer les doublons dans la collection
+        $availableMedecins = $availableMedecins->unique('id');
 
         
+        /* $medecinsDisponibles = Appointment::whereNotNull('medecin_id')
+            ->get()
+            ->filter(function ($appointment) {
+                $medecin = User::find($appointment->medecin_id);
+                return $appointment->type_specialite === $medecin->specialite;
+            }); */
 
-
+        
         return view('specialiste.assignation.index', [
+            'availableMedecins' => $availableMedecins,
             'appointments' => $appointments,
-            'medecins_disponibles' => $medecins_disponibles,
+            // 'medecinsDisponibles' => $medecinsDisponibles
         ]);
 
-
-
-
-
-
-
+        
         // $dispos = Appointment::with('patient')->get();
         // $medecins_par_specialite = []; // Tableau pour stocker les médecins par spécialité
 
@@ -99,9 +119,26 @@ class AppointmentController extends Controller
 
     }
 
-    public function  assignationAttribute()
+    // Modification RDV avec medecin deja assigner
+    public function assignationModif(int $id)
     {
+        $appointment = Appointment::find($id);
+        $medecin = User::where('role', 'medecin')->get();
         
+            return view('specialiste.rendez-vous.modifRDV', [
+                'appointment' => $appointment,
+                'medecins' => $medecin,
+            ]);
+    }
+
+    public function  assignationAttribute(Request $request)
+    {
+        $rdv = Appointment::where('id', $request->rdv)->first();
+        $assignation = $rdv;
+        $assignation ->medecin_id = $request->medecin_id;
+        $assignation->update();
+
+            return redirect()->back()->with('success', 'Medecin assigner avec Success');
     }
 
     /**

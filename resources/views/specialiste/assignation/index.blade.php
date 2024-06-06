@@ -22,146 +22,204 @@
             <!-- Navbar End -->    
     
             <!-- Les Rendez vous Start -->
-            @forelse ($appointments as $appointment)
+            
             <div class="container-fluid pt-4 px-4">
 
-              @if($appointment->type_specialite === 'dentiste')
               <div class="card" >
-                <div class="card-header" style="text-transform: capitalize">
-                  {{$appointment->type_specialite}}
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item text-center">{{$appointment->patient->name. ' '. $appointment->patient->firstname. ' '. strftime('%B %d, %Y', strtotime($appointment->date)). ' a '. $appointment->hours. ' '. $appointment->motif}}</li>
-                  {{-- <li class="list-group-item">{{ date('m'. ' '. 'd', strtotime($appointment->date)). ' a '. $appointment->hours }}</li> --}}
-                  {{-- <li class="list-group-item">{{ strftime('%B %d, %Y', strtotime($appointment->date)). ' a '. $appointment->hours }}</li> --}}
-                  {{-- <li class="list-group-item">{{$appointment->motif}}</li> --}}
-
-                  <table class="table text-center">
-                    <thead>
-                      <tr>
-                        <th scope="col">Nom Medecin</th>
-                        <th scope="col">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @foreach ($medecins_disponibles as $disponibles )
-                      <tr>
-                        <th scope="row">
-                            {{$disponibles->name. ' ' .$disponibles->firstname}}
-                        </th>
-                          
-                        <td>
-                          {{-- <form action="" method="post">
-                            @csrf
-                            @method('put') --}}
-                            <a href="{{$disponibles->id}}" class="btn btn-info">Assigner</a>
-                          {{-- </form> --}}
-                        </td>
-                      </tr>
-                      @endforeach
-                    </tbody>
-                  </table>
-                </ul>
-              </div>
-              @endif
-              @if($appointment->type_specialite === 'cardiologue')
-              <div class="card" >
-                <div class="card-header" style="text-transform: capitalize">
-                  {{$appointment->type_specialite}}
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item text-center">{{$appointment->patient->name. ' '. $appointment->patient->firstname. ' '. strftime('%B %d, %Y', strtotime($appointment->date)). ' a '. $appointment->hours. ' '. $appointment->motif}}</li>
-                  {{-- <li class="list-group-item">{{ date('m'. ' '. 'd', strtotime($appointment->date)). ' a '. $appointment->hours }}</li> --}}
-                  {{-- <li class="list-group-item">{{ strftime('%B %d, %Y', strtotime($appointment->date)). ' a '. $appointment->hours }}</li> --}}
-                  {{-- <li class="list-group-item">{{$appointment->motif}}</li> --}}
-
-                  <table class="table text-center">
-                    <thead>
-                      <tr>
-                        <th scope="col">Nom Medecin</th>
-                        <th scope="col">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @foreach ($medecins_disponibles as $disponibles )
-                      <tr>
-                        <th scope="row">
-                            {{$disponibles->name. ' ' .$disponibles->firstname}}
-                        </th>
-                          
-                        <td>
-                          {{-- <form action="" method="post">
-                            @csrf
-                            @method('put') --}}
-                            <a href="{{$disponibles->id}}" class="btn btn-info">Assigner</a>
-                          {{-- </form> --}}
-                        </td>
-                      </tr>
-                      @endforeach
-                    </tbody>
-                  </table>
-                </ul>
-              </div>
-              @endif
-                  @if($appointment->type_specialite === 'generaliste')
-                  <div class="card" >
-                    <div class="card-header" style="text-transform: capitalize">
-                      {{$appointment->type_specialite}}
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item text-center">{{$appointment->patient->name. ' '. $appointment->patient->firstname. ' '. strftime('%B %d, %Y', strtotime($appointment->date)). ' a '. $appointment->hours. ' '. $appointment->motif}}</li>
-                      {{-- <li class="list-group-item">{{ date('m'. ' '. 'd', strtotime($appointment->date)). ' a '. $appointment->hours }}</li> --}}
-                      {{-- <li class="list-group-item">{{ strftime('%B %d, %Y', strtotime($appointment->date)). ' a '. $appointment->hours }}</li> --}}
-                      {{-- <li class="list-group-item">{{$appointment->motif}}</li> --}}
-
-                      <table class="table text-center">
-                        <thead>
-                          <tr>
-                            <th scope="col">Nom Medecin</th>
-                            <th scope="col">Action</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          @foreach ($medecins_disponibles as $disponibles )
-                          <tr>
-                            <th scope="row">
-                                {{$disponibles->name. ' ' .$disponibles->firstname}}
-                            </th>
-                              
-                            <td>
-                              {{-- <form action="" method="post">
-                                @csrf
-                                @method('put') --}}
-                                <a href="{{$disponibles->id}}" class="btn btn-info">Assigner</a>
-                              {{-- </form> --}}
-                            </td>
-                          </tr>
-                          @endforeach
-                        </tbody>
-                      </table>
-                    </ul>
+                @foreach ($appointments as $appointment )
+                  @if ($appointment -> type_specialite === 'generaliste' && $appointment->medecin_id === NULL)
+                    
+                  <div class="card-header text-center" style="text-transform: capitalize">
+                    {{ $appointment -> type_specialite}}
                   </div>
+                  <ul class="list-group list-group-flush">
+                      <li class="list-group-item"></li>
+                    {{-- <li class="list-group-item">{{ date('m'. ' '. 'd', strtotime($appointment->date)). ' a '. $appointment->hours }}</li> --}}
+                    {{-- <li class="list-group-item">{{ strftime('%B %d, %Y', strtotime($appointment->date)). ' a '. $appointment->hours }}</li> --}}
+                    {{-- <li class="list-group-item">{{$appointment->motif}}</li> --}}
+                    <table class="table text-center">
+                      <thead>
+                        <tr>
+                          <th scope="col">Nom du patient</th>
+                          <th scope="col">Motif</th>
+                          <th scope="col">Date demander</th>
+                          <th scope="col">Medecin Dispo</th>
+                          <th scope="col">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td scope="row">
+                              {{$appointment->patient->name }}
+                          </td>
+                          <td>
+                            {{$appointment->motif}}
+                          </td>
+                          <td>
+                            {{$appointment->date  .' a '. $appointment->hours }}
+                          </td>
+                          <form action="{{route('specialiste.assignation.medecin')}}" method="POST">
+                            @csrf
+                            @method('PUT')
+                          <td>
+                            <input type="hidden" name="rdv" value="{{$appointment->id}}">
+                            <select name="medecin_id" class="form-select"  id="">
+                              @foreach ($availableMedecins as $medecin)
+                                  @if ($medecin->specialite === 'generaliste')
+                                  <option value="{{$medecin->id}}">{{ $medecin->name .' '. $medecin->firstname }}</option>                                    
+                                  @endif
+                                @endforeach
+                              </select>
+                          </td>
+                          <td>
+                            <button class="btn btn-primary">Assigner</button>
+                          </td>
+                          </form>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </ul>
+
                   @endif
-                  
-                
+
+                @endforeach
+              </div>
             </div>
-            @empty
+            <!-- End Generaliste Section -->
+
             <div class="container-fluid pt-4 px-4">
-                <div class="card" >
-                    <div class="card-header">
-                      Cardiolgue
-                    </div>
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item">Patient</li>
-                      <li class="list-group-item">Categorie Concerner</li>
-                      <li class="list-group-item">Heure Date</li>
-                      <li class="list-group-item">Motif</li>
-                      <li class="list-group-item">Medecin Dispo</li>
-                    </ul>
+
+              <div class="card" >
+                @foreach ($appointments as $appointment )
+                  @if ($appointment -> type_specialite === 'cardiologue' && $appointment->medecin_id === NULL)
+                    
+                  <div class="card-header text-center" style="text-transform: capitalize">
+                    {{ $appointment -> type_specialite}}
                   </div>
-                
+                  <ul class="list-group list-group-flush">
+                      <li class="list-group-item"></li>
+                    {{-- <li class="list-group-item">{{ date('m'. ' '. 'd', strtotime($appointment->date)). ' a '. $appointment->hours }}</li> --}}
+                    {{-- <li class="list-group-item">{{ strftime('%B %d, %Y', strtotime($appointment->date)). ' a '. $appointment->hours }}</li> --}}
+                    {{-- <li class="list-group-item">{{$appointment->motif}}</li> --}}
+                    <table class="table text-center">
+                      <thead>
+                        <tr>
+                          <th scope="col">Nom du patient</th>
+                          <th scope="col">Motif</th>
+                          <th scope="col">Date demander</th>
+                          <th scope="col">Medecin Dispo</th>
+                          <th scope="col">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td scope="row">
+                              {{$appointment->patient->name }}
+                          </td>
+                          <td>
+                            {{$appointment->motif}}
+                          </td>
+                          <td>
+                            {{$appointment->date  .' a '. $appointment->hours }}
+                          </td>
+                          
+                            
+                          <form action="{{route('specialiste.assignation.medecin')}}" method="POST">
+                            @csrf
+                            @method('PUT')
+                          <td>
+                            <input type="hidden" name="rdv" value="{{$appointment->id}}">
+                            <select name="medecin_id" class="form-select"  id="">
+                              @foreach ($availableMedecins as $medecin)
+                                  @if ($medecin->specialite === 'cardiologue')
+                                  <option value="{{$medecin->id}}">{{ $medecin->name .' '. $medecin->firstname }}</option>                                    
+                                  @endif
+                                @endforeach
+                              </select>
+                          </td>
+                          <td>
+                            <button class="btn btn-primary">Assigner</button>
+                          </td>
+                        </form>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </ul>
+
+                  @endif
+
+                @endforeach
+              </div>
             </div>
-            @endforelse
+            <!-- End cardiologue Section -->
+
+            <div class="container-fluid pt-4 px-4">
+
+              <div class="card" >
+                @foreach ($appointments as $appointment )
+                  @if ($appointment -> type_specialite === 'dentiste' && $appointment->medecin_id === NULL)
+                    
+                  <div class="card-header text-center" style="text-transform: capitalize">
+                    {{ $appointment -> type_specialite}}
+                  </div>
+                  <ul class="list-group list-group-flush">
+                      <li class="list-group-item"></li>
+                    <table class="table text-center">
+                      <thead>
+                        <tr>
+                          <th scope="col">Nom du patient</th>
+                          <th scope="col">Motif</th>
+                          <th scope="col">Date demander</th>
+                          <th scope="col">Medecin Dispo</th>
+                          <th scope="col">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td scope="row">
+                              {{$appointment->patient->name }}
+                          </td>
+                          <td>
+                            {{$appointment->motif}}
+                          </td>
+                          <td>
+                            {{$appointment->date  .' a '. $appointment->hours }}
+                          </td>
+                            
+                          <form action="{{route('specialiste.assignation.medecin')}}" method="POST">
+                            @csrf
+                            @method('PUT')
+                          <td>
+                            <input type="hidden" name="rdv" value="{{$appointment->id}}">
+                              <select name="medecin_id" class="form-select"  id="">
+                                @foreach ($availableMedecins as $medecin)
+                                  @if ($medecin->specialite === 'dentiste')
+                                  <option value="{{$medecin->id}}">{{ $medecin->name .' '. $medecin->firstname }}</option>                                    
+                                  @endif
+                                @endforeach
+                              </select>
+                          </td>
+                          <td>
+                            <button class="btn btn-primary">Assigner</button>
+                          </td>
+                          </form>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </ul>
+
+                  @endif
+
+                @endforeach
+              </div>
+            </div>
+            <!-- End dentiste Section -->
+
+              @forelse($availableMedecins as $medecin)
+            <li>{{ $medecin->name }} {{ $medecin->firstname }} - Spécialité : {{ $medecin->specialite }}</li>
+        @empty
+            <li>Aucun médecin disponible</li>
+        @endforelse
             
             <!-- Recent Sales End -->
     

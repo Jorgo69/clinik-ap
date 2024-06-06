@@ -27,14 +27,15 @@
             </div>
             @endif
 
+            @if (auth()->user()->role != 'medecin')
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-table me-2"></i>Rendez vous</a>
                 <div class="dropdown-menu bg-transparent border-0">
-                    <a href="{{route('specialiste.rendez-vous.index')}}" class="dropdown-item active">Tout les RDV</a>
-                    {{-- <a href="{{ route('specialiste.rendez-vous.done')}}" class="dropdown-item">Accepter</a> --}}
+                    <a href="{{route('specialiste.rendez-vous.index')}}" class="dropdown-item active">Sans Assignation</a>
+                    <a href="{{ route('specialiste.secretaire.rdv.assigner')}}" class="dropdown-item">Deja Assigner</a>
                 </div>
             </div>
-            @if (auth()->user()->role != 'medecin')
+            
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="bi bi-arrow-left-right"></i></i>Assignation</a>
                 <div class="dropdown-menu bg-transparent border-0">
