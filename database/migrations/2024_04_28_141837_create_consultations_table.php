@@ -35,6 +35,7 @@ return new class extends Migration
 
             $table->mediumText('diagnostic');
             $table->mediumText('observation');
+            $table->mediumText('prescriptions')->nullable();
             $table->timestamps();
         });
     }

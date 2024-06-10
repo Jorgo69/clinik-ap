@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Specialiste;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Specialiste\PatientRequest;
+use App\Models\Appointment;
+use App\Models\Consultation;
 use App\Models\Patient;
 use App\Models\User;
 use Carbon\Carbon;
@@ -69,16 +71,15 @@ class PatientController extends Controller
         $years = date('Y-m-d');
         $years = intval($years) ;
         $years = $years - $birthday;
-
-        $patients = Patient::where('id', $patient->id)->get();
-        // dd($patients);
+        
+        $dossier = Consultation::where('patient_id', $patient->id)->get();
 
 
 
         return view('specialiste.patient.details', [
-            'patient' => $patient,
+            'patient' =>  $patient,
             'years' => $years,
-            'patients' =>  $patients,
+            'dossiers' => $dossier,
         ]);
     }
 

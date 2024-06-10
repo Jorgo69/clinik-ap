@@ -16,23 +16,23 @@
                 <ul class="list-unstyled timeline-sm">
                     <li class="timeline-sm-item">
                         <div class="text-center">
-                            <span class="timeline-sm-date">Consultation du <span class="text-capitalize">{{ \Carbon\Carbon::parse($data->created_at)->translatedFormat('D d F Y') }}</span> </span>
+                            <span class="timeline-sm-date">Consultation du <span class="text-capitalize">{{ \Carbon\Carbon::parse($carnetData->created_at)->translatedFormat('D d F Y') }}</span> </span>
                         </div>
                         <?php
                             use Carbon\Carbon;
                             Carbon::setLocale('fr');
                         ?>
-                        <h3 class="mt-0 mb-1">{{$data->pattern}}</h3>
+                        <h3 class="mt-0 mb-1">{{$carnetData->pattern}}</h3>
                         <hr>
                         <!-- Diagnostic -->
                         <h5>Diagnostic</h5>
                         <p class="text-muted mt-2"></p>
-                        <p>{!! $data->diagnostic !!}</p>
+                        <p>{!! $carnetData->diagnostic !!}</p>
                         <hr>
                         <!-- Observation -->
                         <h5>Observation</h5>
                         <p class="text-muted mt-2"></p>
-                        <p>{!! $data->observation !!}</p>
+                        <p>{!! $carnetData->observation !!}</p>
                         <hr>
                         <!-- Prescription -->
                         <h5>Prescription</h5>
@@ -43,7 +43,7 @@
                         <div class="float-right mb-5">
                             <h5>Signature</h5>
                             <p class="text-muted mt-2"></p>
-                            <p>{{ $data->medecins->name .' '. $data->medecins->firstname }}</p>
+                            <p>{{ $carnetData->medecins->name .' '. $carnetData->medecins->firstname }}</p>
                             <p class="text-uppercase text-info font-weight-bold">Specialite</p>
                         </div>
                     </li>

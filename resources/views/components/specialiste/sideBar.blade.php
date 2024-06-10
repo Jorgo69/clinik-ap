@@ -15,40 +15,40 @@
                 {{-- @endif --}}
             </div>
         </div>
-        <div class="navbar-nav w-100">
-            <a href="{{ route('specialiste.index')}}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+        <div class="navbar-nav w-100">      {{-- Request pour verifier le lien et routeIs pour la route [le nom] --}}
+            <a href="{{ route('specialiste.index')}}" class="nav-item nav-link {{ Request::is('specialiste.index') ? 'active' : ''}}"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
             @if(auth()->user()->role === 'medecin' )
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Consultation</a>
+                <a href="#" class="nav-link {{ (request()->routeIs('specialiste.consultation.index') || request()->routeIs('specialiste.add.consultation')) ? 'active' : '' }} dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Consultation</a>
                 <div class="dropdown-menu bg-transparent border-0">
-                    <a href="{{ route('specialiste.consultation.index')}}" class="dropdown-item">Liste des consultations</a>
-                    <a href="{{ route('specialiste.add.consultation')}}" class="dropdown-item">Les Consulter</a>
+                    <a href="{{ route('specialiste.consultation.index')}}" class="dropdown-item {{ request()->routeIs('specialiste.consultation.index') ? 'active' : '' }}">Liste des consultations</a>
+                    <a href="{{ route('specialiste.add.consultation')}}" class="dropdown-item {{ request()->routeIs('specialiste.add.consultation') ? 'active' : '' }}">Les Consulter</a>
                 </div>
             </div>
             @endif
 
             @if (auth()->user()->role != 'medecin')
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-table me-2"></i>Rendez vous</a>
+                <a href="#" class="nav-link dropdown-toggle {{ (request()->routeIs('specialiste.rendez-vous.index') || request()->routeIs('specialiste.secretaire.rdv.assigner') ? 'active' : ''  )}}" data-bs-toggle="dropdown"><i class="fa fa-table me-2"></i>Rendez vous</a>
                 <div class="dropdown-menu bg-transparent border-0">
-                    <a href="{{route('specialiste.rendez-vous.index')}}" class="dropdown-item active">Sans Assignation</a>
-                    <a href="{{ route('specialiste.secretaire.rdv.assigner')}}" class="dropdown-item">Deja Assigner</a>
+                    <a href="{{route('specialiste.rendez-vous.index')}}" class="dropdown-item {{ request()->routeIs('specialiste.rendez-vous.index') ? 'active' : '' }}">Sans Assignation</a>
+                    <a href="{{ route('specialiste.secretaire.rdv.assigner')}}" class="dropdown-item {{ request()->routeIs('specialiste.secretaire.rdv.assigner') ? 'active' : '' }}">Deja Assigner</a>
                 </div>
             </div>
             
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="bi bi-arrow-left-right"></i></i>Assignation</a>
+                <a href="#" class="nav-link dropdown-toggle {{ (request()->routeIs('specialiste.assignation') ? 'active' : ''  )}}" data-bs-toggle="dropdown"><i class="bi bi-arrow-left-right"></i></i>Assignation</a>
                 <div class="dropdown-menu bg-transparent border-0">
-                    <a href="{{route('specialiste.assignation')}}" class="dropdown-item active">Assigner les RDV</a>
+                    <a href="{{route('specialiste.assignation')}}" class="dropdown-item {{ request()->routeIs('specialiste.assignation') ? 'active' : ''}}">Assigner les RDV</a>
                     {{-- <a href="{{ route('specialiste.rendez-vous.done')}}" class="dropdown-item">Accepter</a> --}}
                 </div>
             </div>
             @endif
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fab fa-accessible-icon me-2 "></i>Patients</a>
+                <a href="#" class="nav-link dropdown-toggle {{ (request()->routeIs('specialiste.liste.patients') || request()->routeIs('specialiste.add.patient') ? 'active' : ''  )}}" data-bs-toggle="dropdown"><i class="fab fa-accessible-icon me-2 "></i>Patients</a>
                 <div class="dropdown-menu bg-transparent border-0">
-                    <a href="{{ route('specialiste.liste.patients')}}" class="dropdown-item active">Tout les Patients</a>
-                    <a href="{{ route('specialiste.add.patient')}}" class="dropdown-item">Nouveau Patients</a>
+                    <a href="{{ route('specialiste.liste.patients')}}" class="dropdown-item {{ request()->routeIs('specialiste.liste.patients') ? 'active' : ''}}">Tout les Patients</a>
+                    <a href="{{ route('specialiste.add.patient')}}" class="dropdown-item {{ request()->routeIs('specialiste.add.patient') ? 'active' : ''}}">Nouveau Patients</a>
                 </div>
             </div>
             {{-- <div class="nav-item dropdown">
@@ -59,7 +59,7 @@
                 </div>
             </div> --}}
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-users" aria-hidden="true"></i></i>Personnels</a>
+                <a href="#" class="nav-link dropdown-toggle {{ (request()->routeIs('specialiste.facure') || request()->routeIs('specialiste.add.patient') ? 'active' : ''  )}}" data-bs-toggle="dropdown"><i class="fa fa-users" aria-hidden="true"></i></i>Personnels</a>
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="{{ route('specialiste.facure')}}" class="dropdown-item active">Tous le personnel</a>
                     <a href="{{ route('specialiste.add.patient')}}" class="dropdown-item">Nouveau Patients</a>

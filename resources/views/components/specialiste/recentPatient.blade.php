@@ -1,5 +1,7 @@
 <div class="bg-light text-center rounded p-4 col-12 col-md-12 col-sm-12 col-xl-12 col-xxl-12 mb-2">
 
+    <div id='calendar'></div>
+
     <div class="container-fluid pt-4 px-4">
         <div class="bg-light text-center rounded p-4 col-12 col-md-12 col-sm-12 col-xl-12 col-xxl-12">
             @if (Session::has('success'))
@@ -70,14 +72,40 @@
         
 </div>
 
-<div class="">
-    {{-- {{ $patients->links()}} --}}
-</div>
+@push('fullCalendar-Script-Global-6')
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js'></script>
+@endpush
+@push('fullCalendar-Script-Events')
+@push('fullCalendar-Script-Locale-Langue')
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/locales/fr.js'></script>
+@endpush
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            locale: 'fr',
+            events: '/specialists/dashboard/events', // URL pour charger les événements
+            eventContent: function(info) {
+            // Créer un conteneur pour le titre de l'événement HTML
+            var element = document.createElement('div');
+            // Définissez le code HTML interne sur le titre (qui inclut le lien)
+            element.innerHTML = info.event.title;
+            // Renvoie un objet avec les nœuds DOM à restituer
+            return { domNodes: [element] };
+        }
+        });
+        calendar.render();
+    });
+</script>
+@endpush
 
-<style>
-    
-    svg{
-        width: 10%;
-        height: 10%;
-    }
-</style>
+@push('fullCaldendar-Script-Main')
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/main.min.js'></script>
+@endpush
+
+@push('link-Style-Main')
+<link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/main.min.css' rel='stylesheet' />
+@endpush
+
+{{-- <div id='calendar'></div> --}}

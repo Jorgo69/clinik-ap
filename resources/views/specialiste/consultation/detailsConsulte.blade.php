@@ -229,28 +229,86 @@
                     </div>
                     {{-- <button class="btn btn-info">Relever</button>
                     </form> --}}
+                    <script>
+                         @if (session('redirect'))
+                        document.addEventListener('DOMContentLoaded', function() {
+                            window.location.href = '{{ route('specialiste.index') }}';
+                        });
+                    @endif
+                    </script>
                     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                        
-                        <table class="table">
-                            <tbody>
-                              <tr>
-                                <th scope="row">Groupe Sanguin</th>
-                                <td>{{__('O +')}}</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">Facteur Rhesus</th>
-                                <td>{{__('AB -')}}</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">Allergie</th>
-                                <td> {{__('Poisson')}} </td>
-                              </tr>
-                              <tr>
-                                <th scope="row">Observation</th>
-                                <td>{{__('')}}</td>
-                              </tr>
-                            </tbody>
-                          </table>
+                        <div class="col-md-12 mb-3">
+                            <form action="{{ route('specialiste.more.information.patient')}}" method="post">
+                                @csrf
+                                @method('POST')
+                                <div class="card card-outline card-info">
+                                    <div class="card-header">
+                                    <h3 class="card-title text-capitalize">
+                                        Information Crucial
+                                    </h3>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <div class="card-body">
+                                        <label for="exampleDataList" class="form-label">Entrer le Groupe Sanguin du Patient</label>
+                                        <input type="hidden" name="patient_id" value="{{$patient->id}}">
+                                        <input class="form-control mb-3" name="groupe_sanguin" list="datalistOptions" id="exampleDataList" placeholder="Groupe Sanguin...">
+                                        <datalist id="datalistOptions">
+                                            <option value="A+">
+                                            <option value="A-">
+                                            <option value="B+">
+                                            <option value="B-">
+                                            <option value="AB+">
+                                            <option value="AB-">
+                                            <option value="O+">
+                                            <option value="O-">
+                                        </datalist>
+                                        <input type="text" name="allergies" class="form-control mb-2" placeholder="Allergien">
+                                        <label for="" class="text-bold">Information Supplementaire</label>
+                                        <textarea name="autres_informations" id="other_medical_information" cols="30" rows="10"></textarea>
+                                    </div>
+                                    <!-- Autre Information Medical -->
+                                        <script>
+                                            $('#other_medical_information').summernote({
+                                            placeholder: 'Entrer les informations supplementaire pouvant aider a la tracabilite de son historique maladie',
+                                            tabsize: 2,
+                                            height: 300,
+                                            // height: 120,
+                                            toolbar: [
+                                                ['style', ['style']],
+                                                ['font', ['bold', 'underline', 'clear']],
+                                                ['color', ['color']],
+                                                ['para', ['ul', 'ol', 'paragraph']],
+                                                ['table', ['table']],
+                                                ['insert', ['link', 'picture']],
+                                                ['fontname', ['fontname']]
+                                            ]
+                                            });
+                                            
+                                        </script>
+                                </div>
+                                <button class="btn btn-info">Relever</button>
+                            </form>
+                        </div> 
+                            {{-- <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th scope="row">Groupe Sanguin</th>
+                                    <td>{{__('O +')}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Facteur Rhesus</th>
+                                    <td>{{__('AB -')}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Allergie</th>
+                                    <td> {{__('Poisson')}} </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Observation</th>
+                                    <td>{{__('')}}</td>
+                                </tr>
+                                </tbody>
+                            </table> --}}
                     </div>
                     <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
                         @forelse ($consultations as $index => $consultation)

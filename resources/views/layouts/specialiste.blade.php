@@ -33,6 +33,14 @@
 
     <!-- Template Stylesheet -->
     <link href="{{asset('assets/others/css/style.css')}}" rel="stylesheet">
+    @stack('link-Style-Main')
+    @stack('fullCaldendar-Script-Main')
+    
+
+    @stack('fullCalendar-Script-Global-6')
+    @stack('fullCalendar-Script-Locale-Langue')
+    @stack('fullCalendar-Script-Events')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
        {{-- Traitement de Text --}}
        {{-- Summeronote sans boostrap uniquement les dependannce cdn /npm et cdn / js --}}
@@ -40,7 +48,7 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
     <!-- include summernote-ko-KR -->
-    <script src="{{asset('assets/plugins/summernote/summernote-ko-KR.js')}}"></script>
+    {{-- <script src="{{asset('assets/plugins/summernote/summernote-ko-KR.js')}}"></script> --}}
 
     @livewireStyles
 </head>

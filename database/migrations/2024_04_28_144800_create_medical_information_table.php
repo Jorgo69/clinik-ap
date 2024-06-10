@@ -24,9 +24,8 @@ return new class extends Migration
                     ->on('users')
                     ->onDelete('set null');
                     
-            $table->string('blood_group');
-            $table->string('facteur_rhesus');
-            $table->string('allergies');
+            $table->string('blood_group')->nullable();
+            $table->string('allergies')->nullable();
             $table->mediumText('other_informations')->nullable()->comment('Le champs pour prise de note manuelle pour apporter des clarification');
             $table->timestamps();
         });

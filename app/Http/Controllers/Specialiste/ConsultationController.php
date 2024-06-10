@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Specialiste;
 
 use App\Http\Controllers\Controller;
 use App\Models\Consultation;
+use App\Models\MedicalInformation;
 use App\Models\Patient;
 use App\Models\Prescription;
 use App\Models\User;
@@ -80,10 +81,29 @@ class ConsultationController extends Controller
             
             $consultation->diagnostic = $request->diagnostic;
             $consultation->observation = $request->observation;
+            $consultation->prescription = $request->prescription;
 
             // dd($consultation);
             $consultation->save();
             return redirect()->back()->with('success', 'Note Prise avec Success');
+    }
+
+    public function addOtherInformation(Request $request)
+    {
+        $information = new MedicalInformation();
+        $information->blood_group = $request->groupe_sanguin;
+        $information->facteur_rhesus = 'NULL';
+        $information->allergies = $request->allergies;
+        $information->other_informations = $request->autres_informations;
+        $information->patient_id = $request->patient_id;
+        $information->medecin_id = Auth::id();
+        
+        $information->save();
+
+        session()->flash('redirect', true);
+
+
+
     }
 
     /**

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Specialiste;
 
 use App\Http\Controllers\Controller;
+use App\Models\Appointment;
 use App\Models\Consultation;
 use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -24,12 +26,48 @@ class DashboardController extends Controller
         // Medecins Total
         $medecinsTotals = User::where('role', 'medecin')->count();
 
+        // Récupérer tous les rendez-vous
+        $rdvs = Appointment::all();
+
+        // Formater les données pour FullCalendar
+        $events = $rdvs->map(function($rdv) {
+            return [
+                'title' => $rdv->motif,
+                'start' => $rdv->date . 'T' . $rdv->hours,
+                'extendedProps' => [
+                    'type_specialite' => $rdv->type_specialite,
+                    'medecin_id' => $rdv->medecin_id,
+                    'patient_id' => $rdv->patient_id,
+                ]
+            ];
+        });
+
+        // return response()->json($events);
+
         return view('specialiste.dashboard', [
             'patients' => $patients,
             'consultations' => $consultationsTotals,
             'medecins' => $medecinsTotals,
             
         ]);
+    }
+
+    public function getEvents()
+    {
+        $rdvs = Appointment::with('patient')
+                ->where('medecin_id', Auth::id())
+                ->get();
+        $events = $rdvs->map(function($rdv) {
+            return [
+                'title' => $rdv->motif . ' - ' . $rdv->patient->name . ' ' . $rdv->patient->firstname,
+                // 'title' => '<a href="/rdv/' . $rdv->id . '">' . $rdv->motif . ' - ' . $rdv->patient->name . ' ' . $rdv->patient->firstname . '</a>',
+                'url' => route('specialiste.detail.consultation', ['id' => $rdv->id]),
+                'color' => $rdv->statut ? 'green' : 'red', // Change color based on statut
+                'start' => $rdv->date . 'T' . $rdv->hours
+            ];
+        });
+
+        return response()->json($events);
     }
 
     public function Welcome()

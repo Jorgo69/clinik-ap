@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('date');
             $table->string('hours');
             $table->string('motif');
+            $table->boolean('statut')->default(false);
             $table->timestamps();
         });
     }

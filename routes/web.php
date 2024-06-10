@@ -56,6 +56,7 @@ Route::get('pdf', function()
 // })->name('specialiste.index')->middleware('right.medical');
 
 Route::get('specialists/dashboard', [DashboardController::class, 'index'])->name('specialiste.index')->middleware('right.medical');
+Route::get('specialists/dashboard/events', [DashboardController::class, 'getEvents'])->name('specialiste.getEvents')->middleware('right.medical');
 
 
 // Rendez Ressource
@@ -89,6 +90,8 @@ Route::middleware('auth')->group(function () {
     Route::get('specialiste/consultation/detail/consultation/{id}', [ConsultationController::class, 'show'])->name('specialiste.detail.consultation')->middleware('right.medical');
     // page de prise de note pour consultation avec prise de infos medicales du patients
     Route::post('specialiste/consulte/patient', [ConsultationController::class, 'store'])->name('specialiste.consulte.patient')->middleware('right.medical');
+    //page de prise d'information medical comme le Groupe Sanguin
+    Route::post('specialiste/more/information', [ConsultationController::class, 'addOtherInformation'])->name('specialiste.more.information.patient');
 
 });
 

@@ -56,8 +56,10 @@
                                     <td>
                                         {{$patient->residence ? $patient->residence : 'Residence inconnue'}}
                                     </td>
-                                    <td class="float-center">
-                                        <a href="{{ route('specialiste.details.patients', ['id' => $patient->id])}}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                    <td class="d-flex col-lg justify-content-between">
+                                        <a href="{{ route('specialiste.details.patients', ['id' => $patient->id])}}" class=""><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                        <a href="" class=" text-success"><i class="bi bi-brush"></i></a>
+                                        <a href="" class="text-danger"><i class="bi bi-trash"></i></a>
                                     </td>
                                 </tr>
                                 @empty

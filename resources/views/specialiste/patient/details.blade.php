@@ -105,86 +105,64 @@
                                             </div>
                                         </div>
                                         <div class="tab-pane fade show active" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                                            <div class="accordion" id="accordionExample">
+                                            @forelse ($dossiers as $index => $detailsConsutations)
+                                            <div class="accordion" id="accordionExample{{ $index }}">
                                                 <div class="accordion-item">
-                                                    <h2 class="accordion-header" id="headingOne">
+                                                    <h2 class="accordion-header" id="heading{{ $index }}">
                                                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                            data-bs-target="#collapseOne" aria-expanded="true"
-                                                            aria-controls="collapseOne">
-                                                            Titre
+                                                            data-bs-target="#collapse{{ $index }}" aria-expanded="{{ $index == 0 ? 'true' : 'false' }}"
+                                                            aria-controls="collapse{{ $index }}">
+                                                            {{ $detailsConsutations->pattern }}
                                                         </button>
                                                     </h2>
-                                                    <div id="collapseOne" class="accordion-collapse collapse show"
-                                                        aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                                        @forelse ($patients as $detailsConsutations)
+                                                    <div id="collapse{{ $index }}" class="accordion-collapse collapse {{ $index == 0 ? 'show' : '' }}"
+                                                        aria-labelledby="heading{{ $index }}" data-bs-parent="#accordionExample{{ $index }}">
                                                         <div class="accordion-body">
                                                             
                                                             <ul class="list-unstyled timeline-sm">
                                                                 <li class="timeline-sm-item">
-                                                                    <span class="timeline-sm-date">{{formatDate($detailsConsutations->created_at). ' ' .$detailsConsutations->created_at->format('Y')}}</span>
-                                                                    {{-- <h3 class="mt-0 mb-1">{{$detailsConsutations->pattern}}</h3> --}}
+                                                                    <h5 class="mt-0 mb-1">Motif de la consultation</h5>
+                                                                    <p>{{ $detailsConsutations->pattern }}</p>
                                                                     <hr>
                                                                     <!-- Diagnostic -->
-                                                                    <h5>
-                                                                        Diagnostic
-                                                                    </h5>
-                                                                    
+                                                                    <h5>Diagnostic</h5>
                                                                     <p class="text-muted mt-2"></p>
-                                                                    <p>
-                                                                        Diagnostic
-                                                                    </p>
+                                                                    <p>{!! $detailsConsutations->diagnostic !!}</p>
                                                                     <hr>
                                                                     <!-- Observation -->
-                                                                    <h5>
-                                                                        Observation
-                                                                    </h5>
-                                                                    
+                                                                    <h5>Observation</h5>
                                                                     <p class="text-muted mt-2"></p>
-                                                                    <p>
-                                                                        Observation
-                                                                    </p>
+                                                                    <p>{!! $detailsConsutations->observation !!}</p>
                                                                     <hr>
-                    
                                                                     <!-- Prescription -->
-                                                                    <h5>
-                                                                        Prescription
-                                                                    </h5>
-                                                                    
+                                                                    <h5>Prescription</h5>
                                                                     <p class="text-muted mt-2"></p>
-                                                                    <p>
-                                                                        {{__('Prescription')}}
-                                                                    </p>
+                                                                    <p>{{ __('Prescription') }}</p>
                                                                     <hr>
-                    
                                                                     <!-- Signature -->
-                                                                    {{-- <p> --}}
-                                                                        <div class="text-end mb-5">
-                                                                            <h5>
-                                                                                Signature
-                                                                            </h5>
-                                                                            
-                                                                            <p class="text-muted mt-2"></p>
-                                                                            <p>
-                                                                                Nom Medecin
-                                                                            </p>
-                                                                            <p class="text-uppercase text-info font-weight-bold">
-                                                                                    Specialiate
-                                                                            </p>
-                                                                        </div>
-                                                                    {{-- </p> --}}
-                    
+                                                                    {{-- <div class="text-end mb-5">
+                                                                        <h5>Signature</h5>
+                                                                        <p class="text-muted mt-2"></p>
+                                                                        <p>{{ $detailsConsutations->medecins->name . ' ' . $detailsConsutations->medecins->firstname }}</p>
+                                                                        <p class="text-uppercase text-info font-weight-bold">{{ $detailsConsutations->medecins->specialite }}</p>
+                                                                        <p>
+                                                                            <a href="{{ $detailsConsutations->id}}" class="btn btn-info">Modifier le Carnet</a>
+                                                                        </p>
+                                                                        <p>
+                                                                            <a href="{{$detailsConsutations->id}}" class="btn btn-primary">Envoyer le Carnet</a>
+                                                                        </p>
+                                                                    </div> --}}
                                                                 </li>
                                                             </ul>
-                                                            
-                                                        </div>    
-                                                        @empty
-                                                            
-                                                        @endforelse
+                                                        </div>
                                                         
                                                     </div>
                                                 </div>
                                                 
                                             </div>
+                                            @empty
+                                            <p>Aucune consultation trouvée.</p>
+                                            @endforelse
                                         </div>
                                     </div>
                                 </div>
