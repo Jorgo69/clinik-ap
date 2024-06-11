@@ -88,15 +88,54 @@ class PatientController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $patient = Patient::find($id);
+
+        return view('specialiste.patient.editPatient', [
+            'patient' => $patient,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        $patient = Patient::find($request->patient_id);
+
+        $patient->name = $request->name;
+        $patient->firstname = $request->firstname;
+        $patient->birthdate = $request->birthdate;
+        $patient->number = $request->number;
+        $patient->email = $request->email;
+        $patient->sexe = $request->sexe;
+
+        $patient->update();
+
+        return redirect()->route('specialiste.liste.patients')->with('update', 'Information mis a jour avec success');
+    }
+
+    public function found(int $id)
+    {
+        $patient = Patient::find($id);
+
+        $patient->delete();
+
+        return redirect()->back()->with('danger', 'Patient Supprimer avec Success');
+
+    }
+
+    public function users()
+    {
+        $personnels = User::all();
+
+        // Calculer l'âge de chaque patient
+        foreach ($personnels as $personnel) {
+            $personnel->age = Carbon::parse($personnel->birthdate)->age;
+        }
+
+        return view('specialiste.users.index', [
+            'personnels'=> $personnels,
+        ]);
     }
 
     /**

@@ -19,7 +19,7 @@ class AppointmentController extends Controller
         
         $patients = Patient::get();
         // recuperation de tous les rdv
-        $appointments = Appointment::with('patient', 'medecin')->get();
+        $appointments = Appointment::with('patient', 'medecin')->orderByDesc('created_at')->get();
 
         return view('specialiste.rendez-vous.all', [
             'patients' => $patients,
@@ -139,6 +139,30 @@ class AppointmentController extends Controller
         $assignation->update();
 
             return redirect()->back()->with('success', 'Medecin assigner avec Success');
+    }
+
+    public function rdvHonnorer()
+    {
+        
+        $rdvs = Appointment::with('patient')
+                ->get();
+        $events = $rdvs->map(function($rdv) {
+            return [
+                'title' => $rdv->motif . ' - ' . $rdv->patient->name . ' ' . $rdv->patient->firstname,
+                'url' => route('specialiste.detail.consultation', ['id' => $rdv->id]),
+                'color' => $rdv->statut ? 'green' : 'red', // Change color based on statut
+                'start' => $rdv->date . 'T' . $rdv->hours
+            ];
+        });
+
+        return response()->json($events);
+
+    }
+
+    public function honnorer()
+    {
+
+        return view('specialiste.rendez-vous.honnorer');
     }
 
     /**

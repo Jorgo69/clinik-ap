@@ -28,7 +28,6 @@
                         <h6 class="mb-0">
                             Liste de Consultés
                         </h6>
-                        <a class="btn btn-sm btn-info m-1 p-3.5" type="button" data-bs-toggle="modal" data-bs-target="#modalPatient">Nouveau Patient</a>
                     </div>
                     <div class="table-responsive">
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
@@ -43,7 +42,7 @@
                             <tbody>
                                 @forelse ($consulters as $consulter)
                                 <tr>
-                                    <td>{{formatDate($consulter->created_at)}}</td>
+                                    <td class="text-capitalize">{{ \Carbon\Carbon::parse($consulter->created_at)->translatedFormat('l jS F Y') }}</td>
                                     <td>{{$consulter->patients->name. ' ' .$consulter->patients->firstname}}</td>
                                     <td>{{$consulter->pattern}}</td>
                                     <td class="text-center">
@@ -54,11 +53,11 @@
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td>22/01/2002</td>
+                                    <td>Date</td>
                                     <td>Son nom complet</td>
-                                    <td>Corps Chaud</td>
+                                    <td>Motif</td>
                                     <td class="text-center">
-                                        <a href="">
+                                        <a href="#">
                                             <i class="fa fa-eye" aria-hidden="true"></i>
                                         </a>
                                     </td>

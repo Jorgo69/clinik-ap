@@ -46,18 +46,18 @@
                         </div>
                         <div class="form-flotting mb-3">
                             <select class="form-select" name="specialite" aria-label="Default select example">
-                                <option selected>Choisissez  votre specialite</option>
-                                <option value="generaliste">Generaliste</option>
+                                <option value="generaliste" selected>Generaliste</option>
                                 <option value="dentiste">Dentiste</option>
                                 <option value="cardiologue">Cardiologue</option>
-                                <option value="ophtalmo">Ophtalmo</option>
+                                {{-- <option value="ophtalmo">Ophtalmo</option> --}}
                             </select>
+                            <label for="">Choisissez votre specialite</label>
                             @error('specialiste')
                             <span class="text-danger">{{$message}}</span>
                             @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="date" class="form-control" id="floatingDate" name="birthdate" autofocus autocomplete="date" />
+                            <input type="date" class="form-control" id="floatingDate" name="birthdate" autofocus autocomplete="date" max="{{ \Carbon\Carbon::now()->format('Y-m-d') }}"/>
                             <label for="floatingDate">Date de naissance</label>
                             @error('birthdate')
                             <span class="text-danger">{{$message}}</span>

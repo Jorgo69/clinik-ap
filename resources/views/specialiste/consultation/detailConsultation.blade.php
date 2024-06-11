@@ -1,4 +1,5 @@
 <x-specialiste>
+    
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -63,7 +64,7 @@
                                 </div>
                             </div>
                             <!-- End card-box -->
-                        </div> 
+                        </div>
                         <!-- End col-->
                         <div class="col-lg-9 col-xl-9">
                             <div class="card-box">
@@ -112,12 +113,12 @@
                                     <div class="tab-pane fade show active" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
                                         <ul class="list-unstyled timeline-sm">
                                             <li class="timeline-sm-item">
-                                                <span class="timeline-sm-date">{{formatDate($detailsConsutations->created_at). ' ' .$detailsConsutations->created_at->format('Y')}}</span>
+                                                <span class="timeline-sm-date">{{ \Carbon\Carbon::parse($detailsConsutations->created_at)->translatedFormat('l jS F Y') }}</span>
                                                 {{-- <h3 class="mt-0 mb-1">{{$detailsConsutations->pattern}}</h3> --}}
                                                 <hr>
                                                 <!-- Diagnostic -->
                                                 <h5>
-                                                    Diagnostic
+                                                    {{-- Diagnostic --}}
                                                 </h5>
                                                 
                                                 <p class="text-muted mt-2"></p>

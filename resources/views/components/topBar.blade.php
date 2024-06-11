@@ -6,7 +6,7 @@
         <div class="col-lg-7 px-5 text-start">
             <div class="h-100 d-inline-flex align-items-center py-3 me-4">
                 <small class="fa fa-map-marker-alt text-primary me-2"></small>
-                <small> <a href="{{ url('/dashboard') }}" class="">Dashboard</a> </small>
+                <small> <a href="{{route('specialiste.index')}}" class="">Dashboard</a> </small>
             </div>
             <div class="h-100 d-inline-flex align-items-center py-3">
                 <small class="fa fa-envelope-open text-primary me-2"></small>

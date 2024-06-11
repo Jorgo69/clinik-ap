@@ -55,7 +55,7 @@ Route::get('pdf', function()
 //     return view('specialiste.dashboard');
 // })->name('specialiste.index')->middleware('right.medical');
 
-Route::get('specialists/dashboard', [DashboardController::class, 'index'])->name('specialiste.index')->middleware('right.medical');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('specialiste.index')->middleware('right.medical');
 Route::get('specialists/dashboard/events', [DashboardController::class, 'getEvents'])->name('specialiste.getEvents')->middleware('right.medical');
 
 
@@ -69,6 +69,7 @@ Route::middleware(['auth','right.secretaire'])->group(function () {
 
     // Voir les rdv avec medecin assigne
     Route::get('specialite/secretaire/vu/rdv', [AppointmentController::class, 'indexInProgress'])->name('specialiste.secretaire.rdv.assigner');
+    Route::get('specialiste/secretaire/rdv/honnorer', [AppointmentController::class, 'honnorer'])->name('specialiste.secretaire.rdv.honnorer');
     //Modifier un RDV
     Route::get('specialite/secretaire/modif/rdv/{id}', [AppointmentController::class, 'assignationModif'])->name('specialiste.secretaire.modif.rdv');
 });
@@ -108,7 +109,14 @@ Route::middleware('auth')->group(function () {
     // Patient Ressources
 Route::get('/specialiste/patients/liste', [PatientController::class, 'index'])->name('specialiste.liste.patients');
 Route::get('/specialiste/patients/detail/{id}',[PatientController::class, 'show'])->name('specialiste.details.patients');
+Route::get('specialiste/patients/find/{id}', [PatientController::class, 'edit'])->name('specialiste.patient.find');
+Route::get('specialiste/patients/found/{id}', [PatientController::class, 'found'])->name('specialiste.patient.found');
 
+// Add Patient
+Route::post('ajouter/patient', [PatientController::class, 'store'])->name('Add.Patient');
+Route::put('modier/patient', [PatientController::class, 'update'])->name('Edit.Patient');
+Route::delete('delete/patient', [PatientController::class, 'delete'])->name('Delete.Patient');
+// End Patient Ressources
 });
 
 
@@ -117,13 +125,12 @@ Route::get('specialiste/add/patient', function() {
     return view('specialiste.patient.addPatient');
 })->name('specialiste.add.patient');
 
-// Add Patient
-Route::post('ajouter/patient', [PatientController::class, 'store'])->name('Add.Patient');
-// End Patient Ressources
+Route::get('specialiste/all/personnels', [PatientController::class, 'users'])->name('specialiste.facure');
 
-Route::get('/specialiste/facture/', function() {
-    return view('specialiste.facture.history');
-})->name('specialiste.facure');
+
+// Route::get('/specialiste/facture/', function() {
+//     return view('specialiste.facture.history');
+// })->name('');
 
 Route::get('specialiste/carnet/index/{id}', [CarnetController::class, 'show'])->name('carnet.index');
 
@@ -151,8 +158,11 @@ Route::get('send.carnet.mail/{id}', [CarnetMedicalGoogleController::class, 'inde
 // Error Logiques
 // Route::get('')
 
-Route::get('/dashboard',[DashboardController::class, 'Welcome'])
-->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function(){
+    
+// return view('specialiste.dashboard');
+// })
+// ->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

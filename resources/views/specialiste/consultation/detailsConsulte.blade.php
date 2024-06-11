@@ -229,8 +229,8 @@
                     </div>
                     {{-- <button class="btn btn-info">Relever</button>
                     </form> --}}
+                    @if (session('redirect'))
                     <script>
-                         @if (session('redirect'))
                         document.addEventListener('DOMContentLoaded', function() {
                             window.location.href = '{{ route('specialiste.index') }}';
                         });

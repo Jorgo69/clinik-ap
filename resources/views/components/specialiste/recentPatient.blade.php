@@ -14,7 +14,6 @@
                 <h6 class="mb-0">
                     Liste des Patients à consulter
                 </h6>
-                <a class="btn btn-sm btn-info m-1 p-3.5" type="button" data-bs-toggle="modal" data-bs-target="#modalPatient">Nouveau Patient</a>
             </div>
             <div class="table-responsive">
                 <table class="table text-start align-middle table-bordered table-hover mb-0">
@@ -28,7 +27,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($patients as $patient)
+                        @forelse ($patiens as $patient)
                         @php
                             $birthday = date($patient->birthdate);
                             $birthday = intval($birthday);
@@ -63,10 +62,17 @@
                         </tr>
                         @endforelse
                     </tbody>
+                    {{-- {{$patiens->links()}} --}}
                 </table>
             </div>
         </div>
     </div>
+    <style>
+        svg {
+        width: 10px;
+        height: 20px;
+        }
+    </style>
 
 
         

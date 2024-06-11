@@ -8,6 +8,7 @@ use App\Models\MedicalInformation;
 use App\Models\Patient;
 use App\Models\Prescription;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,13 +19,24 @@ class ConsultationController extends Controller
      */
     public function index()
     {
+
+
+        Carbon::setLocale('fr');
         // Recuperer tout les elements de la tables Patient par ordre Decroissant [orderBrDesc]
         // en precisant le champs [date de creation] ['created_at']
         
         $patients = Patient::orderByDesc('created_at')->get();
 
+        // Age par utilisateur Unique
+        // $age = Carbon::parse($patients->birthdate)->age;
+
+        // Calculer l'âge de chaque patient
+        foreach ($patients as $patient) {
+            $patient->age = Carbon::parse($patient->birthdate)->age;
+        }
+
         return view('specialiste.consultation.listePatients', [
-            'patients' => $patients
+            'patients' => $patients,
         ]);
     }
 
@@ -33,6 +45,8 @@ class ConsultationController extends Controller
      */
     public function allPatient()
     {
+        Carbon::setLocale('fr');
+
         $consulters = Consultation::with('patients')->get();
         return view('specialiste.consultation.newPatients', [
             'consulters' => $consulters,
@@ -44,6 +58,7 @@ class ConsultationController extends Controller
      */
     public function aPatient(int $id)
     {
+        Carbon::setLocale('fr');
         $detailsConsultations = Consultation::find($id);
 
         return view('specialiste.consultation.detailConsultation', [
@@ -64,6 +79,7 @@ class ConsultationController extends Controller
      */
     public function store(Request $request)
     {
+        Carbon::setLocale('fr');
         
         $consultation = new Consultation();
 
@@ -90,6 +106,8 @@ class ConsultationController extends Controller
 
     public function addOtherInformation(Request $request)
     {
+        Carbon::setLocale('fr');
+
         $information = new MedicalInformation();
         $information->blood_group = $request->groupe_sanguin;
         $information->facteur_rhesus = 'NULL';
@@ -100,7 +118,8 @@ class ConsultationController extends Controller
         
         $information->save();
 
-        session()->flash('redirect', true);
+
+        return redirect()->route('specialiste.index');
 
 
 
@@ -111,6 +130,8 @@ class ConsultationController extends Controller
      */
     public function show(int $id)
     {
+        Carbon::setLocale('fr');
+
         $patient = Patient::find($id);
         $birthday = date($patient->birthdate);
         $birthday = intval($birthday);

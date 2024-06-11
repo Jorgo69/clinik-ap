@@ -88,7 +88,7 @@
                             <tbody>
                                 @forelse ($appointments as $appointment)
                                 <tr>
-                                    <th scope="row">{{$appointment->date}}</th>
+                                    <th scope="row" class="text-capitalize">{{\Carbon\Carbon::parse($appointment->date)->translatedFormat('l jS F Y')}}</th>
                                     <td>{{$appointment->patient->name. ' ' .$appointment->patient->firstname}}</td>
                                     <td>{{$appointment->motif}}</td>
                                     <td>{{$appointment->patient->sexe === 'masculin' ? 'Homme' : 'Femme' }}</td>
@@ -126,6 +126,6 @@
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
     @push('title_header')
-        <title>Mes RDV | {{ config('app.name') }}</title>
+        <title>Toutes les RDV | {{ config('app.name') }}</title>
     @endpush
 </x-specialiste>

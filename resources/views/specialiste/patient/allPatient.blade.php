@@ -23,6 +23,18 @@
     
             <div class="container-fluid pt-4 px-4">
                 <div class="bg-light rounded p-4 col-12 col-md-12 col-sm-12 col-xl-12 col-xxl-12">
+                    @if (Session::has('update'))
+                        <div class="alert alert-info text-center">
+                        {{Session::get('update') }}
+                        <a href="" class="float-end"> X</a>
+                        </div>
+                    @endif
+                    @if (Session::has('danger'))
+                        <div class="alert alert-danger text-center">
+                        {{Session::get('danger') }}
+                        <a href="" class="float-end"> X</a>
+                        </div>
+                    @endif
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0">
                             Liste de tout les patients
@@ -58,12 +70,25 @@
                                     </td>
                                     <td class="d-flex col-lg justify-content-between">
                                         <a href="{{ route('specialiste.details.patients', ['id' => $patient->id])}}" class=""><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                        <a href="" class=" text-success"><i class="bi bi-brush"></i></a>
-                                        <a href="" class="text-danger"><i class="bi bi-trash"></i></a>
+                                        <a href="{{ route('specialiste.patient.find', ['id' => $patient->id])}}" class=" text-success"><i class="bi bi-brush"></i></a>
+                                        <a onclick="confirmDeletion('{{ route('specialiste.patient.found', ['id' => $patient->id]) }}')" class="text-danger">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                        
                                     </td>
                                 </tr>
+                                <script>
+                                    function confirmDeletion(url) {
+                                        if (confirm('Êtes-vous sûr de vouloir supprimer ce patient ?')) {
+                                            window.location.href = url;
+                                        }
+                                    }
+                                </script>
+                                
                                 @empty
-                                    
+                                
+                                
+
                                 <tr>
                                     
                                     <td>34 ans</td>

@@ -33,6 +33,7 @@
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="{{route('specialiste.rendez-vous.index')}}" class="dropdown-item {{ request()->routeIs('specialiste.rendez-vous.index') ? 'active' : '' }}">Sans Assignation</a>
                     <a href="{{ route('specialiste.secretaire.rdv.assigner')}}" class="dropdown-item {{ request()->routeIs('specialiste.secretaire.rdv.assigner') ? 'active' : '' }}">Deja Assigner</a>
+                    <a href="{{ route('specialiste.secretaire.rdv.honnorer')}}" class="dropdown-item {{ request()->routeIs('specialiste.secretaire.rdv.assigner') ? 'active' : '' }}">Honnorer</a>
                 </div>
             </div>
             
@@ -62,7 +63,7 @@
                 <a href="#" class="nav-link dropdown-toggle {{ (request()->routeIs('specialiste.facure') || request()->routeIs('specialiste.add.patient') ? 'active' : ''  )}}" data-bs-toggle="dropdown"><i class="fa fa-users" aria-hidden="true"></i></i>Personnels</a>
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="{{ route('specialiste.facure')}}" class="dropdown-item active">Tous le personnel</a>
-                    <a href="{{ route('specialiste.add.patient')}}" class="dropdown-item">Nouveau Patients</a>
+                    {{-- <a href="{{ route('specialiste.add.patient')}}" class="dropdown-item">Nouveau Patients</a> --}}
                 </div>
             </div>
         </div>

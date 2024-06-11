@@ -48,15 +48,8 @@
                         </thead>
                         <tbody>
                             @forelse ($patients as $patient )
-                            @php
-                                $birthday = date($patient->birthdate);
-                                $birthday = intval($birthday);
-                                $years = date('Y-m-d');
-                                $years = intval($years) ;
-                                $years = $years - $birthday;
-                            @endphp
                             <tr>                                
-                                <td>{!!$years .' ans' !!}</td>
+                                <td>{!!$patient->age .' ans' !!}</td>
                                 <td>{{$patient->name}} {{$patient->firstname}}</td>
                                 <td>
                                     {!! $patient->sexe === 'masculin' ? 'Homme <span><i class="fa fa-mars" aria-hidden="true"></i></span>' : 'Femme <i class="fa fa-venus" aria-hidden="true"></i>' !!}
